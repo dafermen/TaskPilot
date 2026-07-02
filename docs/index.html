@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskPilot Documentation</title>
+    <style>
+      :root {
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #152033;
+        background: #f3f8fb;
+      }
+      body {
+        margin: 0;
+      }
+      main {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 56px 24px;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(2.4rem, 7vw, 5rem);
+        line-height: 0.96;
+      }
+      p {
+        color: #5f7084;
+        font-size: 1.04rem;
+        line-height: 1.75;
+      }
+      .eyebrow {
+        color: #0891b2;
+        font-size: 0.78rem;
+        font-weight: 950;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 32px;
+      }
+      article {
+        border: 1px solid rgba(15, 23, 42, 0.1);
+        border-radius: 16px;
+        background: #ffffff;
+        padding: 20px;
+        box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+      }
+      h2 {
+        margin: 0 0 10px;
+      }
+      a {
+        color: #0e7490;
+        font-weight: 850;
+      }
+      @media (max-width: 760px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">TaskPilot docs</p>
+      <h1>React task board MVP for portfolio and product iteration.</h1>
+      <p>
+        TaskPilot demonstrates a usable workflow board with drag-and-drop movement, keyboard task
+        movement, task editing, filters, operational metrics, focus queue, and guarded local
+        persistence. The MVP is frontend-only so it can be reviewed quickly before backend or AI
+        features are added.
+      </p>
+      <section class="grid">
+        <article>
+          <h2>Current MVP</h2>
+          <p>React + Vite board with mock data, guarded browser storage, dialog drawer, and responsive layout.</p>
+        </article>
+        <article>
+          <h2>Future Direction</h2>
+          <p>Backend sync, user accounts, project spaces, AI planning, weekly reports, and integrations.</p>
+        </article>
+        <article>
+          <h2>Project Links</h2>
+          <p><a href="../README.md">README</a></p>
+          <p><a href="developer-guide.md">Developer guide</a></p>
+          <p><a href="accessibility-and-storage.md">Accessibility and storage</a></p>
+          <p><a href="quality-review.md">Quality review</a></p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
