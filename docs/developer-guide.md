@@ -64,9 +64,9 @@ The app exports backups as JSON with `version`, `exportedAt`, `projects`, `activ
 
 Task movement works through native drag-and-drop and through explicit card controls for keyboard and assistive-technology users. The task drawer uses dialog semantics, moves focus into the title field when opened, traps keyboard focus while open, and closes with Escape.
 
-The Workspace view is optimized for operational Kanban movement. It uses compact task cards, an expanded/collapsible card view preference, and a show-more limit so phases with many tasks remain readable without collapsing the workflow columns. In Collapsible mode, switching into the mode starts every task closed; clicking a task opens or closes its inline details, double-clicking opens the drawer, and Shift + Enter opens the drawer for keyboard users. The Administration view is the CRUD surface for projects, activities, and tasks, so editing larger sets of records does not overload the board UI. Administration uses compact tables with per-column filters, sortable headers, pagination, and an objective column for quickly separating completed outcomes from pending work.
+The Workspace view is optimized for operational Kanban movement. It uses compact task cards, an expanded/collapsible card view preference, empty-column states, and a show-more limit so phases with many tasks remain readable without collapsing the workflow columns. In Collapsible mode, switching into the mode starts every task closed; clicking a task opens or closes its inline details, double-clicking opens the drawer, Shift + Enter opens the drawer for keyboard users, and expanded cards show a Details action for mobile users. The Administration view is the CRUD surface for projects, activities, and tasks, so editing larger sets of records does not overload the board UI. Administration uses compact tables with per-column filters, sortable headers, pagination, and an objective column for quickly separating completed outcomes from pending work.
 
-Navigation is handled with lightweight local state instead of a router. The collapsible sidebar exposes Home, Workspace, Administration, Settings, Documentation, and About. Home is now a dashboard with high-level metrics, a priority queue, an operational snapshot, and quick actions. Workspace owns Kanban filters and task movement. Administration owns CRUD tables. Settings owns global controls such as theme, focus mode, JSON backup import/export, and demo reset. Documentation links to repository docs. About summarizes the current MVP scope and local record counts.
+Navigation is handled with lightweight local state instead of a router. The collapsible sidebar exposes Home, Workspace, Administration, Settings, Documentation, and About. Home is now a dashboard with high-level metrics, a priority queue, upcoming due dates, review-lane work, an operational snapshot, and quick actions. Workspace owns Kanban filters and task movement. Administration owns CRUD tables. Settings owns global controls such as theme, focus mode, JSON backup import/export, and demo reset. Documentation links to repository docs. About summarizes the current MVP scope and local record counts.
 
 Capacitor uses `dist` as its `webDir`. Run `npm run mobile:sync` after changing the web app so Android and iOS receive the latest built assets.
 
@@ -89,7 +89,7 @@ Last verified: July 4, 2026.
 2. Replace native drag events with `@dnd-kit` if touch/mobile drag behavior becomes a priority.
 3. Add real-device checks for Android and iOS.
 4. Add component tests around sidebar navigation, import/export UI, destructive confirmations, and Administration editing flows.
-5. Add backend storage only after the product flow feels right.
+5. Keep local JSON storage until the product flow is stable enough to justify backend or database work.
 6. Add workspace grouping if multiple clients or teams become part of the product.
 
 ## Do Not Claim Yet

@@ -8,7 +8,9 @@ TaskPilot is a frontend-only MVP, but it should still behave predictably for key
 - Each task card also includes left and right movement buttons so users do not need a pointer device to move work across the workflow.
 - Task cards can be expanded or collapsed with Enter or Space.
 - The full task drawer opens with double click or Shift + Enter.
+- Expanded task cards include a visible Details action for touch and mobile users.
 - Workspace task cards use a compact layout, can be expanded/collapsed inline, and long columns expose additional tasks through a show-more button.
+- Empty columns show a clear state and keep the Add task action available.
 - The task drawer uses `role="dialog"`, `aria-modal="true"`, a labelled heading, initial focus on the title field, a focus trap, and Escape-to-close behavior.
 - Visible focus styles are defined for buttons, inputs, selects, textareas, and task cards.
 - Checklist items use native checkboxes and text inputs so progress can be edited with a keyboard.

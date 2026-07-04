@@ -11,6 +11,7 @@ TaskPilot is now configured as a Capacitor app for Android and iOS while keeping
 - Project, activity, task, theme, active-filter, and focus-mode data still use browser `localStorage`.
 - Stored product data is JSON serialized with guarded reads and writes.
 - JSON backups can be exported/imported in the WebView from Settings using the same app controls as the web build.
+- Expanded task cards expose a visible Details action so mobile users do not depend on double click.
 
 ## Commands
 
@@ -46,4 +47,5 @@ Future storage options:
 
 - Native HTML drag-and-drop can be limited on touch devices.
 - The left/right card buttons and status selector remain the reliable mobile movement path.
+- A future touch-first drag experience should use a dedicated drag library only after the current workflow is stable.
 - App Store and Google Play releases still require real-device testing, icons, splash screens, signing, and store metadata.

@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronRight, Clock3, GripVertical, UserRound } from 'lucide-react';
+import { ChevronDown, ChevronRight, Clock3, FileText, GripVertical, UserRound } from 'lucide-react';
 import { columns } from '../data/boardData.js';
 import { getChecklistProgress, isObjectiveMet } from '../utils/taskStatus.js';
 
@@ -137,6 +137,19 @@ export function TaskCard({
         </div>
       )}
       {task.blocked && <div className="blocked">Blocked</div>}
+      {!collapsed && (
+        <button
+          className="detail-open-button"
+          type="button"
+          onClick={(event) => {
+            event.stopPropagation();
+            onOpen();
+          }}
+        >
+          <FileText size={14} />
+          Details
+        </button>
+      )}
     </article>
   );
 }

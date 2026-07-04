@@ -417,7 +417,7 @@ h1 {
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 1.35fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   margin-top: 10px;
 }
@@ -463,6 +463,19 @@ h1 {
 .snapshot-list strong {
   color: #172033;
   font-size: 1rem;
+}
+
+.quiet-empty {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  border: 1px dashed rgba(15, 23, 42, 0.14);
+  border-radius: 9px;
+  background: #f8fafc;
+  padding: 0 10px;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 850;
 }
 
 .metric {
@@ -741,6 +754,36 @@ h1 {
   align-content: start;
 }
 
+.column-empty {
+  display: grid;
+  gap: 8px;
+  border: 1px dashed rgba(15, 23, 42, 0.16);
+  border-radius: 10px;
+  background: #f8fafc;
+  padding: 12px;
+  color: #64748b;
+}
+
+.column-empty strong {
+  color: #172033;
+  font-size: 0.86rem;
+}
+
+.column-empty span {
+  font-size: 0.74rem;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.column-empty .ghost-button {
+  min-height: 32px;
+  justify-content: center;
+  border-radius: 9px;
+  background: #ffffff;
+  padding: 0 10px;
+  font-size: 0.8rem;
+}
+
 .task-card {
   position: relative;
   border: 1px solid rgba(15, 23, 42, 0.1);
@@ -978,6 +1021,27 @@ h1 {
   margin-top: 8px;
   background: #f8fafc;
   color: #475569;
+}
+
+.detail-open-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  min-height: 30px;
+  margin-top: 8px;
+  border: 1px solid rgba(14, 116, 144, 0.18);
+  border-radius: 8px;
+  background: #ecfeff;
+  color: #0e7490;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.detail-open-button svg {
+  width: 14px;
+  height: 14px;
 }
 
 .task-card.task-card-compact {
@@ -1555,6 +1619,8 @@ h1 {
 .theme-dark .admin-section,
 .theme-dark .admin-row,
 .theme-dark .admin-table-wrap,
+.theme-dark .column-empty,
+.theme-dark .quiet-empty,
 .theme-dark .column,
 .theme-dark .drawer-card,
 .theme-dark .task-card,
@@ -1604,6 +1670,8 @@ h1 {
 .theme-dark .focus-panel-secondary p,
 .theme-dark .dashboard-card > p,
 .theme-dark .snapshot-list span,
+.theme-dark .column-empty span,
+.theme-dark .quiet-empty,
 .theme-dark .task-group span,
 .theme-dark .utility-header > p:last-child,
 .theme-dark .utility-card p,
@@ -1622,6 +1690,14 @@ h1 {
 
 .theme-dark .snapshot-list strong {
   color: #edf6fb;
+}
+
+.theme-dark .column-empty strong {
+  color: #edf6fb;
+}
+
+.theme-dark .column-empty .ghost-button {
+  background: #111c2f;
 }
 
 .theme-dark .admin-table th,
@@ -1684,6 +1760,12 @@ h1 {
   border-color: rgba(255, 255, 255, 0.1);
   background: rgba(17, 28, 47, 0.92);
   color: #d8e4ee;
+}
+
+.theme-dark .detail-open-button {
+  border-color: rgba(20, 184, 166, 0.22);
+  background: rgba(20, 184, 166, 0.13);
+  color: #99f6e4;
 }
 
 .theme-dark .checklist p,

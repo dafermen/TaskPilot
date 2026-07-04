@@ -18,9 +18,9 @@ Quality review checklist is available at [docs/quality-review.md](docs/quality-r
 
 - React + Vite application.
 - Project -> Activity -> Task grouping.
-- Home dashboard with executive metrics, priority queue, operational snapshot, and quick actions.
+- Home dashboard with executive metrics, priority queue, upcoming due dates, review lane, operational snapshot, and quick actions.
 - Dedicated Workspace page for Kanban movement, search, and board filters.
-- Workspace readability controls: compact task cards, expandable/collapsible details, and show-more limits for busy phases.
+- Workspace readability controls: compact task cards, expandable/collapsible details, expanded-card detail access for mobile users, empty-column states, and show-more limits for busy phases.
 - Kanban-style workflow: Backlog, Ready, In Progress, Review, Done.
 - Separate administration view for listing, filtering, creating, editing, and deleting projects, activities, and tasks.
 - Administration tables support per-column filtering, sortable headers, and pagination for larger task lists.
@@ -90,7 +90,7 @@ TaskPilot is not meant to be a Trello clone. It is a focused project workflow bo
 
 ## Current Scope
 
-TaskPilot is frontend-only. It does not include authentication, multi-user collaboration, real-time sync, backend storage, database storage, or production AI features yet. Those are roadmap items.
+TaskPilot is frontend-only. It does not include authentication, multi-user collaboration, real-time sync, backend storage, database storage, or production AI features yet. Database work is intentionally deferred until the product flow is stable.
 
 ## Suggested GitHub Topics
 

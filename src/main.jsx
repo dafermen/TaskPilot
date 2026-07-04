@@ -146,6 +146,20 @@ function App() {
       .slice(0, 3);
   }, [filteredTasks]);
 
+  const dueSoonTasks = useMemo(() => {
+    return tasks
+      .filter((task) => task.column !== 'done')
+      .sort((a, b) => a.due.localeCompare(b.due))
+      .slice(0, 3);
+  }, [tasks]);
+
+  const reviewQueue = useMemo(() => {
+    return tasks
+      .filter((task) => task.column === 'review')
+      .sort((a, b) => priorityRank[b.priority] - priorityRank[a.priority])
+      .slice(0, 3);
+  }, [tasks]);
+
   function setSavedStatus(...results) {
     setStorageStatus(results.every(Boolean) ? 'saved' : 'failed');
   }
@@ -289,6 +303,11 @@ function App() {
     setSidebarOpen(false);
   }
 
+  function openTaskFromHome(task) {
+    setActivePage('workspace');
+    setActiveTask(task);
+  }
+
   function showMore(columnId) {
     setColumnLimits((current) => ({
       ...current,
@@ -380,12 +399,42 @@ function App() {
                   </div>
                   <p>Blocked and high-priority tasks that may need attention next.</p>
                   <div className="focus-list focus-list-dashboard">
-                    {focusQueue.map((task) => (
-                      <button key={task.id} className="focus-item" onClick={() => setActiveTask(task)}>
+                    {focusQueue.length > 0 ? focusQueue.map((task) => (
+                      <button key={task.id} className="focus-item" onClick={() => openTaskFromHome(task)}>
                         <span>{task.title}</span>
                         <strong>{task.blocked ? 'Blocked' : task.priority}</strong>
                       </button>
-                    ))}
+                    )) : <span className="quiet-empty">No urgent tasks.</span>}
+                  </div>
+                </article>
+                <article className="dashboard-card">
+                  <div className="panel-title">
+                    <Flag size={18} />
+                    Due next
+                  </div>
+                  <p>Upcoming active tasks by due date.</p>
+                  <div className="focus-list focus-list-dashboard">
+                    {dueSoonTasks.length > 0 ? dueSoonTasks.map((task) => (
+                      <button key={task.id} className="focus-item" onClick={() => openTaskFromHome(task)}>
+                        <span>{task.title}</span>
+                        <strong>{task.due}</strong>
+                      </button>
+                    )) : <span className="quiet-empty">No upcoming tasks.</span>}
+                  </div>
+                </article>
+                <article className="dashboard-card">
+                  <div className="panel-title">
+                    <CheckCircle2 size={18} />
+                    Review lane
+                  </div>
+                  <p>Work waiting for feedback before completion.</p>
+                  <div className="focus-list focus-list-dashboard">
+                    {reviewQueue.length > 0 ? reviewQueue.map((task) => (
+                      <button key={task.id} className="focus-item" onClick={() => openTaskFromHome(task)}>
+                        <span>{task.title}</span>
+                        <strong>{task.priority}</strong>
+                      </button>
+                    )) : <span className="quiet-empty">Nothing in review.</span>}
                   </div>
                 </article>
                 <article className="dashboard-card">
@@ -520,7 +569,7 @@ function App() {
                           <span>{columnTasks.length}</span>
                         </div>
                         <div className="task-list">
-                          {visibleTasks.map((task) => (
+                          {visibleTasks.length > 0 ? visibleTasks.map((task) => (
                             <TaskCard
                               key={task.id}
                               activity={activityById.get(task.activityId)}
@@ -535,7 +584,16 @@ function App() {
                               onMoveLeft={() => moveTaskByStep(task.id, -1)}
                               onMoveRight={() => moveTaskByStep(task.id, 1)}
                             />
-                          ))}
+                          )) : (
+                            <div className="column-empty">
+                              <strong>No tasks here</strong>
+                              <span>{search || priorityFilter !== 'All' || activeProjectId !== 'all' || activeActivityId !== 'all' ? 'Try another filter or add a task.' : 'This phase is clear.'}</span>
+                              <button type="button" className="ghost-button" onClick={() => addTask(column.id)}>
+                                <Plus size={15} />
+                                Add task
+                              </button>
+                            </div>
+                          )}
                         </div>
                         {hiddenCount > 0 && (
                           <button className="show-more-button" onClick={() => showMore(column.id)}>

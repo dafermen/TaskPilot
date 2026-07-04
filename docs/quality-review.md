@@ -9,8 +9,10 @@ Use this checklist before publishing screenshots, creating a GitHub repository, 
 - [x] Tasks belong to a project and an activity.
 - [x] Project and activity filters update the Kanban view.
 - [x] Home is a dashboard instead of the primary working board.
+- [x] Home surfaces priority work, upcoming due dates, and review-lane tasks.
 - [x] Workspace contains Kanban movement, search, and board filters.
 - [x] Workspace supports compact collapsible cards plus show-more limits for large phases.
+- [x] Workspace columns show useful empty states.
 - [x] Administration view lists projects, activities, and tasks.
 - [x] Administration view supports creating and editing projects, activities, and tasks.
 - [x] Administration view supports pagination, per-column filters, and sortable columns.
@@ -39,6 +41,7 @@ Use this checklist before publishing screenshots, creating a GitHub repository, 
 - [x] Home dashboard remains light and does not carry the working board controls.
 - [x] Header remains focused on primary task creation while global actions live in Settings.
 - [x] Priority queue is secondary and does not compete with the hero message.
+- [x] Expanded cards expose a detail action that works on mobile without relying on double click.
 - [x] Cards remain readable in light and dark themes.
 - [x] Objective badges and drawer status remain readable in light and dark themes.
 - [x] Filters do not collapse the layout.
