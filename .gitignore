@@ -1,0 +1,16 @@
+# Runtime and local files
+.DS_Store
+node_modules/
+dist/
+.env
+.env.local
+
+# Native build output
+android/.gradle/
+android/app/build/
+android/build/
+ios/App/build/
+ios/App/DerivedData/
+
+# Keep private planning local unless intentionally reviewed before publishing.
+.private/
