@@ -1,12 +1,14 @@
 # TaskPilot
 
-TaskPilot is a React task board MVP for managing work across a simple left-to-right workflow. It is designed as a portfolio project that demonstrates product thinking, task state, accessible workflow movement, filters, metrics, and local persistence.
+TaskPilot is a React project and task board MVP for managing work across projects, activities, and a simple left-to-right workflow. It is designed as a portfolio project that demonstrates product thinking, grouped task state, accessible workflow movement, editable checklists, filters, metrics, CRUD administration, and local persistence.
 
 The current version is intentionally frontend-only. It stores board data in `localStorage` and uses realistic demo tasks so the product can be evaluated without a backend.
 
 Public visual documentation is available at [docs/index.html](docs/index.html).
 
 Developer documentation is available at [docs/developer-guide.md](docs/developer-guide.md).
+
+Mobile Capacitor documentation is available at [docs/mobile-capacitor.md](docs/mobile-capacitor.md).
 
 Accessibility and storage notes are available at [docs/accessibility-and-storage.md](docs/accessibility-and-storage.md).
 
@@ -15,16 +17,35 @@ Quality review checklist is available at [docs/quality-review.md](docs/quality-r
 ## MVP Features
 
 - React + Vite application.
+- Project -> Activity -> Task grouping.
+- Home dashboard with executive metrics, priority queue, operational snapshot, and quick actions.
+- Dedicated Workspace page for Kanban movement, search, and board filters.
+- Workspace readability controls: compact task cards, expandable/collapsible details, and show-more limits for busy phases.
 - Kanban-style workflow: Backlog, Ready, In Progress, Review, Done.
+- Separate administration view for listing, filtering, creating, editing, and deleting projects, activities, and tasks.
+- Administration tables support per-column filtering, sortable headers, and pagination for larger task lists.
+- Compact workspace layout optimized for scanning and saving screen space.
+- Collapsible left sidebar with Home, Workspace, Administration, Settings, Documentation, and About.
+- Settings page for theme, focus mode, JSON import/export, and demo reset controls.
 - Drag-and-drop task movement between columns.
 - Keyboard-accessible left/right task movement controls.
 - Create and edit tasks through a detail drawer.
-- Detail drawer with dialog semantics, initial focus, and Escape-to-close behavior.
-- Search and priority filtering.
-- Board metrics for open, blocked, completed, and total points.
-- Focus queue for important or blocked work.
-- Light and dark theme toggle.
+- Edit task checklists by adding, completing, renaming, and removing items.
+- Show an objective-met signal when a task is in Done, is not blocked, and has every checklist item completed.
+- Detail drawer with dialog semantics, initial focus, focus trapping, and Escape-to-close behavior.
+- Search, project, activity, and priority filtering.
+- Board metrics for projects, activities, completed objectives, and total points.
+- Secondary priority queue for important or blocked work.
+- Export and import JSON backups for local data portability.
+- Confirmation prompts before destructive reset/import/delete actions.
+- Data validation and normalization for required names, dates, points, statuses, and task relationships.
+- Light and dark theme toggle with saved preference.
+- Saved focus-mode preference.
 - Local persistence with guarded `localStorage` reads and writes.
+- Modular source structure for components, board data, and storage utilities.
+- Node-based tests for storage, preferences, project/activity records, task creation, backup import/export, validation, and legacy migrations.
+- Capacitor configuration for Android and iOS native shells.
+- JSON-backed `localStorage` persistence across web and Capacitor WebView.
 
 ## Run Locally
 
@@ -38,19 +59,38 @@ Then open the local URL printed by Vite.
 ## Quality Checks
 
 ```bash
+npm test
 npm run build
 npm audit --audit-level=moderate
 ```
 
-The current version has been checked with both commands.
+The current version has been checked with `npm test` and `npm run build`.
+
+## Data Portability
+
+TaskPilot stores projects, activities, and tasks as JSON in `localStorage`. Use the Settings page to download a backup or restore one later. Imported files are validated and normalized before replacing local data.
+
+## Objective Completion
+
+A task counts as objective met only when it is in the Done column, is not blocked, and every checklist item is complete. The app shows this status on the task card, in the task drawer, in board metrics, and as an Administration filter.
+
+## Mobile Builds
+
+```bash
+npm run mobile:sync
+npm run mobile:android
+npm run mobile:ios
+```
+
+`mobile:sync` builds the web app and syncs it into the native Android/iOS projects. Android opens with Android Studio. iOS opens with Xcode and requires macOS for actual device/simulator builds.
 
 ## Project Goals
 
-TaskPilot is not meant to be a Trello clone. It is a focused workflow board that can grow toward AI-assisted planning, weekly status summaries, blocked-work detection, and lightweight project reporting.
+TaskPilot is not meant to be a Trello clone. It is a focused project workflow board that can grow toward AI-assisted planning, weekly status summaries, blocked-work detection, and lightweight project reporting.
 
 ## Current Scope
 
-TaskPilot is frontend-only. It does not include authentication, multi-user collaboration, real-time sync, backend storage, or production AI features yet. Those are roadmap items.
+TaskPilot is frontend-only. It does not include authentication, multi-user collaboration, real-time sync, backend storage, database storage, or production AI features yet. Those are roadmap items.
 
 ## Suggested GitHub Topics
 

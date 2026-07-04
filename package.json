@@ -6,14 +6,23 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
-    "preview": "vite preview --host 127.0.0.1"
+    "test": "node --test",
+    "preview": "vite preview --host 127.0.0.1",
+    "mobile:sync": "npm run build && npx cap sync",
+    "mobile:android": "npm run mobile:sync && npx cap open android",
+    "mobile:ios": "npm run mobile:sync && npx cap open ios"
   },
   "dependencies": {
+    "@capacitor/android": "^8.4.1",
+    "@capacitor/core": "^8.4.1",
+    "@capacitor/ios": "^8.4.1",
     "@vitejs/plugin-react": "6.0.3",
     "lucide-react": "1.22.0",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "vite": "8.1.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@capacitor/cli": "^8.4.1"
+  }
 }

@@ -1,0 +1,151 @@
+export const columns = [
+  { id: 'backlog', title: 'Backlog', hint: 'Ideas and unshaped work' },
+  { id: 'ready', title: 'Ready', hint: 'Clear and ready to start' },
+  { id: 'progress', title: 'In Progress', hint: 'Active execution' },
+  { id: 'review', title: 'Review', hint: 'Waiting for feedback' },
+  { id: 'done', title: 'Done', hint: 'Completed and shipped' },
+];
+
+export const initialProjects = [
+  {
+    id: 'project-taskpilot',
+    name: 'TaskPilot MVP',
+    owner: 'Dario',
+    color: '#0e7490',
+    status: 'Active',
+  },
+  {
+    id: 'project-mobile',
+    name: 'Mobile Launch',
+    owner: 'Dario',
+    color: '#166534',
+    status: 'Planning',
+  },
+];
+
+export const initialActivities = [
+  {
+    id: 'activity-product',
+    projectId: 'project-taskpilot',
+    name: 'Product MVP',
+    owner: 'Dario',
+    status: 'Active',
+  },
+  {
+    id: 'activity-quality',
+    projectId: 'project-taskpilot',
+    name: 'Quality and Docs',
+    owner: 'Dario',
+    status: 'Active',
+  },
+  {
+    id: 'activity-mobile-shell',
+    projectId: 'project-mobile',
+    name: 'Native Shell',
+    owner: 'Dario',
+    status: 'Planning',
+  },
+];
+
+export const initialTasks = [
+  {
+    id: 'tp-101',
+    projectId: 'project-taskpilot',
+    activityId: 'activity-quality',
+    title: 'Draft public README',
+    description: 'Explain what TaskPilot is, who it is for, and what the MVP can do today.',
+    column: 'backlog',
+    owner: 'Dario',
+    priority: 'High',
+    tag: 'Docs',
+    due: '2026-07-03',
+    points: 2,
+    blocked: false,
+    checklist: [
+      { id: 'tp-101-1', text: 'Positioning', done: true },
+      { id: 'tp-101-2', text: 'MVP features', done: true },
+      { id: 'tp-101-3', text: 'Next steps', done: false },
+    ],
+  },
+  {
+    id: 'tp-102',
+    projectId: 'project-taskpilot',
+    activityId: 'activity-product',
+    title: 'Design task detail panel',
+    description: 'Make editing feel fast without leaving the board.',
+    column: 'ready',
+    owner: 'Dario',
+    priority: 'Medium',
+    tag: 'UX',
+    due: '2026-07-05',
+    points: 3,
+    blocked: false,
+    checklist: [
+      { id: 'tp-102-1', text: 'Fields', done: true },
+      { id: 'tp-102-2', text: 'Checklist', done: false },
+      { id: 'tp-102-3', text: 'Save flow', done: false },
+    ],
+  },
+  {
+    id: 'tp-103',
+    projectId: 'project-taskpilot',
+    activityId: 'activity-product',
+    title: 'Create drag and drop board',
+    description: 'Move cards left to right and persist the updated status locally.',
+    column: 'progress',
+    owner: 'Dario',
+    priority: 'High',
+    tag: 'React',
+    due: '2026-07-02',
+    points: 5,
+    blocked: false,
+    checklist: [
+      { id: 'tp-103-1', text: 'Columns', done: true },
+      { id: 'tp-103-2', text: 'Cards', done: true },
+      { id: 'tp-103-3', text: 'Drop targets', done: true },
+    ],
+  },
+  {
+    id: 'tp-104',
+    projectId: 'project-taskpilot',
+    activityId: 'activity-product',
+    title: 'Add blocked task signal',
+    description: 'Surface blocked work in the overview before it becomes invisible.',
+    column: 'review',
+    owner: 'Ops',
+    priority: 'High',
+    tag: 'Ops',
+    due: '2026-07-01',
+    points: 2,
+    blocked: true,
+    checklist: [
+      { id: 'tp-104-1', text: 'Badge', done: true },
+      { id: 'tp-104-2', text: 'Metric', done: true },
+      { id: 'tp-104-3', text: 'Filter', done: false },
+    ],
+  },
+  {
+    id: 'tp-105',
+    projectId: 'project-taskpilot',
+    activityId: 'activity-quality',
+    title: 'Publish first MVP screenshot',
+    description: 'Capture the first version after the layout is stable.',
+    column: 'done',
+    owner: 'Dario',
+    priority: 'Low',
+    tag: 'Portfolio',
+    due: '2026-07-07',
+    points: 1,
+    blocked: false,
+    checklist: [
+      { id: 'tp-105-1', text: 'Desktop shot', done: false },
+      { id: 'tp-105-2', text: 'Mobile shot', done: false },
+    ],
+  },
+];
+
+export const priorityRank = {
+  High: 3,
+  Medium: 2,
+  Low: 1,
+};

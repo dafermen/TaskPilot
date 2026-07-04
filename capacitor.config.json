@@ -1,0 +1,12 @@
+{
+  "appId": "com.dafermen.taskpilot",
+  "appName": "TaskPilot",
+  "webDir": "dist",
+  "backgroundColor": "#f8fbfc",
+  "ios": {
+    "contentInset": "automatic"
+  },
+  "android": {
+    "backgroundColor": "#f8fbfc"
+  }
+}

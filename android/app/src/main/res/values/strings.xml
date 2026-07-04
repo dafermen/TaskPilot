@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">TaskPilot</string>
+    <string name="title_activity_main">TaskPilot</string>
+    <string name="package_name">com.dafermen.taskpilot</string>
+    <string name="custom_url_scheme">com.dafermen.taskpilot</string>
+</resources>
