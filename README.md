@@ -14,6 +14,8 @@ Accessibility and storage notes are available at [docs/accessibility-and-storage
 
 Quality review checklist is available at [docs/quality-review.md](docs/quality-review.md).
 
+Continuity notes for future Codex sessions are available at [AGENTS.md](AGENTS.md) and [CURRENT_STATUS.md](CURRENT_STATUS.md).
+
 ## MVP Features
 
 - React + Vite application.
@@ -21,6 +23,7 @@ Quality review checklist is available at [docs/quality-review.md](docs/quality-r
 - Home dashboard with executive metrics, priority queue, upcoming due dates, review lane, operational snapshot, and quick actions.
 - Dedicated Workspace page for Kanban movement, search, and board filters.
 - Workspace readability controls: compact task cards, expandable/collapsible details, expanded-card detail access for mobile users, empty-column states, and show-more limits for busy phases.
+- Workspace hides `Paused` and `Done` projects or activities by default, with an optional control to show them when reviewing historical work.
 - Kanban-style workflow: Backlog, Ready, In Progress, Review, Done.
 - Separate administration view for listing, filtering, creating, editing, and deleting projects, activities, and tasks.
 - Administration tables support per-column filtering, sortable headers, and pagination for larger task lists.
@@ -64,11 +67,15 @@ npm run build
 npm audit --audit-level=moderate
 ```
 
-The current version has been checked with `npm test` and `npm run build`.
+The current version has been checked with `npm test`, `npm run build`, `npm audit --audit-level=moderate`, and `npm run mobile:sync`.
 
 ## Data Portability
 
 TaskPilot stores projects, activities, and tasks as JSON in `localStorage`. Use the Settings page to download a backup or restore one later. Imported files are validated and normalized before replacing local data.
+
+## Project and Activity Status
+
+Projects and activities can be marked `Planning`, `Active`, `Paused`, or `Done` from Administration. `Planning` and `Active` records are operational and appear in Home and Workspace. `Paused` and `Done` records remain available in Administration but are hidden from Workspace by default so standby or completed work does not distract from active execution. Use the Workspace `Show paused/done` control when archived work needs to be reviewed.
 
 ## Objective Completion
 

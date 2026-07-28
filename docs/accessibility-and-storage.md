@@ -11,6 +11,7 @@ TaskPilot is a frontend-only MVP, but it should still behave predictably for key
 - Expanded task cards include a visible Details action for touch and mobile users.
 - Workspace task cards use a compact layout, can be expanded/collapsed inline, and long columns expose additional tasks through a show-more button.
 - Empty columns show a clear state and keep the Add task action available.
+- Paused/Done project and activity records are hidden from Workspace by default, and the Workspace toolbar includes a native checkbox to show them temporarily.
 - The task drawer uses `role="dialog"`, `aria-modal="true"`, a labelled heading, initial focus on the title field, a focus trap, and Escape-to-close behavior.
 - Visible focus styles are defined for buttons, inputs, selects, textareas, and task cards.
 - Checklist items use native checkboxes and text inputs so progress can be edited with a keyboard.
@@ -27,6 +28,7 @@ TaskPilot is a frontend-only MVP, but it should still behave predictably for key
 - Writes return a success/failure result.
 - Theme and focus-mode preferences are saved separately from board data.
 - Card expansion preference is saved separately from board data.
+- Show paused/done preference is saved separately from board data.
 - If a browser blocks saving, TaskPilot keeps the in-memory session active and shows a status message explaining that changes are not persisted.
 - Capacitor builds use the same JSON-backed `localStorage` model inside the native WebView.
 - JSON backups can be exported and imported from Settings.

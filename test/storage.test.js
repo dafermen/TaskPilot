@@ -22,6 +22,12 @@ import {
   saveTasks,
   TASK_STORAGE_KEY,
 } from '../src/utils/storage.js';
+import {
+  isOperationalActivity,
+  isOperationalProject,
+  isOperationalStatus,
+  recordStatuses,
+} from '../src/utils/recordStatus.js';
 
 function mockStorage(initialValues = {}) {
   const values = new Map(Object.entries(initialValues));
@@ -120,6 +126,16 @@ test('project and activity records can be created and saved', () => {
   assert.equal(saveActivities([activity]), true);
   assert.equal(JSON.parse(values.get(PROJECT_STORAGE_KEY))[0].name, 'New project');
   assert.equal(JSON.parse(values.get(ACTIVITY_STORAGE_KEY))[0].projectId, project.id);
+});
+
+test('paused and done records are non-operational workspace records', () => {
+  assert.deepEqual(recordStatuses, ['Planning', 'Active', 'Paused', 'Done']);
+  assert.equal(isOperationalStatus('Planning'), true);
+  assert.equal(isOperationalStatus('Active'), true);
+  assert.equal(isOperationalStatus('Paused'), false);
+  assert.equal(isOperationalStatus('Done'), false);
+  assert.equal(isOperationalProject({ status: 'Paused' }), false);
+  assert.equal(isOperationalActivity({ status: 'Done' }), false);
 });
 
 test('board backups round-trip through JSON import', () => {

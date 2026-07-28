@@ -47,8 +47,10 @@ import {
   saveProjects,
   saveStringPreference,
   saveTasks,
+  SHOW_ARCHIVED_STORAGE_KEY,
   THEME_STORAGE_KEY,
 } from './utils/storage.js';
+import { isOperationalActivity, isOperationalProject } from './utils/recordStatus.js';
 import { isObjectiveMet } from './utils/taskStatus.js';
 import './styles.css';
 
@@ -70,6 +72,7 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [focusMode, setFocusMode] = useState(() => loadBooleanPreference(FOCUS_STORAGE_KEY));
   const [cardView, setCardView] = useState(() => loadStringPreference(CARD_VIEW_STORAGE_KEY, 'expanded'));
+  const [showArchivedWork, setShowArchivedWork] = useState(() => loadBooleanPreference(SHOW_ARCHIVED_STORAGE_KEY));
   const [expandedTaskIds, setExpandedTaskIds] = useState(() => new Set());
   const [columnLimits, setColumnLimits] = useState({});
   const [darkMode, setDarkMode] = useState(() => loadBooleanPreference(THEME_STORAGE_KEY));
@@ -90,6 +93,10 @@ function App() {
   }, [cardView]);
 
   useEffect(() => {
+    saveBooleanPreference(SHOW_ARCHIVED_STORAGE_KEY, showArchivedWork);
+  }, [showArchivedWork]);
+
+  useEffect(() => {
     saveStringPreference(ACTIVE_PROJECT_STORAGE_KEY, activeProjectId);
   }, [activeProjectId]);
 
@@ -101,6 +108,41 @@ function App() {
     setColumnLimits({});
   }, [activeActivityId, activeProjectId, priorityFilter, search]);
 
+  const operationalProjects = useMemo(() => {
+    return projects.filter(isOperationalProject);
+  }, [projects]);
+
+  const operationalTasks = useMemo(() => {
+    return tasks.filter((task) => {
+      const project = projectById.get(task.projectId);
+      const activity = activityById.get(task.activityId);
+      return isOperationalProject(project) && isOperationalActivity(activity);
+    });
+  }, [activityById, projectById, tasks]);
+
+  const workspaceProjects = useMemo(() => {
+    return showArchivedWork ? projects : operationalProjects;
+  }, [operationalProjects, projects, showArchivedWork]);
+
+  const effectiveProjectId = useMemo(() => {
+    if (activeProjectId === 'all') return 'all';
+    return workspaceProjects.some((project) => project.id === activeProjectId) ? activeProjectId : 'all';
+  }, [activeProjectId, workspaceProjects]);
+
+  const workspaceProjectActivities = useMemo(() => {
+    return activities.filter((activity) => {
+      const project = projectById.get(activity.projectId);
+      const matchesProject = effectiveProjectId === 'all' || activity.projectId === effectiveProjectId;
+      const visibleStatus = showArchivedWork || (isOperationalProject(project) && isOperationalActivity(activity));
+      return matchesProject && visibleStatus;
+    });
+  }, [activities, effectiveProjectId, projectById, showArchivedWork]);
+
+  const effectiveActivityId = useMemo(() => {
+    if (activeActivityId === 'all') return 'all';
+    return workspaceProjectActivities.some((activity) => activity.id === activeActivityId) ? activeActivityId : 'all';
+  }, [activeActivityId, workspaceProjectActivities]);
+
   const activeProjectActivities = useMemo(() => {
     return activities.filter((activity) => activeProjectId === 'all' || activity.projectId === activeProjectId);
   }, [activeProjectId, activities]);
@@ -110,16 +152,17 @@ function App() {
       .filter((task) => {
         const project = projectById.get(task.projectId);
         const activity = activityById.get(task.activityId);
-        const matchesProject = activeProjectId === 'all' || task.projectId === activeProjectId;
-        const matchesActivity = activeActivityId === 'all' || task.activityId === activeActivityId;
+        const visibleStatus = showArchivedWork || (isOperationalProject(project) && isOperationalActivity(activity));
+        const matchesProject = effectiveProjectId === 'all' || task.projectId === effectiveProjectId;
+        const matchesActivity = effectiveActivityId === 'all' || task.activityId === effectiveActivityId;
         const matchesText = `${task.title} ${task.description} ${task.owner} ${task.tag} ${project?.name || ''} ${activity?.name || ''}`
           .toLowerCase()
           .includes(search.toLowerCase());
         const matchesPriority = priorityFilter === 'All' || task.priority === priorityFilter;
-        return matchesProject && matchesActivity && matchesText && matchesPriority;
+        return visibleStatus && matchesProject && matchesActivity && matchesText && matchesPriority;
       })
       .sort((a, b) => priorityRank[b.priority] - priorityRank[a.priority]);
-  }, [activeActivityId, activeProjectId, activityById, priorityFilter, projectById, search, tasks]);
+  }, [activityById, effectiveActivityId, effectiveProjectId, priorityFilter, projectById, search, showArchivedWork, tasks]);
 
   const metrics = useMemo(() => {
     const blocked = filteredTasks.filter((task) => task.blocked).length;
@@ -129,12 +172,12 @@ function App() {
   }, [filteredTasks]);
 
   const dashboardMetrics = useMemo(() => {
-    const active = tasks.filter((task) => task.column !== 'done').length;
-    const blocked = tasks.filter((task) => task.blocked).length;
-    const objectiveMet = tasks.filter(isObjectiveMet).length;
-    const points = tasks.reduce((total, task) => total + Number(task.points || 0), 0);
+    const active = operationalTasks.filter((task) => task.column !== 'done').length;
+    const blocked = operationalTasks.filter((task) => task.blocked).length;
+    const objectiveMet = operationalTasks.filter(isObjectiveMet).length;
+    const points = operationalTasks.reduce((total, task) => total + Number(task.points || 0), 0);
     return { active, blocked, objectiveMet, points };
-  }, [tasks]);
+  }, [operationalTasks]);
 
   const focusQueue = useMemo(() => {
     return filteredTasks
@@ -147,18 +190,18 @@ function App() {
   }, [filteredTasks]);
 
   const dueSoonTasks = useMemo(() => {
-    return tasks
+    return operationalTasks
       .filter((task) => task.column !== 'done')
       .sort((a, b) => a.due.localeCompare(b.due))
       .slice(0, 3);
-  }, [tasks]);
+  }, [operationalTasks]);
 
   const reviewQueue = useMemo(() => {
-    return tasks
+    return operationalTasks
       .filter((task) => task.column === 'review')
       .sort((a, b) => priorityRank[b.priority] - priorityRank[a.priority])
       .slice(0, 3);
-  }, [tasks]);
+  }, [operationalTasks]);
 
   function setSavedStatus(...results) {
     setStorageStatus(results.every(Boolean) ? 'saved' : 'failed');
@@ -186,10 +229,11 @@ function App() {
   }
 
   function addTask(columnId, targetPage = 'workspace') {
-    const projectId = activeProjectId === 'all' ? projects[0]?.id : activeProjectId;
-    const activityId = activeActivityId === 'all'
-      ? activities.find((activity) => activity.projectId === projectId)?.id
-      : activeActivityId;
+    const projectId = effectiveProjectId === 'all' ? (workspaceProjects[0]?.id || projects[0]?.id) : effectiveProjectId;
+    const availableActivities = workspaceProjectActivities.length > 0 ? workspaceProjectActivities : activities;
+    const activityId = effectiveActivityId === 'all'
+      ? availableActivities.find((activity) => activity.projectId === projectId)?.id
+      : effectiveActivityId;
     const nextTask = createTask(columnId, projectId, activityId);
     updateTasks([nextTask, ...tasks]);
     setActiveTask(nextTask);
@@ -385,7 +429,7 @@ function App() {
               </section>
 
               <section className="metrics" aria-label="Board metrics">
-                <Metric icon={<BriefcaseBusiness />} label="Projects" value={projects.length} />
+                <Metric icon={<BriefcaseBusiness />} label="Active projects" value={operationalProjects.length} />
                 <Metric icon={<KanbanSquare />} label="Active tasks" value={dashboardMetrics.active} />
                 <Metric icon={<CheckCircle2 />} label="Objectives met" value={dashboardMetrics.objectiveMet} />
                 <Metric icon={<Flag />} label="Total points" value={dashboardMetrics.points} />
@@ -443,7 +487,7 @@ function App() {
                     Operational snapshot
                   </div>
                   <div className="snapshot-list">
-                    <span><strong>{activities.length}</strong> activities tracked</span>
+                    <span><strong>{operationalTasks.length}</strong> visible tasks</span>
                     <span><strong>{dashboardMetrics.blocked}</strong> blocked tasks</span>
                     <span><strong>{tasks.length}</strong> total tasks</span>
                   </div>
@@ -480,8 +524,8 @@ function App() {
                 description="Move tasks through the workflow, filter active work, and open task details without mixing the board with administration."
               >
                 <section className="metrics" aria-label="Filtered workspace metrics">
-                  <Metric icon={<BriefcaseBusiness />} label="Projects" value={projects.length} />
-                  <Metric icon={<ListChecks />} label="Activities" value={activeProjectActivities.length} />
+                  <Metric icon={<BriefcaseBusiness />} label="Visible projects" value={workspaceProjects.length} />
+                  <Metric icon={<ListChecks />} label="Visible activities" value={workspaceProjectActivities.length} />
                   <Metric icon={<CheckCircle2 />} label="Objectives met" value={metrics.objectiveMet} />
                   <Metric icon={<Flag />} label="Total points" value={metrics.points} />
                 </section>
@@ -501,12 +545,12 @@ function App() {
                   </label>
                   <label className="select-label">
                     <BriefcaseBusiness size={18} />
-                    <select value={activeProjectId} onChange={(event) => {
+                    <select value={effectiveProjectId} onChange={(event) => {
                       setActiveProjectId(event.target.value);
                       setActiveActivityId('all');
                     }}>
                       <option value="all">All projects</option>
-                      {projects.map((project) => (
+                      {workspaceProjects.map((project) => (
                         <option key={project.id} value={project.id}>{project.name}</option>
                       ))}
                     </select>
@@ -514,13 +558,21 @@ function App() {
                   </label>
                   <label className="select-label">
                     <ListChecks size={18} />
-                    <select value={activeActivityId} onChange={(event) => setActiveActivityId(event.target.value)}>
+                    <select value={effectiveActivityId} onChange={(event) => setActiveActivityId(event.target.value)}>
                       <option value="all">All activities</option>
-                      {activeProjectActivities.map((activity) => (
+                      {workspaceProjectActivities.map((activity) => (
                         <option key={activity.id} value={activity.id}>{activity.name}</option>
                       ))}
                     </select>
                     <ChevronDown size={18} />
+                  </label>
+                  <label className="toggle-filter">
+                    <input
+                      type="checkbox"
+                      checked={showArchivedWork}
+                      onChange={(event) => setShowArchivedWork(event.target.checked)}
+                    />
+                    <span>Show paused/done</span>
                   </label>
                   <label className="select-label">
                     <Filter size={18} />
@@ -587,7 +639,7 @@ function App() {
                           )) : (
                             <div className="column-empty">
                               <strong>No tasks here</strong>
-                              <span>{search || priorityFilter !== 'All' || activeProjectId !== 'all' || activeActivityId !== 'all' ? 'Try another filter or add a task.' : 'This phase is clear.'}</span>
+                              <span>{search || priorityFilter !== 'All' || effectiveProjectId !== 'all' || effectiveActivityId !== 'all' ? 'Try another filter or add a task.' : 'This phase is clear.'}</span>
                               <button type="button" className="ghost-button" onClick={() => addTask(column.id)}>
                                 <Plus size={15} />
                                 Add task

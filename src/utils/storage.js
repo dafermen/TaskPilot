@@ -1,4 +1,5 @@
 import { columns, initialActivities, initialProjects, initialTasks, priorityRank } from '../data/boardData.js';
+import { recordStatuses } from './recordStatus.js';
 
 export const TASK_STORAGE_KEY = 'taskpilot-board-v3';
 export const PROJECT_STORAGE_KEY = 'taskpilot-projects-v1';
@@ -6,6 +7,7 @@ export const ACTIVITY_STORAGE_KEY = 'taskpilot-activities-v1';
 export const THEME_STORAGE_KEY = 'taskpilot-theme';
 export const FOCUS_STORAGE_KEY = 'taskpilot-focus-mode';
 export const CARD_VIEW_STORAGE_KEY = 'taskpilot-card-view';
+export const SHOW_ARCHIVED_STORAGE_KEY = 'taskpilot-show-paused-done';
 export const ACTIVE_PROJECT_STORAGE_KEY = 'taskpilot-active-project';
 export const ACTIVE_ACTIVITY_STORAGE_KEY = 'taskpilot-active-activity';
 
@@ -15,7 +17,7 @@ export const BOARD_BACKUP_VERSION = 1;
 
 const validColumns = new Set(columns.map((column) => column.id));
 const validPriorities = new Set(Object.keys(priorityRank));
-const validStatuses = new Set(['Planning', 'Active', 'Paused', 'Done']);
+const validStatuses = new Set(recordStatuses);
 
 function cleanText(value, fallback) {
   return typeof value === 'string' && value.trim() ? value.trim() : fallback;

@@ -1,9 +1,9 @@
 import { Plus, Trash2 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { columns } from '../data/boardData.js';
+import { recordStatuses } from '../utils/recordStatus.js';
 import { isObjectiveMet } from '../utils/taskStatus.js';
 
-const statuses = ['Planning', 'Active', 'Paused', 'Done'];
 const priorities = ['High', 'Medium', 'Low'];
 const pageSize = 8;
 
@@ -93,7 +93,7 @@ export function AdminPanel({
                 </td>
                 <td>
                   <select value={project.status} onChange={(event) => onUpdateProject(project.id, { status: event.target.value })}>
-                    {statuses.map((status) => <option key={status}>{status}</option>)}
+                    {recordStatuses.map((status) => <option key={status}>{status}</option>)}
                   </select>
                 </td>
                 <td>
@@ -149,7 +149,7 @@ export function AdminPanel({
                 </td>
                 <td>
                   <select value={activity.status} onChange={(event) => onUpdateActivity(activity.id, { status: event.target.value })}>
-                    {statuses.map((status) => <option key={status}>{status}</option>)}
+                    {recordStatuses.map((status) => <option key={status}>{status}</option>)}
                   </select>
                 </td>
                 <td><span className="admin-count">{taskCount}</span></td>
@@ -238,7 +238,7 @@ export function AdminPanel({
 const projectColumns = [
   { key: 'name', label: 'Name', filter: 'text', className: 'admin-col-wide' },
   { key: 'owner', label: 'Owner', filter: 'text' },
-  { key: 'status', label: 'Status', filter: 'select', options: statuses },
+  { key: 'status', label: 'Status', filter: 'select', options: recordStatuses },
   { key: 'color', label: 'Color', sortable: false },
   { key: 'activities', label: 'Activities', filter: 'number' },
   { key: 'tasks', label: 'Tasks', filter: 'number' },
@@ -249,7 +249,7 @@ const activityColumns = [
   { key: 'name', label: 'Name', filter: 'text', className: 'admin-col-wide' },
   { key: 'project', label: 'Project', filter: 'text', className: 'admin-col-wide' },
   { key: 'owner', label: 'Owner', filter: 'text' },
-  { key: 'status', label: 'Status', filter: 'select', options: statuses },
+  { key: 'status', label: 'Status', filter: 'select', options: recordStatuses },
   { key: 'tasks', label: 'Tasks', filter: 'number' },
   { key: 'actions', label: '', sortable: false },
 ];

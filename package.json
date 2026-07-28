@@ -1,9 +1,12 @@
 {
+  "homepage": "https://taskpilot.innovalogic.tech",
   "name": "taskpilot",
   "private": true,
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "test": "node --test",
@@ -23,6 +26,7 @@
     "vite": "8.1.1"
   },
   "devDependencies": {
-    "@capacitor/cli": "^8.4.1"
+    "@capacitor/cli": "^8.4.1",
+    "gh-pages": "^6.3.0"
   }
 }

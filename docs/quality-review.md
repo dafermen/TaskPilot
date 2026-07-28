@@ -13,6 +13,8 @@ Use this checklist before publishing screenshots, creating a GitHub repository, 
 - [x] Workspace contains Kanban movement, search, and board filters.
 - [x] Workspace supports compact collapsible cards plus show-more limits for large phases.
 - [x] Workspace columns show useful empty states.
+- [x] Workspace hides Paused/Done projects and activities by default.
+- [x] Workspace can temporarily show Paused/Done work for review.
 - [x] Administration view lists projects, activities, and tasks.
 - [x] Administration view supports creating and editing projects, activities, and tasks.
 - [x] Administration view supports pagination, per-column filters, and sortable columns.
@@ -30,6 +32,7 @@ Use this checklist before publishing screenshots, creating a GitHub repository, 
 - [x] Reset, import, and delete actions ask for confirmation.
 - [x] JSON backups can be exported and imported.
 - [x] Theme and focus mode preferences persist.
+- [x] Show paused/done preference persists.
 - [x] Capacitor uses the Vite `dist` build as its native web bundle.
 
 ## UX
