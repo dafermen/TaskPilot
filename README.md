@@ -69,6 +69,16 @@ npm audit --audit-level=moderate
 
 The current version has been checked with `npm test`, `npm run build`, `npm audit --audit-level=moderate`, and `npm run mobile:sync`.
 
+## GitHub Pages
+
+The production web build is published from the `gh-pages` branch at [taskpilot.innovalogic.tech](https://taskpilot.innovalogic.tech). The custom domain is preserved by `public/CNAME`.
+
+```bash
+npm run deploy
+```
+
+The deploy script builds the application first and then updates the `gh-pages` branch with the contents of `dist`.
+
 ## Data Portability
 
 TaskPilot stores projects, activities, and tasks as JSON in `localStorage`. Use the Settings page to download a backup or restore one later. Imported files are validated and normalized before replacing local data.

@@ -1,6 +1,6 @@
 # Current Status
 
-Last updated: July 27, 2026.
+Last updated: July 28, 2026.
 
 ## Current Phase
 
@@ -22,6 +22,7 @@ TaskPilot is in MVP refinement. The product is frontend-only, using React + Vite
   - `Paused` and `Done` projects/activities remain editable in Administration.
   - Workspace can temporarily show paused/done work through `Show paused/done`.
 - Continuity files added: `AGENTS.md` and `CURRENT_STATUS.md`.
+- GitHub Pages deployment documented for `taskpilot.innovalogic.tech`, with `public/CNAME` tracked to preserve the custom domain.
 
 ## Latest Validation
 
@@ -30,6 +31,7 @@ TaskPilot is in MVP refinement. The product is frontend-only, using React + Vite
 - `npm audit --audit-level=moderate`: passed, 0 vulnerabilities after `npm audit fix`.
 - `npm run mobile:sync`: passed for Android, iOS, and web assets.
 - Local dev server requested at `http://127.0.0.1:5179/`.
+- GitHub `main` and Pages publication revalidated on July 28, 2026.
 
 ## Pending Validation
 
@@ -39,7 +41,7 @@ TaskPilot is in MVP refinement. The product is frontend-only, using React + Vite
 ## Next Recommended Steps
 
 1. Verify the Workspace `Show paused/done` toggle with a Paused project and a Done activity.
-2. Review whether the `gh-pages` deployment scripts should remain, be documented, or be replaced by a GitHub Actions Pages workflow.
+2. Consider replacing the documented `gh-pages` deployment command with a GitHub Actions Pages workflow when automated releases become useful.
 3. Add component tests for Workspace filtering, Administration editing, import/export, and sidebar navigation.
 4. Create a non-root deployment user on the test server before any server deployment work.
 5. Keep database work deferred until the workflow stabilizes.

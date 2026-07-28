@@ -88,7 +88,17 @@ npm run mobile:sync
 npm audit --audit-level=moderate
 ```
 
-Last verified: July 27, 2026.
+Last verified: July 28, 2026.
+
+## GitHub Pages Deployment
+
+TaskPilot is published from the `gh-pages` branch and uses the custom domain `taskpilot.innovalogic.tech`. Keep `public/CNAME` in source control so Vite copies it into `dist` and the deployment retains the domain configuration.
+
+```bash
+npm run deploy
+```
+
+The `predeploy` script runs the production build automatically before `gh-pages` publishes `dist`.
 
 ## Next Technical Steps
 
