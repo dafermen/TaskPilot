@@ -21,13 +21,13 @@ import {
   saveProjects,
   saveTasks,
   TASK_STORAGE_KEY,
-} from '../src/utils/storage.js';
+} from '../../src/utils/storage.js';
 import {
   isOperationalActivity,
   isOperationalProject,
   isOperationalStatus,
   recordStatuses,
-} from '../src/utils/recordStatus.js';
+} from '../../src/utils/recordStatus.js';
 
 function mockStorage(initialValues = {}) {
   const values = new Map(Object.entries(initialValues));

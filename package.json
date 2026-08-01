@@ -5,11 +5,20 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "npm run verify:release",
     "deploy": "gh-pages -d dist",
+    "predev": "npm run docs:build",
     "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
+    "build": "npm run docs:build && vite build",
+    "docs:build": "node scripts/build-docs.mjs",
+    "docs:browser": "node scripts/check-docs-browser.mjs",
+    "docs:check": "node scripts/check-docs.mjs",
+    "docs:preview": "npm run build && vite preview --host 127.0.0.1",
     "test": "node --test",
+    "test:unit": "node --test \"test/unit/*.test.js\"",
+    "test:integration": "node --test \"test/integration/*.test.js\"",
+    "test:contract": "node --test \"test/contract/*.test.js\"",
+    "verify:release": "npm test && npm run build && npm run docs:check && npm run docs:browser && npm audit --audit-level=moderate",
     "preview": "vite preview --host 127.0.0.1",
     "mobile:sync": "npm run build && npx cap sync",
     "mobile:android": "npm run mobile:sync && npx cap open android",
@@ -27,6 +36,8 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^8.4.1",
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "markdown-it": "15.0.0",
+    "playwright-core": "1.62.1"
   }
 }

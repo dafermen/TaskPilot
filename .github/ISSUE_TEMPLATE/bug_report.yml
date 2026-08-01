@@ -1,0 +1,62 @@
+name: Bug report
+description: Report a reproducible TaskPilot defect.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Do not include passwords, tokens, private keys, or sensitive task data.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Open...
+        2. Select...
+        3. Observe...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Published URL, commit SHA, or branch.
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Web
+        - Android
+        - iOS
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser or device
+      description: Include browser/device name and version.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Add sanitized screenshots, console messages, or a minimal JSON fixture.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: I removed credentials and sensitive task data.
+          required: true

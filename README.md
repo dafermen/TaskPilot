@@ -4,9 +4,9 @@ TaskPilot is a React project and task board MVP for managing work across project
 
 The current version is intentionally frontend-only. It stores board data in `localStorage` and uses realistic demo tasks so the product can be evaluated without a backend.
 
-Public visual documentation is available at [docs/index.html](docs/index.html).
+The documentation site is published at [taskpilot.innovalogic.tech/docs/](https://taskpilot.innovalogic.tech/docs/), and its Markdown source index is available at [docs/README.md](docs/README.md).
 
-Developer documentation is available at [docs/developer-guide.md](docs/developer-guide.md).
+Canonical technical guides cover [architecture](docs/ARCHITECTURE.md), [development](docs/DEVELOPMENT.md), [testing](docs/TESTING.md), [deployment](docs/DEPLOYMENT.md), [operations](docs/OPERATIONS.md), [security](docs/SECURITY.md), and [troubleshooting](docs/TROUBLESHOOTING.md).
 
 Mobile Capacitor documentation is available at [docs/mobile-capacitor.md](docs/mobile-capacitor.md).
 
@@ -62,12 +62,19 @@ Then open the local URL printed by Vite.
 ## Quality Checks
 
 ```bash
-npm test
-npm run build
-npm audit --audit-level=moderate
+npm run verify:release
 ```
 
-The current version has been checked with `npm test`, `npm run build`, `npm audit --audit-level=moderate`, and `npm run mobile:sync`.
+The automated baseline runs unit, integration, and contract tests, creates the production build, and audits dependencies. It is only one part of the 13-gate release policy in [docs/TESTING.md](docs/TESTING.md). Every deployment must also complete and record the applicable manual and specialized checks in [docs/RELEASE_CHECKLIST.md](docs/RELEASE_CHECKLIST.md).
+
+## Documentation Site
+
+```bash
+npm run docs:build
+npm run dev
+```
+
+Open `http://127.0.0.1:5173/docs/`. The site is generated from the repository Markdown files. The production build validates its pages, assets, internal links, responsive navigation, local search, and return path to the application.
 
 ## GitHub Pages
 
@@ -77,7 +84,7 @@ The production web build is published from the `gh-pages` branch at [taskpilot.i
 npm run deploy
 ```
 
-The deploy script builds the application first and then updates the `gh-pages` branch with the contents of `dist`.
+The deploy script runs the automated release baseline first and then updates the `gh-pages` branch with the contents of `dist`. A successful command does not replace the complete release checklist.
 
 ## Data Portability
 
@@ -112,3 +119,9 @@ TaskPilot is frontend-only. It does not include authentication, multi-user colla
 ## Suggested GitHub Topics
 
 `react`, `vite`, `kanban`, `task-manager`, `drag-and-drop`, `productivity`, `portfolio-project`
+
+## Contributing, Security, and License
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution workflow and [docs/SECURITY.md](docs/SECURITY.md) for private vulnerability reporting and release security requirements.
+
+TaskPilot is currently source-available for evaluation and portfolio use under the terms in [LICENSE](LICENSE). Direct third-party dependencies are listed in [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md).

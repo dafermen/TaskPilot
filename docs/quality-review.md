@@ -55,6 +55,7 @@ Use this checklist before publishing screenshots, creating a GitHub repository, 
 
 - [x] `npm run build` passes.
 - [x] `npm test` passes.
+- [x] Unit, integration, and contract test groups pass.
 - [x] `npm run mobile:sync` passes.
 - [x] `npm audit --audit-level=moderate` reports no vulnerabilities.
 - [x] Local storage errors fail gracefully.
@@ -64,6 +65,8 @@ Use this checklist before publishing screenshots, creating a GitHub repository, 
 - [x] Invalid imported data is normalized before storage.
 - [x] Empty task arrays remain empty instead of reloading demo tasks.
 - [x] README matches actual MVP features.
+- [x] Documentation is generated under `/docs/` with no duplicated `/docs/docs/` routes.
+- [x] Documentation navigation, search, theme, internal page, and app-return link pass real Chrome checks.
 - [x] `.private/` is ignored before publishing.
 
 ## Remaining Manual Checks
@@ -72,3 +75,4 @@ Use this checklist before publishing screenshots, creating a GitHub repository, 
 - [ ] Capture final desktop and mobile screenshots.
 - [ ] Run on Android emulator or physical Android device.
 - [ ] Run on iOS simulator or physical iPhone from macOS/Xcode.
+- [ ] Complete the applicable 13-gate [release checklist](RELEASE_CHECKLIST.md).

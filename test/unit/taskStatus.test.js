@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { getChecklistProgress, isObjectiveMet } from '../src/utils/taskStatus.js';
+import { getChecklistProgress, isObjectiveMet } from '../../src/utils/taskStatus.js';
 
 const completedChecklist = [
   { id: 'check-1', text: 'Plan', done: true },

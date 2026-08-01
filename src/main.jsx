@@ -388,7 +388,7 @@ function App() {
             <NavButton active={activePage === 'workspace'} icon={<KanbanSquare size={19} />} label="Workspace" onClick={() => navigate('workspace')} />
             <NavButton active={activePage === 'administration'} icon={<ListChecks size={19} />} label="Administration" onClick={() => navigate('administration')} />
             <NavButton active={activePage === 'settings'} icon={<Settings size={19} />} label="Settings" onClick={() => navigate('settings')} />
-            <NavButton active={activePage === 'docs'} icon={<BookOpen size={19} />} label="Documentation" onClick={() => navigate('docs')} />
+            <NavButton href="/docs/" icon={<BookOpen size={19} />} label="Documentation" />
             <NavButton active={activePage === 'about'} icon={<Info size={19} />} label="About" onClick={() => navigate('about')} />
           </nav>
         </aside>
@@ -774,33 +774,6 @@ function App() {
             </UtilityPage>
           )}
 
-          {activePage === 'docs' && (
-            <UtilityPage
-              title="Documentation"
-              eyebrow="Reference"
-              description="A compact in-app reference that also mirrors the repository documentation."
-            >
-              <div className="doc-links">
-                <article>
-                  <strong>Product</strong>
-                  <span>Project to Activity to Task workflow with dashboard, workspace, and administration views.</span>
-                </article>
-                <article>
-                  <strong>Storage</strong>
-                  <span>Local JSON in browser storage with import/export backup controls.</span>
-                </article>
-                <article>
-                  <strong>Mobile</strong>
-                  <span>Capacitor shells use the Vite `dist` build for Android and iOS.</span>
-                </article>
-                <article>
-                  <strong>Quality</strong>
-                  <span>Run tests, build, mobile sync, and dependency audit before publishing.</span>
-                </article>
-              </div>
-            </UtilityPage>
-          )}
-
           {activePage === 'about' && (
             <UtilityPage
               title="About TaskPilot"
@@ -839,13 +812,15 @@ function App() {
   );
 }
 
-function NavButton({ active, icon, label, onClick }) {
-  return (
-    <button className={active ? 'nav-button nav-button-active' : 'nav-button'} onClick={onClick} title={label}>
-      {icon}
-      <span>{label}</span>
-    </button>
-  );
+function NavButton({ active, href, icon, label, onClick }) {
+  const className = active ? 'nav-button nav-button-active' : 'nav-button';
+  const content = <>{icon}<span>{label}</span></>;
+
+  if (href) {
+    return <a className={className} href={href} target="_self" title={label}>{content}</a>;
+  }
+
+  return <button className={className} onClick={onClick} title={label}>{content}</button>;
 }
 
 function UtilityPage({ children, description, eyebrow, title }) {

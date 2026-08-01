@@ -14,24 +14,29 @@ Mandatory guidance for any Codex session working on TaskPilot.
 - Keep persistence frontend-only for now. Use `localStorage` and JSON backups; do not add a database until the user asks.
 - Prefer focused changes that match the existing React + Vite structure.
 - Keep the UI compact, light, and operational. Home is a dashboard; Workspace is the Kanban work area; Administration is the CRUD area.
-- Update documentation when behavior changes: `README.md`, `docs/developer-guide.md`, `docs/quality-review.md`, and any relevant topic doc.
+- Treat `docs/README.md` as the documentation index and update every canonical guide affected by a change.
+- Record user-visible changes in `CHANGELOG.md`.
 - Update `CURRENT_STATUS.md` before ending a meaningful work session.
 
 ## Validation Checklist
 
-Run these before publishing or handing off:
+Run the automated baseline before publishing or handing off:
 
 ```bash
-npm test
-npm run build
-npm audit --audit-level=moderate
+npm run verify:release
 ```
+
+Documentation changes must preserve Markdown as the source of truth and keep the public site at `/docs/`. Run `npm run docs:check` and `npm run docs:browser`; never edit generated `public/docs/` files directly.
 
 Run this when mobile shell assets need to be refreshed:
 
 ```bash
 npm run mobile:sync
 ```
+
+Before any deployment, evaluate and record all 13 gates in `docs/TESTING.md` using `docs/RELEASE_CHECKLIST.md`. Pending required gates block deployment. Never describe a manual or unavailable gate as passed without evidence.
+
+Read `docs/DEPLOYMENT.md`, `docs/SECURITY.md`, and `docs/OPERATIONS.md` before publishing or rolling back.
 
 ## Current Product Decisions
 

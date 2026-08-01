@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "exportedAt": "2026-07-28T12:00:00.000Z",
+  "projects": [
+    {
+      "id": "project-fixture",
+      "name": "Fixture project",
+      "owner": "QA",
+      "color": "#0e7490",
+      "status": "Active"
+    }
+  ],
+  "activities": [
+    {
+      "id": "activity-fixture",
+      "projectId": "project-fixture",
+      "name": "Fixture activity",
+      "owner": "QA",
+      "status": "Active"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-fixture",
+      "projectId": "project-fixture",
+      "activityId": "activity-fixture",
+      "title": "Verify backup import",
+      "description": "Contract fixture for integration tests.",
+      "column": "review",
+      "owner": "QA",
+      "priority": "High",
+      "tag": "Quality",
+      "due": "2026-07-31",
+      "points": 3,
+      "blocked": false,
+      "checklist": [
+        {
+          "id": "check-fixture",
+          "text": "Import succeeds",
+          "done": true
+        }
+      ]
+    }
+  ]
+}

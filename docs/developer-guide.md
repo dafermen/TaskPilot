@@ -35,12 +35,35 @@ TaskPilot/
     main.jsx
     styles.css
   test/
-    storage.test.js
-    taskStatus.test.js
+    unit/
+    integration/
+    contract/
+    e2e/
+    fixtures/
+    property/
+    fuzz/
+    regression/
+    performance/
   docs/
-    index.html
+    ARCHITECTURE.md
+    API.md
+    DEVELOPMENT.md
+    TESTING.md
+    DEPLOYMENT.md
+    OPERATIONS.md
+    SECURITY.md
+    TROUBLESHOOTING.md
+    adr/
+    site/
+      docs.config.mjs
+      docs.css
+      docs.js
     developer-guide.md
     quality-review.md
+  scripts/
+    build-docs.mjs
+    check-docs.mjs
+    check-docs-browser.mjs
   AGENTS.md
   CURRENT_STATUS.md
 ```
@@ -79,16 +102,14 @@ Capacitor uses `dist` as its `webDir`. Run `npm run mobile:sync` after changing 
 
 ## Verification
 
-Run these checks before publishing:
+Run the automated baseline before publishing:
 
 ```bash
-npm test
-npm run build
+npm run verify:release
 npm run mobile:sync
-npm audit --audit-level=moderate
 ```
 
-Last verified: July 28, 2026.
+Then complete all applicable gates in `TESTING.md` and record them with `RELEASE_CHECKLIST.md`. The automated baseline does not replace acceptance, mutation, fuzzing, end-to-end, resilience, performance, or device evidence.
 
 ## GitHub Pages Deployment
 
@@ -98,7 +119,7 @@ TaskPilot is published from the `gh-pages` branch and uses the custom domain `ta
 npm run deploy
 ```
 
-The `predeploy` script runs the production build automatically before `gh-pages` publishes `dist`.
+The `predeploy` script runs `npm run verify:release` before `gh-pages` publishes `dist`.
 
 ## Next Technical Steps
 
