@@ -61,7 +61,11 @@ function stopProcess(processHandle) {
   if (process.platform === 'win32') {
     spawnSync('taskkill', ['/pid', String(processHandle.pid), '/t', '/f'], { stdio: 'ignore' });
   } else {
-    processHandle.kill('SIGTERM');
+    try {
+      process.kill(-processHandle.pid, 'SIGTERM');
+    } catch {
+      processHandle.kill('SIGTERM');
+    }
   }
 }
 
@@ -77,6 +81,7 @@ const previewArguments = process.platform === 'win32'
   : ['run', 'preview', '--', '--port', String(port)];
 const preview = spawn(previewCommand, previewArguments, {
   cwd: projectRoot,
+  detached: process.platform !== 'win32',
   stdio: ['ignore', 'pipe', 'pipe'],
 });
 

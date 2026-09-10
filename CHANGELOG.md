@@ -25,6 +25,7 @@ All notable changes to TaskPilot are documented here. Dates use `YYYY-MM-DD`.
 - The application Documentation navigation now opens the canonical `/docs/` site in the same tab instead of showing a duplicate in-app summary.
 - Vite development serves documentation directory URLs the same way as the production preview.
 - Imported data now repairs duplicate identifiers and recovers tasks whose project has no activity, while unsupported backup versions are rejected safely.
+- Browser validation closes its complete temporary server process group on Windows and Linux so CI exits cleanly.
 
 ## 0.1.0 - 2026-07-28
 
