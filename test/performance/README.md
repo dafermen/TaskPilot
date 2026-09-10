@@ -1,10 +1,9 @@
 # Performance Tests
 
-Planned controls:
+Automated controls:
 
-- Production JavaScript and CSS size budgets.
-- Initial render and interaction measurements on desktop and mobile profiles.
-- Large-board scenarios with hundreds of tasks.
-- Memory checks during repeated import, filtering, and task movement.
+- Production JavaScript budget: 750 KiB uncompressed.
+- Production CSS budget: 200 KiB uncompressed.
+- A 10,000-task board must normalize within 2.5 seconds.
 
-This gate is currently pending automation.
+Run `npm run test:performance` for the data budget and `npm run build && npm run performance:budget` for assets. Browser memory, repeated import, and sustained interaction measurements remain manual.

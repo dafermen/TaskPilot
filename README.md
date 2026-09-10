@@ -41,12 +41,12 @@ Continuity notes for future Codex sessions are available at [AGENTS.md](AGENTS.m
 - Secondary priority queue for important or blocked work.
 - Export and import JSON backups for local data portability.
 - Confirmation prompts before destructive reset/import/delete actions.
-- Data validation and normalization for required names, dates, points, statuses, and task relationships.
+- Data validation and normalization for required names, dates, points, statuses, unique identifiers, and task relationships, including recovery of orphaned imported tasks.
 - Light and dark theme toggle with saved preference.
 - Saved focus-mode preference.
 - Local persistence with guarded `localStorage` reads and writes.
 - Modular source structure for components, board data, and storage utilities.
-- Node-based tests for storage, preferences, project/activity records, task creation, backup import/export, validation, and legacy migrations.
+- Automated unit, property, fuzz, integration, contract, performance, and browser E2E checks for storage, CRUD persistence, backup compatibility, data relationships, archived visibility, and responsive navigation.
 - Capacitor configuration for Android and iOS native shells.
 - JSON-backed `localStorage` persistence across web and Capacitor WebView.
 
@@ -54,10 +54,10 @@ Continuity notes for future Codex sessions are available at [AGENTS.md](AGENTS.m
 
 ```bash
 npm install
-npm run dev
+npm start
 ```
 
-Then open the local URL printed by Vite.
+Then open `http://127.0.0.1:5179/`. This one command generates the documentation site and starts the complete frontend application; no backend process is required.
 
 ## Quality Checks
 
@@ -65,16 +65,16 @@ Then open the local URL printed by Vite.
 npm run verify:release
 ```
 
-The automated baseline runs unit, integration, and contract tests, creates the production build, and audits dependencies. It is only one part of the 13-gate release policy in [docs/TESTING.md](docs/TESTING.md). Every deployment must also complete and record the applicable manual and specialized checks in [docs/RELEASE_CHECKLIST.md](docs/RELEASE_CHECKLIST.md).
+The automated baseline runs unit, property, fuzz, integration, contract, and performance tests; creates the production build; enforces asset budgets; exercises critical application and documentation flows in Chrome; and audits dependencies. It is only one part of the 13-gate release policy in [docs/TESTING.md](docs/TESTING.md). Every deployment must also complete and record the applicable manual and specialized checks in [docs/RELEASE_CHECKLIST.md](docs/RELEASE_CHECKLIST.md).
 
 ## Documentation Site
 
 ```bash
 npm run docs:build
-npm run dev
+npm start
 ```
 
-Open `http://127.0.0.1:5173/docs/`. The site is generated from the repository Markdown files. The production build validates its pages, assets, internal links, responsive navigation, local search, and return path to the application.
+Open `http://127.0.0.1:5179/docs/`. The site is generated from the repository Markdown files. The production build validates its pages, assets, internal links, responsive navigation, local search, and return path to the application.
 
 ## GitHub Pages
 

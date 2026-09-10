@@ -1,5 +1,9 @@
 # Fuzz Tests
 
-Planned targets are JSON backup parsing, legacy checklist migration, malformed dates, identifiers, and storage failures. Inputs must be deterministic and reproducible in CI.
+Run the deterministic suite with:
 
-This gate is currently pending automation.
+```bash
+npm run test:fuzz
+```
+
+The current seed is `0x1badb002`. The suite mutates 750 JSON inputs and covers malformed roots, unsupported backup versions, parser failures, and unavailable/quota-exceeded browser storage. A failing input must be retained as a regression fixture before changing its seed.

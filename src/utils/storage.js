@@ -19,6 +19,10 @@ const validColumns = new Set(columns.map((column) => column.id));
 const validPriorities = new Set(Object.keys(priorityRank));
 const validStatuses = new Set(recordStatuses);
 
+function asRecord(value) {
+  return value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+}
+
 function cleanText(value, fallback) {
   return typeof value === 'string' && value.trim() ? value.trim() : fallback;
 }
@@ -28,9 +32,12 @@ function cleanColor(value, fallback = '#0e7490') {
 }
 
 function cleanDate(value) {
-  return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)
-    ? value
-    : new Date().toISOString().slice(0, 10);
+  if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    const date = new Date(`${value}T00:00:00.000Z`);
+    if (!Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value) return value;
+  }
+
+  return new Date().toISOString().slice(0, 10);
 }
 
 function cleanPoints(value) {
@@ -39,24 +46,47 @@ function cleanPoints(value) {
   return Math.min(13, Math.max(1, Math.round(points)));
 }
 
-function normalizeChecklist(checklist = []) {
-  return checklist.map((item, index) => {
-    if (typeof item === 'string') {
-      return { id: `legacy-${index}-${item}`, text: cleanText(item, 'Checklist item'), done: false };
+function ensureUniqueIds(records, prefix) {
+  const usedIds = new Set();
+
+  return records.map((record, index) => {
+    let id = record.id;
+    let suffix = 0;
+
+    while (usedIds.has(id)) {
+      suffix += 1;
+      id = `${prefix}-${index}-${suffix}`;
     }
 
-    return {
-      id: item.id || `item-${index}`,
-      text: cleanText(item.text, 'Checklist item'),
-      done: Boolean(item.done),
-    };
+    usedIds.add(id);
+    return id === record.id ? record : { ...record, id };
   });
 }
 
-function normalizeTask(task) {
+function normalizeChecklist(checklist = []) {
+  if (!Array.isArray(checklist)) return [];
+
+  return ensureUniqueIds(checklist.map((rawItem, index) => {
+    const item = asRecord(rawItem);
+
+    if (typeof rawItem === 'string') {
+      return { id: `legacy-${index}-${rawItem}`, text: cleanText(rawItem, 'Checklist item'), done: false };
+    }
+
+    return {
+      id: cleanText(item.id, `item-${index}`),
+      text: cleanText(item.text, 'Checklist item'),
+      done: Boolean(item.done),
+    };
+  }), 'item');
+}
+
+function normalizeTask(rawTask, index = 0) {
+  const task = asRecord(rawTask);
+
   return {
     ...task,
-    id: task.id || `task-${Date.now()}`,
+    id: cleanText(task.id, `task-${index}`),
     projectId: task.projectId || DEFAULT_PROJECT_ID,
     activityId: task.activityId || DEFAULT_ACTIVITY_ID,
     title: cleanText(task.title, 'Untitled task'),
@@ -72,9 +102,11 @@ function normalizeTask(task) {
   };
 }
 
-function normalizeProject(project, index) {
+function normalizeProject(rawProject, index) {
+  const project = asRecord(rawProject);
+
   return {
-    id: project.id || `project-${index}`,
+    id: cleanText(project.id, `project-${index}`),
     name: cleanText(project.name, 'Untitled project'),
     owner: cleanText(project.owner, 'Dario'),
     color: cleanColor(project.color),
@@ -82,9 +114,11 @@ function normalizeProject(project, index) {
   };
 }
 
-function normalizeActivity(activity, index) {
+function normalizeActivity(rawActivity, index) {
+  const activity = asRecord(rawActivity);
+
   return {
-    id: activity.id || `activity-${index}`,
+    id: cleanText(activity.id, `activity-${index}`),
     projectId: activity.projectId || DEFAULT_PROJECT_ID,
     name: cleanText(activity.name, 'Untitled activity'),
     owner: cleanText(activity.owner, 'Dario'),
@@ -93,30 +127,51 @@ function normalizeActivity(activity, index) {
 }
 
 export function normalizeBoardData(data = {}) {
-  const projects = Array.isArray(data.projects) && data.projects.length
-    ? data.projects.map(normalizeProject)
-    : initialProjects;
+  const source = asRecord(data);
+  const projects = ensureUniqueIds(
+    Array.isArray(source.projects) && source.projects.length
+      ? source.projects.map(normalizeProject)
+      : initialProjects,
+    'project',
+  );
   const projectIds = new Set(projects.map((project) => project.id));
 
-  const activities = (Array.isArray(data.activities)
-    ? data.activities.map(normalizeActivity)
+  let activities = (Array.isArray(source.activities)
+    ? source.activities.map(normalizeActivity)
     : initialActivities
   ).map((activity) => ({
     ...activity,
     projectId: projectIds.has(activity.projectId) ? activity.projectId : projects[0].id,
   }));
+
+  const sourceTasks = Array.isArray(source.tasks) ? source.tasks : initialTasks;
+  const normalizedTasks = ensureUniqueIds(sourceTasks.map(normalizeTask), 'task');
+  const requiredProjectIds = new Set(normalizedTasks.map((task) => (
+    projectIds.has(task.projectId) ? task.projectId : projects[0].id
+  )));
+
+  for (const projectId of requiredProjectIds) {
+    if (!activities.some((activity) => activity.projectId === projectId)) {
+      activities.push({
+        id: `activity-recovered-${projectId}`,
+        projectId,
+        name: 'Recovered activity',
+        owner: 'Dario',
+        status: 'Planning',
+      });
+    }
+  }
+
+  activities = ensureUniqueIds(activities, 'activity');
   const activityIds = new Set(activities.map((activity) => activity.id));
 
-  const tasks = (Array.isArray(data.tasks)
-    ? data.tasks.map(normalizeTask)
-    : initialTasks
-  ).map((task) => {
+  const tasks = normalizedTasks.map((task) => {
     const projectId = projectIds.has(task.projectId) ? task.projectId : projects[0].id;
     const fallbackActivity = activities.find((activity) => activity.projectId === projectId) || activities[0];
     const currentActivity = activities.find((activity) => activity.id === task.activityId);
     const activityId = activityIds.has(task.activityId) && currentActivity?.projectId === projectId
       ? task.activityId
-      : fallbackActivity.id;
+      : fallbackActivity?.id || '';
 
     return { ...task, projectId, activityId };
   });
@@ -254,8 +309,12 @@ export function createBoardBackup({ activities, projects, tasks }) {
 
 export function parseBoardBackup(text) {
   const parsed = JSON.parse(text);
-  if (!parsed || typeof parsed !== 'object') {
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
     throw new Error('Backup must be a JSON object.');
+  }
+
+  if (parsed.version !== undefined && parsed.version !== BOARD_BACKUP_VERSION) {
+    throw new Error(`Unsupported backup version: ${parsed.version}.`);
   }
 
   return normalizeBoardData(parsed);

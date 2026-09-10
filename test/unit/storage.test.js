@@ -185,3 +185,23 @@ test('normalization repairs invalid task relationships and keeps empty task arra
 
   assert.deepEqual(normalizeBoardData({ tasks: [] }).tasks, []);
 });
+
+test('normalization repairs impossible dates and duplicate checklist identifiers', () => {
+  const normalized = normalizeBoardData({
+    tasks: [{
+      id: 'task-invalid-details',
+      due: '2026-99-99',
+      checklist: [
+        { id: 'duplicate', text: 'First', done: false },
+        { id: 'duplicate', text: 'Second', done: true },
+        { id: 42, text: 'Third', done: false },
+      ],
+    }],
+  });
+  const [task] = normalized.tasks;
+
+  assert.match(task.due, /^\d{4}-\d{2}-\d{2}$/);
+  assert.notEqual(task.due, '2026-99-99');
+  assert.equal(new Set(task.checklist.map((item) => item.id)).size, 3);
+  assert.equal(task.checklist.every((item) => typeof item.id === 'string'), true);
+});

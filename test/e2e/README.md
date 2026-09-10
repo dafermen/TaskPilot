@@ -1,11 +1,9 @@
 # End-to-End Tests
 
-Browser automation is not configured yet. The intended first scenarios are:
+Run the production-browser harness after `npm run build`:
 
-1. Create a project, activity, and task.
-2. Move a task through every Kanban phase.
-3. Complete its checklist and verify the objective signal.
-4. Export, reset, and restore a JSON backup.
-5. Pause a project and verify its Workspace visibility.
+```bash
+npm run test:e2e
+```
 
-Until an automated harness is added, these scenarios remain manual acceptance checks.
+The Chrome flow creates and persists a project, activity, and task, completes the task objective, pauses the project, verifies default and explicit archived visibility, and checks desktop/mobile navigation. Export-download, destructive reset, file-picker restore, drag gestures, and native shells remain manual acceptance scenarios.

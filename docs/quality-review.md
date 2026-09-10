@@ -56,6 +56,10 @@ Use this checklist before publishing screenshots, creating a GitHub repository, 
 - [x] `npm run build` passes.
 - [x] `npm test` passes.
 - [x] Unit, integration, and contract test groups pass.
+- [x] Property and invariant tests pass with a recorded deterministic seed.
+- [x] Fuzz tests pass for malformed backups and storage failures with a recorded deterministic seed.
+- [x] Application E2E checks pass for CRUD persistence, objective completion, archived visibility, and responsive navigation.
+- [x] A 10,000-task normalization budget and production asset budgets pass.
 - [x] `npm run mobile:sync` passes.
 - [x] `npm audit --audit-level=moderate` reports no vulnerabilities.
 - [x] Local storage errors fail gracefully.

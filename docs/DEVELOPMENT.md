@@ -14,28 +14,37 @@
 git clone https://github.com/dafermen/TaskPilot.git
 cd TaskPilot
 npm ci
-npm run dev
+npm start
 ```
 
-The requested local port for shared work is:
+`npm start` generates the documentation and starts the complete frontend application at the shared-work port:
 
-```bash
-npm run dev -- --port 5179
+```text
+http://127.0.0.1:5179/
+http://127.0.0.1:5179/docs/
 ```
+
+There is no backend or database process to start in the current MVP.
 
 ## Useful Commands
 
 ```bash
 npm test
 npm run test:unit
+npm run test:property
+npm run test:fuzz
 npm run test:integration
 npm run test:contract
+npm run test:performance
+npm run test:e2e
+npm run performance:budget
 npm run docs:build
 npm run docs:check
 npm run docs:browser
 npm run build
 npm run verify:release
 npm run mobile:sync
+npm start
 ```
 
 ## Repository Layout

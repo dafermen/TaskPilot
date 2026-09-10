@@ -12,16 +12,16 @@ Every deployment must evaluate all 13 quality gates below. A production gate may
 | --- | --- | --- | --- |
 | 1 | Acceptance testing | Product scenarios and `docs/quality-review.md` completed. | Manual |
 | 2 | Unit testing | Domain and storage helpers pass. | `npm run test:unit` |
-| 3 | Property and invariant testing | Generated data preserves relationships, ranges, and supported states. | Pending |
+| 3 | Property and invariant testing | Generated data preserves relationships, ranges, and supported states. | `npm run test:property` |
 | 4 | Mutation testing | Mutation score and surviving mutations reviewed. | Pending |
-| 5 | Fuzzing | Malformed JSON, legacy data, and storage failures tested reproducibly. | Pending |
+| 5 | Fuzzing | Malformed JSON, legacy data, and storage failures tested reproducibly. | `npm run test:fuzz` |
 | 6 | Integration testing | Module interactions and JSON fixture import pass. | `npm run test:integration` |
 | 7 | Contract testing | Backup version and schema remain compatible. | `npm run test:contract` |
-| 8 | End-to-end testing | Critical browser workflows pass from UI to persistence. | Manual; harness pending |
+| 8 | End-to-end testing | Critical browser workflows pass from UI to persistence. | `npm run test:e2e`; backup restore remains manual |
 | 9 | Regression testing | Existing suite passes and escaped defects have focused tests. | `npm test`; visual checks manual |
 | 10 | Security testing | Dependency audit, secret review, input handling, and platform permissions checked. | `npm audit --audit-level=moderate`; partial |
-| 11 | Concurrency and resilience | Storage failure, multi-tab behavior, interrupted import, and recovery checked. | Partial/manual |
-| 12 | Performance and resources | Bundle size, large-board responsiveness, memory, and startup checked. | Manual; budgets pending |
+| 11 | Concurrency and resilience | Storage failure, multi-tab behavior, interrupted import, and recovery checked. | Storage failure automated; remaining scenarios manual |
+| 12 | Performance and resources | Bundle size, large-board responsiveness, memory, and startup checked. | Normalization and asset budgets automated; browser memory manual |
 | 13 | Compatibility and deployment | Production build, supported browsers, Pages, Android, and iOS verified. | Build automated; devices manual |
 
 ## Automated Baseline
@@ -31,9 +31,9 @@ npm ci
 npm run verify:release
 ```
 
-This runs all Node tests, the Vite production build, and the dependency security audit.
+This runs all Node tests, the Vite production build, production asset budgets, application and documentation Chrome checks, and the dependency security audit.
 
-It also runs the generated-documentation link checker and Chrome browser checks for `/docs/`, an internal page, search, light/dark themes, responsive navigation, and the return link to `/`.
+The application E2E check creates and persists a project, activity, and completed task; verifies the objective signal; pauses the project; confirms default hiding and explicit archived visibility; and checks responsive navigation. The documentation browser check covers `/docs/`, an internal page, search, light/dark themes, responsive navigation, and the return link to `/`.
 
 ## Acceptance Scenarios
 
@@ -58,6 +58,8 @@ Generated tests must prove:
 - Backup export/import preserves valid relationships.
 - Objective completion never becomes true for blocked, incomplete, or non-Done tasks.
 
+The generated storage suite uses the fixed seed `0x5eed1234` and runs 300 boards per execution.
+
 ## Mutation Testing
 
 Mutation testing should target `src/utils/` first. A future harness must publish its score and list surviving mutations. The initial target is a mutation score of at least 80% for domain utilities; raising that threshold requires a documented decision.
@@ -66,13 +68,15 @@ Mutation testing should target `src/utils/` first. A future harness must publish
 
 Use deterministic seeds and retain any input that causes a failure as a regression fixture. Primary targets are backup parsing, normalization, legacy migration, long strings, malformed dates, numeric boundaries, and storage exceptions.
 
+The current parser fuzz suite uses seed `0x1badb002`, mutates 750 inputs, verifies non-object and unsupported-version rejection, and exercises read/write storage failures.
+
 ## Security
 
 Security checks include dependency audit, accidental-secret scanning, unsafe HTML review, import validation, confirmation of destructive actions, and Android/iOS permission review. See [SECURITY.md](SECURITY.md).
 
 ## Performance and Compatibility
 
-Record production asset sizes, test a board with hundreds of tasks, and verify supported browser/device combinations. Mobile shells require real emulator or device evidence before a mobile release.
+The automated resource gate normalizes a 10,000-task board within 2.5 seconds and limits uncompressed production JavaScript to 750 KiB and CSS to 200 KiB. Browser memory, sustained interaction, and mobile shells still require real browser, emulator, or device evidence before release.
 
 ## Evidence
 

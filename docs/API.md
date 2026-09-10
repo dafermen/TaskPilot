@@ -51,12 +51,12 @@ TaskPilot has no HTTP API in the current MVP. This document defines the internal
 | `owner` | string | Non-empty after normalization. |
 | `priority` | string | `High`, `Medium`, or `Low`. |
 | `tag` | string | Non-empty category label. |
-| `due` | string | `YYYY-MM-DD`. |
+| `due` | string | Calendar-valid `YYYY-MM-DD`. |
 | `points` | number | Integer from 1 through 13. |
 | `blocked` | boolean | Blocking signal. |
 | `checklist` | array | Checklist item objects. |
 
-Checklist items use `{ "id": "string", "text": "string", "done": true }`. Legacy string items are migrated during load.
+Checklist items use `{ "id": "string", "text": "string", "done": true }`. Legacy string items are migrated during load, and malformed or duplicate checklist identifiers are repaired.
 
 ## Storage Keys
 
@@ -77,6 +77,8 @@ Checklist items use `{ "id": "string", "text": "string", "done": true }`. Legacy
 - Existing keys are not renamed without a migration.
 - Backup schema changes require a version increment, contract tests, migration notes, and a changelog entry.
 - Unknown or malformed values are normalized to supported defaults.
+- Non-object backup roots and backup versions newer than the supported schema are rejected before data replacement.
+- Duplicate identifiers are repaired, and a recovery activity is created when imported tasks reference a project with no available activity.
 - Empty task arrays remain empty and do not silently restore demo tasks.
 
 The fixture in `test/fixtures/board-backup-v1.json` and tests in `test/contract/` are executable evidence for this contract.
