@@ -125,3 +125,7 @@ TaskPilot is frontend-only. It does not include authentication, multi-user colla
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution workflow and [docs/SECURITY.md](docs/SECURITY.md) for private vulnerability reporting and release security requirements.
 
 TaskPilot is currently source-available for evaluation and portfolio use under the terms in [LICENSE](LICENSE). Direct third-party dependencies are listed in [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md).
+
+## DOC-STD-20261002 — Documentation navigation
+
+Use the [documentation map](docs/README.md) for authoritative sources, reading paths and project-specific maintenance rules.

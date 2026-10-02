@@ -98,3 +98,7 @@ npm start
 - Do not assume `C:\Projects\TaskPilot` is inside the active sandbox; commands there may require approval.
 - Preserve the deterministic seeds unless a failing input is first retained as a regression fixture.
 - Browser E2E scripts require an installed Chrome or Chromium and start an isolated preview on an available local port.
+
+## DOC-STD-20261002 — Documentation organization
+
+The [documentation map](docs/README.md) now identifies canonical sources and maintenance rules. Existing implementation milestones and pending acceptance are unchanged. Validation and publication are tracked separately for this documentation-only change.
