@@ -21,6 +21,8 @@ All notable changes to TaskPilot are documented here. Dates use `YYYY-MM-DD`.
 
 ### Changed
 
+- Updated the documentation renderer and locked brace-expansion dependency to clear the October 2 dependency audit.
+
 - GitHub Pages deployment now runs the automated release baseline before publishing.
 - The application Documentation navigation now opens the canonical `/docs/` site in the same tab instead of showing a duplicate in-app summary.
 - Vite development serves documentation directory URLs the same way as the production preview.

@@ -102,3 +102,9 @@ npm start
 ## DOC-STD-20261002 — Documentation organization
 
 The [documentation map](docs/README.md) now identifies canonical sources and maintenance rules. Existing implementation milestones and pending acceptance are unchanged. Validation and publication are tracked separately for this documentation-only change.
+
+## Documentation dependency audit — 2026-10-02
+
+- Updated the documentation renderer to markdown-it 15.0.2 and the locked transitive brace-expansion package to its patched version.
+- `npm run verify:release` passed: automated tests, production build, resource budgets, application E2E, 25 documentation pages, desktop/mobile browser checks, and dependency audit (0 findings).
+- This closes the dependency failure found during documentation standardization. It does not close the pending manual acceptance, mutation, resilience, or native compatibility gates listed in [TESTING.md](docs/TESTING.md). Publishing the full application still requires that release evidence.
