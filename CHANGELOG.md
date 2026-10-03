@@ -1,5 +1,9 @@
 # Changelog
 
+## Documentation navigation candidate — 2026-10-03
+
+InnovaLogic visual family, reading paths, collapsible navigation where applicable, code copy and keyboard image enlargement. Local validation and delivery status are recorded in docs/WEB_NAVIGATION.md.
+
 All notable changes to TaskPilot are documented here. Dates use `YYYY-MM-DD`.
 
 ## Unreleased
@@ -45,3 +49,8 @@ All notable changes to TaskPilot are documented here. Dates use `YYYY-MM-DD`.
 ## Documentation continuity — 2026-10-03
 
 Recorded the current static documentation candidate and refreshed publication-tool security finding separately from the previously successful baseline. Public delivery remains pending the release gate decision.
+
+
+## 2026-10-03 · Publication dependency repair
+
+Pinned the deployment-only gh-pages tool to 6.1.1 to remove the vulnerable braces dependency chain. Application dependencies and behavior are unchanged. Complete verify:release and dependency audit pass with zero vulnerabilities.
