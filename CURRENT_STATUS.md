@@ -1,5 +1,9 @@
 # Current Status
 
+## Documentation web navigation v1 — local candidate, 2026-10-03
+
+InnovaLogic documentation theme, reading paths and reading controls are implemented. verify:release: tests, build, performance, application and documentation browser checks PASS; audit FAIL (existing braces build-tool advisory). Additional browser checks PASS at 1440 and 390 px. See [navigation maintenance and evidence](docs/WEB_NAVIGATION.md). GitHub and server delivery of this revision are pending; earlier deployment status below remains historical evidence.
+
 Last updated: September 9, 2026.
 
 ## Current Phase

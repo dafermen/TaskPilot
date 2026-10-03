@@ -48,6 +48,7 @@ export const docsSections = [
   {
     title: 'Project',
     pages: [
+      { slug: 'web-navigation', label: 'Documentation navigation', source: 'docs/WEB_NAVIGATION.md' },
       { slug: 'current-status', label: 'Current status', source: 'CURRENT_STATUS.md' },
       { slug: 'contributing', label: 'Contributing', source: 'CONTRIBUTING.md' },
       { slug: 'continuity', label: 'Codex continuity', source: 'AGENTS.md' },

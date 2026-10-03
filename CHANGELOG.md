@@ -1,5 +1,9 @@
 # Changelog
 
+## Documentation navigation candidate — 2026-10-03
+
+InnovaLogic visual family, reading paths, collapsible navigation where applicable, code copy and keyboard image enlargement. Local validation and delivery status are recorded in docs/WEB_NAVIGATION.md.
+
 All notable changes to TaskPilot are documented here. Dates use `YYYY-MM-DD`.
 
 ## Unreleased

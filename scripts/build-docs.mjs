@@ -82,15 +82,15 @@ function createMarkdownRenderer(source) {
 
 function renderSidebar(currentPage) {
   return docsSections.map((section) => `
-    <section class="nav-section">
-      <h2>${escapeHtml(section.title)}</h2>
+    <details class="nav-section" open>
+      <summary>${escapeHtml(section.title)}</summary>
       <ul>
         ${section.pages.map((page) => {
           const current = page.source === currentPage.source;
           return `<li><a href="${pageUrl(page)}"${current ? ' class="current" aria-current="page"' : ''}>${escapeHtml(page.label)}</a></li>`;
         }).join('')}
       </ul>
-    </section>`).join('');
+    </details>`).join('');
 }
 
 function renderTableOfContents(headings) {
@@ -121,6 +121,7 @@ function pageTemplate({ content, headings, page, pageIndex, title }) {
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="${docsSite.base}assets/docs.css" />
+    <link rel="stylesheet" href="${docsSite.base}assets/innovalogic.css" />
     <script>try{const t=localStorage.getItem('taskpilot-theme');document.documentElement.dataset.theme=t==='true'?'dark':t==='false'?'light':matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script>
     <title>${escapeHtml(title)} | TaskPilot Documentation</title>
   </head>
@@ -158,6 +159,7 @@ function pageTemplate({ content, headings, page, pageIndex, title }) {
       <button class="sidebar-backdrop" type="button" aria-label="Close documentation menu"></button>
       <main id="main-content" class="docs-content" tabindex="-1">
         <div class="page-context"><span>${escapeHtml(page.section)}</span><span aria-hidden="true">/</span><span>${escapeHtml(page.label)}</span></div>
+        ${page.slug === '' ? `<nav class="docs-reading-paths" aria-label="Reading paths"><a href="${docsSite.base}introduction/"><strong>Discover the product</strong><span>Purpose, capabilities and scope.</span></a><a href="${docsSite.base}introduction/#mvp-features"><strong>Learn to use it</strong><span>Projects, activities and tasks.</span></a><a href="${docsSite.base}development/"><strong>Explore development</strong><span>Setup, architecture and tests.</span></a></nav>` : ''}
         <article class="markdown-body">${content}</article>
         ${renderPager(pageIndex)}
       </main>
@@ -167,6 +169,7 @@ function pageTemplate({ content, headings, page, pageIndex, title }) {
       </aside>
     </div>
     <script src="${docsSite.base}assets/docs.js" defer></script>
+    <script src="${docsSite.base}assets/reading-tools.js" defer></script>
   </body>
 </html>`;
 }
@@ -175,6 +178,9 @@ await rm(outputRoot, { recursive: true, force: true });
 await mkdir(path.join(outputRoot, 'assets'), { recursive: true });
 await cp(path.join(projectRoot, 'docs', 'site', 'docs.css'), path.join(outputRoot, 'assets', 'docs.css'));
 await cp(path.join(projectRoot, 'docs', 'site', 'docs.js'), path.join(outputRoot, 'assets', 'docs.js'));
+for (const asset of ['innovalogic.css', 'reading-tools.js']) {
+  await cp(path.join(projectRoot, 'docs', 'site', asset), path.join(outputRoot, 'assets', asset));
+}
 
 const searchIndex = [];
 
