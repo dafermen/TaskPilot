@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Architecture: Data contracts in the TaskPilot documentation." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+    <link rel="stylesheet" href="/docs/assets/innovalogic.css" />
+    <script>try{const t=localStorage.getItem('taskpilot-theme');document.documentElement.dataset.theme=t==='true'?'dark':t==='false'?'light':matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script>
+    <title>Data and Persistence Contracts | TaskPilot Documentation</title>
+  </head>
+  <body data-docs-page="data-contracts">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="docs-topbar">
+      <div class="topbar-inner">
+        <button class="menu-button" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu</button>
+        <a class="docs-brand" href="/docs/" aria-label="TaskPilot documentation home">
+          <img src="/taskpilot-mark.svg" alt="" width="36" height="36" />
+          <span><strong>TaskPilot</strong><small>Documentation</small></span>
+        </a>
+        <nav class="top-links" aria-label="Documentation shortcuts">
+          <a href="/docs/">Documentation</a>
+          <a href="/docs/introduction/">Product</a>
+          <a href="/docs/architecture/">Architecture</a>
+          <a href="/docs/current-status/">Status</a>
+        </nav>
+        <div class="search-shell">
+          <label class="visually-hidden" for="docs-search">Search documentation</label>
+          <input id="docs-search" type="search" placeholder="Search docs" autocomplete="off" />
+          <div id="search-results" class="search-results" hidden></div>
+        </div>
+        <button id="theme-toggle" class="theme-button" type="button">Theme</button>
+        <a class="app-link app-link-desktop" href="/" target="_self">&larr; Back to app</a>
+      </div>
+    </header>
+    <div class="docs-layout">
+      <aside id="docs-sidebar" class="docs-sidebar" aria-label="Documentation navigation">
+        <div class="sidebar-scroll">
+          
+    <details class="nav-section" open>
+      <summary>Product</summary>
+      <ul>
+        <li><a href="/docs/">Documentation overview</a></li><li><a href="/docs/introduction/">Introduction and MVP</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Architecture</summary>
+      <ul>
+        <li><a href="/docs/architecture/">Architecture overview</a></li><li><a href="/docs/data-contracts/" class="current" aria-current="page">Data contracts</a></li><li><a href="/docs/local-storage/">Accessibility and storage</a></li><li><a href="/docs/mobile/">Android and iOS</a></li><li><a href="/docs/decisions/">Decision index</a></li><li><a href="/docs/decisions/frontend-json/">ADR: JSON persistence</a></li><li><a href="/docs/decisions/record-visibility/">ADR: Record visibility</a></li><li><a href="/docs/decisions/github-pages/">ADR: GitHub Pages</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Engineering</summary>
+      <ul>
+        <li><a href="/docs/development/">Development setup</a></li><li><a href="/docs/code-walkthrough/">Code walkthrough</a></li><li><a href="/docs/testing/">Testing strategy</a></li><li><a href="/docs/quality/">Quality evidence</a></li><li><a href="/docs/security/">Security</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Delivery</summary>
+      <ul>
+        <li><a href="/docs/deployment/">Deployment</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/release-checklist/">Release checklist</a></li><li><a href="/docs/changelog/">Changelog</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Project</summary>
+      <ul>
+        <li><a href="/docs/web-navigation/">Documentation navigation</a></li><li><a href="/docs/current-status/">Current status</a></li><li><a href="/docs/contributing/">Contributing</a></li><li><a href="/docs/continuity/">Codex continuity</a></li><li><a href="/docs/license/">License</a></li><li><a href="/docs/third-party/">Third-party licenses</a></li>
+      </ul>
+    </details>
+        </div>
+        <a class="app-link app-link-mobile" href="/" target="_self">&larr; Back to app</a>
+      </aside>
+      <button class="sidebar-backdrop" type="button" aria-label="Close documentation menu"></button>
+      <main id="main-content" class="docs-content" tabindex="-1">
+        <div class="page-context"><span>Architecture</span><span aria-hidden="true">/</span><span>Data contracts</span></div>
+        
+        <article class="markdown-body"><h1 id="data-and-persistence-contracts">Data and Persistence Contracts</h1>
+<p>TaskPilot has no HTTP API in the current MVP. This document defines the internal JSON and browser-storage contracts that function as its data interface.</p>
+<h2 id="backup-envelope">Backup Envelope</h2>
+<pre><code class="language-json">{
+  &quot;version&quot;: 1,
+  &quot;exportedAt&quot;: &quot;2026-07-28T12:00:00.000Z&quot;,
+  &quot;projects&quot;: [],
+  &quot;activities&quot;: [],
+  &quot;tasks&quot;: []
+}
+</code></pre>
+<ul>
+<li><code>version</code>: backup schema version. Current value: <code>1</code>.</li>
+<li><code>exportedAt</code>: ISO 8601 timestamp.</li>
+<li><code>projects</code>, <code>activities</code>, <code>tasks</code>: arrays normalized during import.</li>
+</ul>
+<h2 id="project">Project</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Rules</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>Required identifier; generated when missing.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Non-empty after normalization.</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>string</td>
+<td>Non-empty after normalization.</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td>string</td>
+<td>Six-digit hex color.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td><code>Planning</code>, <code>Active</code>, <code>Paused</code>, or <code>Done</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="activity">Activity</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Rules</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>Required identifier; generated when missing.</td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td>string</td>
+<td>Must reference an existing project after normalization.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Non-empty after normalization.</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>string</td>
+<td>Non-empty after normalization.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td><code>Planning</code>, <code>Active</code>, <code>Paused</code>, or <code>Done</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="task">Task</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Rules</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>Required identifier; generated when missing.</td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td>string</td>
+<td>Must reference an existing project.</td>
+</tr>
+<tr>
+<td><code>activityId</code></td>
+<td>string</td>
+<td>Must reference an activity in the same project.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>Non-empty after normalization.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>Free text.</td>
+</tr>
+<tr>
+<td><code>column</code></td>
+<td>string</td>
+<td><code>backlog</code>, <code>ready</code>, <code>progress</code>, <code>review</code>, or <code>done</code>.</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>string</td>
+<td>Non-empty after normalization.</td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>string</td>
+<td><code>High</code>, <code>Medium</code>, or <code>Low</code>.</td>
+</tr>
+<tr>
+<td><code>tag</code></td>
+<td>string</td>
+<td>Non-empty category label.</td>
+</tr>
+<tr>
+<td><code>due</code></td>
+<td>string</td>
+<td>Calendar-valid <code>YYYY-MM-DD</code>.</td>
+</tr>
+<tr>
+<td><code>points</code></td>
+<td>number</td>
+<td>Integer from 1 through 13.</td>
+</tr>
+<tr>
+<td><code>blocked</code></td>
+<td>boolean</td>
+<td>Blocking signal.</td>
+</tr>
+<tr>
+<td><code>checklist</code></td>
+<td>array</td>
+<td>Checklist item objects.</td>
+</tr>
+</tbody>
+</table>
+<p>Checklist items use <code>{ &quot;id&quot;: &quot;string&quot;, &quot;text&quot;: &quot;string&quot;, &quot;done&quot;: true }</code>. Legacy string items are migrated during load, and malformed or duplicate checklist identifiers are repaired.</p>
+<h2 id="storage-keys">Storage Keys</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>taskpilot-board-v3</code></td>
+<td>Tasks</td>
+</tr>
+<tr>
+<td><code>taskpilot-projects-v1</code></td>
+<td>Projects</td>
+</tr>
+<tr>
+<td><code>taskpilot-activities-v1</code></td>
+<td>Activities</td>
+</tr>
+<tr>
+<td><code>taskpilot-theme</code></td>
+<td>Theme preference</td>
+</tr>
+<tr>
+<td><code>taskpilot-focus-mode</code></td>
+<td>Focus-mode preference</td>
+</tr>
+<tr>
+<td><code>taskpilot-card-view</code></td>
+<td>Card display preference</td>
+</tr>
+<tr>
+<td><code>taskpilot-show-paused-done</code></td>
+<td>Archived visibility preference</td>
+</tr>
+<tr>
+<td><code>taskpilot-active-project</code></td>
+<td>Active project filter</td>
+</tr>
+<tr>
+<td><code>taskpilot-active-activity</code></td>
+<td>Active activity filter</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compatibility-policy">Compatibility Policy</h2>
+<ul>
+<li>Existing keys are not renamed without a migration.</li>
+<li>Backup schema changes require a version increment, contract tests, migration notes, and a changelog entry.</li>
+<li>Unknown or malformed values are normalized to supported defaults.</li>
+<li>Non-object backup roots and backup versions newer than the supported schema are rejected before data replacement.</li>
+<li>Duplicate identifiers are repaired, and a recovery activity is created when imported tasks reference a project with no available activity.</li>
+<li>Empty task arrays remain empty and do not silently restore demo tasks.</li>
+</ul>
+<p>The fixture in <code>test/fixtures/board-backup-v1.json</code> and tests in <code>test/contract/</code> are executable evidence for this contract.</p>
+</article>
+        
+    <nav class="page-pager" aria-label="Documentation pagination">
+      <a href="/docs/architecture/"><span>Previous</span><strong>Architecture overview</strong></a>
+      <a class="next" href="/docs/local-storage/"><span>Next</span><strong>Accessibility and storage</strong></a>
+    </nav>
+      </main>
+      <aside class="page-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol><li class="toc-level-2"><a href="#backup-envelope">Backup Envelope</a></li><li class="toc-level-2"><a href="#project">Project</a></li><li class="toc-level-2"><a href="#activity">Activity</a></li><li class="toc-level-2"><a href="#task">Task</a></li><li class="toc-level-2"><a href="#storage-keys">Storage Keys</a></li><li class="toc-level-2"><a href="#compatibility-policy">Compatibility Policy</a></li></ol>
+      </aside>
+    </div>
+    <script src="/docs/assets/docs.js" defer></script>
+    <script src="/docs/assets/reading-tools.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Project: Documentation navigation in the TaskPilot documentation." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+    <link rel="stylesheet" href="/docs/assets/innovalogic.css" />
+    <script>try{const t=localStorage.getItem('taskpilot-theme');document.documentElement.dataset.theme=t==='true'?'dark':t==='false'?'light':matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script>
+    <title>Documentation web navigation v1 | TaskPilot Documentation</title>
+  </head>
+  <body data-docs-page="web-navigation">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="docs-topbar">
+      <div class="topbar-inner">
+        <button class="menu-button" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu</button>
+        <a class="docs-brand" href="/docs/" aria-label="TaskPilot documentation home">
+          <img src="/taskpilot-mark.svg" alt="" width="36" height="36" />
+          <span><strong>TaskPilot</strong><small>Documentation</small></span>
+        </a>
+        <nav class="top-links" aria-label="Documentation shortcuts">
+          <a href="/docs/">Documentation</a>
+          <a href="/docs/introduction/">Product</a>
+          <a href="/docs/architecture/">Architecture</a>
+          <a href="/docs/current-status/">Status</a>
+        </nav>
+        <div class="search-shell">
+          <label class="visually-hidden" for="docs-search">Search documentation</label>
+          <input id="docs-search" type="search" placeholder="Search docs" autocomplete="off" />
+          <div id="search-results" class="search-results" hidden></div>
+        </div>
+        <button id="theme-toggle" class="theme-button" type="button">Theme</button>
+        <a class="app-link app-link-desktop" href="/" target="_self">&larr; Back to app</a>
+      </div>
+    </header>
+    <div class="docs-layout">
+      <aside id="docs-sidebar" class="docs-sidebar" aria-label="Documentation navigation">
+        <div class="sidebar-scroll">
+          
+    <details class="nav-section" open>
+      <summary>Product</summary>
+      <ul>
+        <li><a href="/docs/">Documentation overview</a></li><li><a href="/docs/introduction/">Introduction and MVP</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Architecture</summary>
+      <ul>
+        <li><a href="/docs/architecture/">Architecture overview</a></li><li><a href="/docs/data-contracts/">Data contracts</a></li><li><a href="/docs/local-storage/">Accessibility and storage</a></li><li><a href="/docs/mobile/">Android and iOS</a></li><li><a href="/docs/decisions/">Decision index</a></li><li><a href="/docs/decisions/frontend-json/">ADR: JSON persistence</a></li><li><a href="/docs/decisions/record-visibility/">ADR: Record visibility</a></li><li><a href="/docs/decisions/github-pages/">ADR: GitHub Pages</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Engineering</summary>
+      <ul>
+        <li><a href="/docs/development/">Development setup</a></li><li><a href="/docs/code-walkthrough/">Code walkthrough</a></li><li><a href="/docs/testing/">Testing strategy</a></li><li><a href="/docs/quality/">Quality evidence</a></li><li><a href="/docs/security/">Security</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Delivery</summary>
+      <ul>
+        <li><a href="/docs/deployment/">Deployment</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/release-checklist/">Release checklist</a></li><li><a href="/docs/changelog/">Changelog</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Project</summary>
+      <ul>
+        <li><a href="/docs/web-navigation/" class="current" aria-current="page">Documentation navigation</a></li><li><a href="/docs/current-status/">Current status</a></li><li><a href="/docs/contributing/">Contributing</a></li><li><a href="/docs/continuity/">Codex continuity</a></li><li><a href="/docs/license/">License</a></li><li><a href="/docs/third-party/">Third-party licenses</a></li>
+      </ul>
+    </details>
+        </div>
+        <a class="app-link app-link-mobile" href="/" target="_self">&larr; Back to app</a>
+      </aside>
+      <button class="sidebar-backdrop" type="button" aria-label="Close documentation menu"></button>
+      <main id="main-content" class="docs-content" tabindex="-1">
+        <div class="page-context"><span>Project</span><span aria-hidden="true">/</span><span>Documentation navigation</span></div>
+        
+        <article class="markdown-body"><h1 id="documentation-web-navigation-v1">Documentation web navigation v1</h1>
+<p>Date: 2026-10-03. Scope: documentation reading and navigation requested by the owner.</p>
+<h2 id="visual-identity-and-maintenance">Visual identity and maintenance</h2>
+<p>The documentation uses the InnovaLogic family: blue <code>#2563eb</code>, cyan <code>#0ea5e9</code>, neutral reading surfaces and a dark alternative. The project keeps its name and existing routes. Application screens retain their own styling.</p>
+<p>Theme source: <code>docs/site/innovalogic.css</code>. Adjust the <code>--docs-accent</code> and related tokens for a future brand revision; check both themes and contrast. Do not edit generated files as the source of truth. Reading tools are local assets; no CDN or tracking is introduced.</p>
+<h2 id="reader-experience">Reader experience</h2>
+<p>Three entry paths cover discovery, use and development. Existing navigation and search are retained or improved. Code can be copied with a keyboard-accessible control. Images can be enlarged when the document contains them; Escape closes the image dialog. Mobile navigation, visible focus and reduced-motion preferences are part of the review.</p>
+<h2 id="recorded-validation">Recorded validation</h2>
+<p>verify:release: tests, build, performance, application and documentation browser checks PASS; audit FAIL (existing braces build-tool advisory). Additional browser checks PASS at 1440 and 390 px.</p>
+<p>This is a local candidate. GitHub publication and server delivery have not occurred for this navigation revision. Previous product limitations, access rules, portfolio exclusions and deployment gates remain in effect.</p>
+<h2 id="next-action">Next action</h2>
+<p>Complete any pending checks, review the focused diff, then publish only the validated candidate through the project's existing delivery procedure. Keep prior artifacts available for rollback.</p>
+</article>
+        
+    <nav class="page-pager" aria-label="Documentation pagination">
+      <a href="/docs/changelog/"><span>Previous</span><strong>Changelog</strong></a>
+      <a class="next" href="/docs/current-status/"><span>Next</span><strong>Current status</strong></a>
+    </nav>
+      </main>
+      <aside class="page-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol><li class="toc-level-2"><a href="#visual-identity-and-maintenance">Visual identity and maintenance</a></li><li class="toc-level-2"><a href="#reader-experience">Reader experience</a></li><li class="toc-level-2"><a href="#recorded-validation">Recorded validation</a></li><li class="toc-level-2"><a href="#next-action">Next action</a></li></ol>
+      </aside>
+    </div>
+    <script src="/docs/assets/docs.js" defer></script>
+    <script src="/docs/assets/reading-tools.js" defer></script>
+  </body>
+</html>

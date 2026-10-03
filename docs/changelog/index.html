@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Delivery: Changelog in the TaskPilot documentation." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+    <link rel="stylesheet" href="/docs/assets/innovalogic.css" />
+    <script>try{const t=localStorage.getItem('taskpilot-theme');document.documentElement.dataset.theme=t==='true'?'dark':t==='false'?'light':matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script>
+    <title>Changelog | TaskPilot Documentation</title>
+  </head>
+  <body data-docs-page="changelog">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="docs-topbar">
+      <div class="topbar-inner">
+        <button class="menu-button" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu</button>
+        <a class="docs-brand" href="/docs/" aria-label="TaskPilot documentation home">
+          <img src="/taskpilot-mark.svg" alt="" width="36" height="36" />
+          <span><strong>TaskPilot</strong><small>Documentation</small></span>
+        </a>
+        <nav class="top-links" aria-label="Documentation shortcuts">
+          <a href="/docs/">Documentation</a>
+          <a href="/docs/introduction/">Product</a>
+          <a href="/docs/architecture/">Architecture</a>
+          <a href="/docs/current-status/">Status</a>
+        </nav>
+        <div class="search-shell">
+          <label class="visually-hidden" for="docs-search">Search documentation</label>
+          <input id="docs-search" type="search" placeholder="Search docs" autocomplete="off" />
+          <div id="search-results" class="search-results" hidden></div>
+        </div>
+        <button id="theme-toggle" class="theme-button" type="button">Theme</button>
+        <a class="app-link app-link-desktop" href="/" target="_self">&larr; Back to app</a>
+      </div>
+    </header>
+    <div class="docs-layout">
+      <aside id="docs-sidebar" class="docs-sidebar" aria-label="Documentation navigation">
+        <div class="sidebar-scroll">
+          
+    <details class="nav-section" open>
+      <summary>Product</summary>
+      <ul>
+        <li><a href="/docs/">Documentation overview</a></li><li><a href="/docs/introduction/">Introduction and MVP</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Architecture</summary>
+      <ul>
+        <li><a href="/docs/architecture/">Architecture overview</a></li><li><a href="/docs/data-contracts/">Data contracts</a></li><li><a href="/docs/local-storage/">Accessibility and storage</a></li><li><a href="/docs/mobile/">Android and iOS</a></li><li><a href="/docs/decisions/">Decision index</a></li><li><a href="/docs/decisions/frontend-json/">ADR: JSON persistence</a></li><li><a href="/docs/decisions/record-visibility/">ADR: Record visibility</a></li><li><a href="/docs/decisions/github-pages/">ADR: GitHub Pages</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Engineering</summary>
+      <ul>
+        <li><a href="/docs/development/">Development setup</a></li><li><a href="/docs/code-walkthrough/">Code walkthrough</a></li><li><a href="/docs/testing/">Testing strategy</a></li><li><a href="/docs/quality/">Quality evidence</a></li><li><a href="/docs/security/">Security</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Delivery</summary>
+      <ul>
+        <li><a href="/docs/deployment/">Deployment</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/release-checklist/">Release checklist</a></li><li><a href="/docs/changelog/" class="current" aria-current="page">Changelog</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Project</summary>
+      <ul>
+        <li><a href="/docs/web-navigation/">Documentation navigation</a></li><li><a href="/docs/current-status/">Current status</a></li><li><a href="/docs/contributing/">Contributing</a></li><li><a href="/docs/continuity/">Codex continuity</a></li><li><a href="/docs/license/">License</a></li><li><a href="/docs/third-party/">Third-party licenses</a></li>
+      </ul>
+    </details>
+        </div>
+        <a class="app-link app-link-mobile" href="/" target="_self">&larr; Back to app</a>
+      </aside>
+      <button class="sidebar-backdrop" type="button" aria-label="Close documentation menu"></button>
+      <main id="main-content" class="docs-content" tabindex="-1">
+        <div class="page-context"><span>Delivery</span><span aria-hidden="true">/</span><span>Changelog</span></div>
+        
+        <article class="markdown-body"><h1 id="changelog">Changelog</h1>
+<h2 id="documentation-navigation-candidate-2026-10-03">Documentation navigation candidate — 2026-10-03</h2>
+<p>InnovaLogic visual family, reading paths, collapsible navigation where applicable, code copy and keyboard image enlargement. Local validation and delivery status are recorded in docs/WEB_NAVIGATION.md.</p>
+<p>All notable changes to TaskPilot are documented here. Dates use <code>YYYY-MM-DD</code>.</p>
+<h2 id="unreleased">Unreleased</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>Canonical architecture, data-contract, development, testing, deployment, operations, security, and troubleshooting documentation.</li>
+<li>Architecture Decision Records for local JSON persistence, operational record visibility, and GitHub Pages.</li>
+<li>GitHub CI, issue forms, pull request template, and dependency update configuration.</li>
+<li>Unit, integration, contract, fixture, end-to-end, property, fuzz, regression, and performance test organization.</li>
+<li>Integration and contract tests for versioned JSON backups.</li>
+<li>Release checklist covering 13 mandatory quality gates.</li>
+<li>Generated documentation site under <code>/docs/</code> with responsive navigation, local search, page outlines, light/dark themes, and previous/next links.</li>
+<li>Static link validation and real Chrome checks for desktop, mobile, search, theme persistence, and application return navigation.</li>
+<li>Deterministic property and fuzz suites for data relationships, backup parsing, malformed records, and storage failures.</li>
+<li>Large-board normalization and production JavaScript/CSS resource budgets.</li>
+<li>Chrome application E2E coverage for CRUD persistence, objective completion, archived visibility, and responsive navigation.</li>
+<li>A single <code>npm start</code> command for the application and documentation on port 5179.</li>
+</ul>
+<h3 id="changed">Changed</h3>
+<ul>
+<li>
+<p>Updated the documentation renderer and locked brace-expansion dependency to clear the October 2 dependency audit.</p>
+</li>
+<li>
+<p>GitHub Pages deployment now runs the automated release baseline before publishing.</p>
+</li>
+<li>
+<p>The application Documentation navigation now opens the canonical <code>/docs/</code> site in the same tab instead of showing a duplicate in-app summary.</p>
+</li>
+<li>
+<p>Vite development serves documentation directory URLs the same way as the production preview.</p>
+</li>
+<li>
+<p>Imported data now repairs duplicate identifiers and recovers tasks whose project has no activity, while unsupported backup versions are rejected safely.</p>
+</li>
+<li>
+<p>Browser validation closes its complete temporary server process group on Windows and Linux so CI exits cleanly.</p>
+</li>
+</ul>
+<h2 id="010-2026-07-28">0.1.0 - 2026-07-28</h2>
+<h3 id="added-2">Added</h3>
+<ul>
+<li>Project, activity, and task administration.</li>
+<li>Home dashboard and dedicated Kanban Workspace.</li>
+<li>Compact, collapsible task cards and high-volume board controls.</li>
+<li>Objective-completion status.</li>
+<li>JSON import/export and guarded local persistence.</li>
+<li>Paused and completed record visibility controls.</li>
+<li>Capacitor Android and iOS shells.</li>
+<li>GitHub Pages publication with a custom domain.</li>
+</ul>
+<h2 id="documentation-continuity-2026-10-03">Documentation continuity — 2026-10-03</h2>
+<p>Recorded the current static documentation candidate and refreshed publication-tool security finding separately from the previously successful baseline. Public delivery remains pending the release gate decision.</p>
+</article>
+        
+    <nav class="page-pager" aria-label="Documentation pagination">
+      <a href="/docs/release-checklist/"><span>Previous</span><strong>Release checklist</strong></a>
+      <a class="next" href="/docs/web-navigation/"><span>Next</span><strong>Documentation navigation</strong></a>
+    </nav>
+      </main>
+      <aside class="page-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol><li class="toc-level-2"><a href="#documentation-navigation-candidate-2026-10-03">Documentation navigation candidate — 2026-10-03</a></li><li class="toc-level-2"><a href="#unreleased">Unreleased</a></li><li class="toc-level-3"><a href="#added">Added</a></li><li class="toc-level-3"><a href="#changed">Changed</a></li><li class="toc-level-2"><a href="#010-2026-07-28">0.1.0 - 2026-07-28</a></li><li class="toc-level-3"><a href="#added-2">Added</a></li><li class="toc-level-2"><a href="#documentation-continuity-2026-10-03">Documentation continuity — 2026-10-03</a></li></ol>
+      </aside>
+    </div>
+    <script src="/docs/assets/docs.js" defer></script>
+    <script src="/docs/assets/reading-tools.js" defer></script>
+  </body>
+</html>

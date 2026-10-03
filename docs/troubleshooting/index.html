@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Product: Troubleshooting in the TaskPilot documentation." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+    <link rel="stylesheet" href="/docs/assets/innovalogic.css" />
+    <script>try{const t=localStorage.getItem('taskpilot-theme');document.documentElement.dataset.theme=t==='true'?'dark':t==='false'?'light':matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script>
+    <title>Troubleshooting | TaskPilot Documentation</title>
+  </head>
+  <body data-docs-page="troubleshooting">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="docs-topbar">
+      <div class="topbar-inner">
+        <button class="menu-button" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu</button>
+        <a class="docs-brand" href="/docs/" aria-label="TaskPilot documentation home">
+          <img src="/taskpilot-mark.svg" alt="" width="36" height="36" />
+          <span><strong>TaskPilot</strong><small>Documentation</small></span>
+        </a>
+        <nav class="top-links" aria-label="Documentation shortcuts">
+          <a href="/docs/">Documentation</a>
+          <a href="/docs/introduction/">Product</a>
+          <a href="/docs/architecture/">Architecture</a>
+          <a href="/docs/current-status/">Status</a>
+        </nav>
+        <div class="search-shell">
+          <label class="visually-hidden" for="docs-search">Search documentation</label>
+          <input id="docs-search" type="search" placeholder="Search docs" autocomplete="off" />
+          <div id="search-results" class="search-results" hidden></div>
+        </div>
+        <button id="theme-toggle" class="theme-button" type="button">Theme</button>
+        <a class="app-link app-link-desktop" href="/" target="_self">&larr; Back to app</a>
+      </div>
+    </header>
+    <div class="docs-layout">
+      <aside id="docs-sidebar" class="docs-sidebar" aria-label="Documentation navigation">
+        <div class="sidebar-scroll">
+          
+    <details class="nav-section" open>
+      <summary>Product</summary>
+      <ul>
+        <li><a href="/docs/">Documentation overview</a></li><li><a href="/docs/introduction/">Introduction and MVP</a></li><li><a href="/docs/troubleshooting/" class="current" aria-current="page">Troubleshooting</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Architecture</summary>
+      <ul>
+        <li><a href="/docs/architecture/">Architecture overview</a></li><li><a href="/docs/data-contracts/">Data contracts</a></li><li><a href="/docs/local-storage/">Accessibility and storage</a></li><li><a href="/docs/mobile/">Android and iOS</a></li><li><a href="/docs/decisions/">Decision index</a></li><li><a href="/docs/decisions/frontend-json/">ADR: JSON persistence</a></li><li><a href="/docs/decisions/record-visibility/">ADR: Record visibility</a></li><li><a href="/docs/decisions/github-pages/">ADR: GitHub Pages</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Engineering</summary>
+      <ul>
+        <li><a href="/docs/development/">Development setup</a></li><li><a href="/docs/code-walkthrough/">Code walkthrough</a></li><li><a href="/docs/testing/">Testing strategy</a></li><li><a href="/docs/quality/">Quality evidence</a></li><li><a href="/docs/security/">Security</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Delivery</summary>
+      <ul>
+        <li><a href="/docs/deployment/">Deployment</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/release-checklist/">Release checklist</a></li><li><a href="/docs/changelog/">Changelog</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Project</summary>
+      <ul>
+        <li><a href="/docs/web-navigation/">Documentation navigation</a></li><li><a href="/docs/current-status/">Current status</a></li><li><a href="/docs/contributing/">Contributing</a></li><li><a href="/docs/continuity/">Codex continuity</a></li><li><a href="/docs/license/">License</a></li><li><a href="/docs/third-party/">Third-party licenses</a></li>
+      </ul>
+    </details>
+        </div>
+        <a class="app-link app-link-mobile" href="/" target="_self">&larr; Back to app</a>
+      </aside>
+      <button class="sidebar-backdrop" type="button" aria-label="Close documentation menu"></button>
+      <main id="main-content" class="docs-content" tabindex="-1">
+        <div class="page-context"><span>Product</span><span aria-hidden="true">/</span><span>Troubleshooting</span></div>
+        
+        <article class="markdown-body"><h1 id="troubleshooting">Troubleshooting</h1>
+<h2 id="the-development-server-does-not-start">The Development Server Does Not Start</h2>
+<p>Run <code>npm ci</code>, verify a Vite-compatible Node.js version, and retry <code>npm run dev -- --port 5179</code>. If the port is occupied, choose another port.</p>
+<h2 id="the-app-shows-demo-data-again">The App Shows Demo Data Again</h2>
+<p>Confirm the same browser profile, domain, protocol, and port are being used. <code>localStorage</code> is isolated by origin. Clearing site data, uninstalling the native app, or changing the origin can remove access to previous records.</p>
+<p>Restore from Settings with a previously exported JSON backup.</p>
+<h2 id="a-backup-does-not-import">A Backup Does Not Import</h2>
+<p>Keep the original file. Confirm it is valid JSON and follows the envelope in <a href="/docs/data-contracts/">API.md</a>. Do not edit the only copy of a user backup. Use a duplicate for repair attempts.</p>
+<h2 id="paused-or-completed-work-is-missing">Paused or Completed Work Is Missing</h2>
+<p>Paused and Done projects or activities are hidden from Home and Workspace by default. They remain visible in Administration. Enable <code>Show paused/done</code> in Workspace or reactivate the record in Administration.</p>
+<h2 id="a-task-does-not-show-objective-completion">A Task Does Not Show Objective Completion</h2>
+<p>The task must be in Done, not blocked, contain at least one checklist item, and have every checklist item complete.</p>
+<h2 id="github-pages-uses-the-wrong-domain">GitHub Pages Uses the Wrong Domain</h2>
+<p>Confirm <code>public/CNAME</code> contains <code>taskpilot.innovalogic.tech</code>, rebuild, redeploy, and verify the <code>gh-pages</code> branch also contains <code>CNAME</code>.</p>
+<h2 id="github-pages-is-blank">GitHub Pages Is Blank</h2>
+<p>Check that <code>npm run build</code> succeeds, <code>dist/index.html</code> exists, JavaScript and CSS assets return successfully, and the browser console has no loading errors. Compare the Pages commit with the last known-good release.</p>
+<h2 id="documentation-is-missing-or-out-of-date">Documentation Is Missing or Out of Date</h2>
+<p>Run <code>npm run docs:build</code>, then restart the development server. Markdown is the source of truth; <code>public/docs/</code> is generated and intentionally ignored. For a production check, run <code>npm run build</code>, <code>npm run docs:check</code>, and <code>npm run docs:browser</code>.</p>
+<p>Documentation URLs must begin with <code>/docs/</code> only once. A <code>/docs/docs/</code> route indicates an incorrect navigation entry or Markdown link and should fail <code>npm run docs:check</code>.</p>
+<h2 id="capacitor-does-not-show-recent-changes">Capacitor Does Not Show Recent Changes</h2>
+<p>Run <code>npm run mobile:sync</code> after the web change. Rebuild from Android Studio or Xcode. Confirm Capacitor still uses <code>dist</code> as <code>webDir</code>.</p>
+<h2 id="tests-are-not-discovered">Tests Are Not Discovered</h2>
+<p>Test filenames must end in <code>.test.js</code> and live under <code>test/</code>. Group-specific scripts use:</p>
+<pre><code class="language-bash">npm run test:unit
+npm run test:integration
+npm run test:contract
+</code></pre>
+<h2 id="storage-is-blocked">Storage Is Blocked</h2>
+<p>Private mode, browser policy, full quota, or device restrictions may block <code>localStorage</code>. The app should continue with in-memory state, but persistence cannot be guaranteed. Export a backup whenever storage becomes available.</p>
+</article>
+        
+    <nav class="page-pager" aria-label="Documentation pagination">
+      <a href="/docs/introduction/"><span>Previous</span><strong>Introduction and MVP</strong></a>
+      <a class="next" href="/docs/architecture/"><span>Next</span><strong>Architecture overview</strong></a>
+    </nav>
+      </main>
+      <aside class="page-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol><li class="toc-level-2"><a href="#the-development-server-does-not-start">The Development Server Does Not Start</a></li><li class="toc-level-2"><a href="#the-app-shows-demo-data-again">The App Shows Demo Data Again</a></li><li class="toc-level-2"><a href="#a-backup-does-not-import">A Backup Does Not Import</a></li><li class="toc-level-2"><a href="#paused-or-completed-work-is-missing">Paused or Completed Work Is Missing</a></li><li class="toc-level-2"><a href="#a-task-does-not-show-objective-completion">A Task Does Not Show Objective Completion</a></li><li class="toc-level-2"><a href="#github-pages-uses-the-wrong-domain">GitHub Pages Uses the Wrong Domain</a></li><li class="toc-level-2"><a href="#github-pages-is-blank">GitHub Pages Is Blank</a></li><li class="toc-level-2"><a href="#documentation-is-missing-or-out-of-date">Documentation Is Missing or Out of Date</a></li><li class="toc-level-2"><a href="#capacitor-does-not-show-recent-changes">Capacitor Does Not Show Recent Changes</a></li><li class="toc-level-2"><a href="#tests-are-not-discovered">Tests Are Not Discovered</a></li><li class="toc-level-2"><a href="#storage-is-blocked">Storage Is Blocked</a></li></ol>
+      </aside>
+    </div>
+    <script src="/docs/assets/docs.js" defer></script>
+    <script src="/docs/assets/reading-tools.js" defer></script>
+  </body>
+</html>

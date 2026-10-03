@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Product: Introduction and MVP in the TaskPilot documentation." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+    <link rel="stylesheet" href="/docs/assets/innovalogic.css" />
+    <script>try{const t=localStorage.getItem('taskpilot-theme');document.documentElement.dataset.theme=t==='true'?'dark':t==='false'?'light':matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script>
+    <title>TaskPilot | TaskPilot Documentation</title>
+  </head>
+  <body data-docs-page="introduction">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="docs-topbar">
+      <div class="topbar-inner">
+        <button class="menu-button" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu</button>
+        <a class="docs-brand" href="/docs/" aria-label="TaskPilot documentation home">
+          <img src="/taskpilot-mark.svg" alt="" width="36" height="36" />
+          <span><strong>TaskPilot</strong><small>Documentation</small></span>
+        </a>
+        <nav class="top-links" aria-label="Documentation shortcuts">
+          <a href="/docs/">Documentation</a>
+          <a href="/docs/introduction/">Product</a>
+          <a href="/docs/architecture/">Architecture</a>
+          <a href="/docs/current-status/">Status</a>
+        </nav>
+        <div class="search-shell">
+          <label class="visually-hidden" for="docs-search">Search documentation</label>
+          <input id="docs-search" type="search" placeholder="Search docs" autocomplete="off" />
+          <div id="search-results" class="search-results" hidden></div>
+        </div>
+        <button id="theme-toggle" class="theme-button" type="button">Theme</button>
+        <a class="app-link app-link-desktop" href="/" target="_self">&larr; Back to app</a>
+      </div>
+    </header>
+    <div class="docs-layout">
+      <aside id="docs-sidebar" class="docs-sidebar" aria-label="Documentation navigation">
+        <div class="sidebar-scroll">
+          
+    <details class="nav-section" open>
+      <summary>Product</summary>
+      <ul>
+        <li><a href="/docs/">Documentation overview</a></li><li><a href="/docs/introduction/" class="current" aria-current="page">Introduction and MVP</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Architecture</summary>
+      <ul>
+        <li><a href="/docs/architecture/">Architecture overview</a></li><li><a href="/docs/data-contracts/">Data contracts</a></li><li><a href="/docs/local-storage/">Accessibility and storage</a></li><li><a href="/docs/mobile/">Android and iOS</a></li><li><a href="/docs/decisions/">Decision index</a></li><li><a href="/docs/decisions/frontend-json/">ADR: JSON persistence</a></li><li><a href="/docs/decisions/record-visibility/">ADR: Record visibility</a></li><li><a href="/docs/decisions/github-pages/">ADR: GitHub Pages</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Engineering</summary>
+      <ul>
+        <li><a href="/docs/development/">Development setup</a></li><li><a href="/docs/code-walkthrough/">Code walkthrough</a></li><li><a href="/docs/testing/">Testing strategy</a></li><li><a href="/docs/quality/">Quality evidence</a></li><li><a href="/docs/security/">Security</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Delivery</summary>
+      <ul>
+        <li><a href="/docs/deployment/">Deployment</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/release-checklist/">Release checklist</a></li><li><a href="/docs/changelog/">Changelog</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Project</summary>
+      <ul>
+        <li><a href="/docs/web-navigation/">Documentation navigation</a></li><li><a href="/docs/current-status/">Current status</a></li><li><a href="/docs/contributing/">Contributing</a></li><li><a href="/docs/continuity/">Codex continuity</a></li><li><a href="/docs/license/">License</a></li><li><a href="/docs/third-party/">Third-party licenses</a></li>
+      </ul>
+    </details>
+        </div>
+        <a class="app-link app-link-mobile" href="/" target="_self">&larr; Back to app</a>
+      </aside>
+      <button class="sidebar-backdrop" type="button" aria-label="Close documentation menu"></button>
+      <main id="main-content" class="docs-content" tabindex="-1">
+        <div class="page-context"><span>Product</span><span aria-hidden="true">/</span><span>Introduction and MVP</span></div>
+        
+        <article class="markdown-body"><h1 id="taskpilot">TaskPilot</h1>
+<p>TaskPilot is a React project and task board MVP for managing work across projects, activities, and a simple left-to-right workflow. It is designed as a portfolio project that demonstrates product thinking, grouped task state, accessible workflow movement, editable checklists, filters, metrics, CRUD administration, and local persistence.</p>
+<p>The current version is intentionally frontend-only. It stores board data in <code>localStorage</code> and uses realistic demo tasks so the product can be evaluated without a backend.</p>
+<p>The documentation site is published at <a href="https://taskpilot.innovalogic.tech/docs/" rel="noreferrer">taskpilot.innovalogic.tech/docs/</a>, and its Markdown source index is available at <a href="/docs/">docs/README.md</a>.</p>
+<p>Canonical technical guides cover <a href="/docs/architecture/">architecture</a>, <a href="/docs/development/">development</a>, <a href="/docs/testing/">testing</a>, <a href="/docs/deployment/">deployment</a>, <a href="/docs/operations/">operations</a>, <a href="/docs/security/">security</a>, and <a href="/docs/troubleshooting/">troubleshooting</a>.</p>
+<p>Mobile Capacitor documentation is available at <a href="/docs/mobile/">docs/mobile-capacitor.md</a>.</p>
+<p>Accessibility and storage notes are available at <a href="/docs/local-storage/">docs/accessibility-and-storage.md</a>.</p>
+<p>Quality review checklist is available at <a href="/docs/quality/">docs/quality-review.md</a>.</p>
+<p>Continuity notes for future Codex sessions are available at <a href="/docs/continuity/">AGENTS.md</a> and <a href="/docs/current-status/">CURRENT_STATUS.md</a>.</p>
+<h2 id="mvp-features">MVP Features</h2>
+<ul>
+<li>React + Vite application.</li>
+<li>Project -&gt; Activity -&gt; Task grouping.</li>
+<li>Home dashboard with executive metrics, priority queue, upcoming due dates, review lane, operational snapshot, and quick actions.</li>
+<li>Dedicated Workspace page for Kanban movement, search, and board filters.</li>
+<li>Workspace readability controls: compact task cards, expandable/collapsible details, expanded-card detail access for mobile users, empty-column states, and show-more limits for busy phases.</li>
+<li>Workspace hides <code>Paused</code> and <code>Done</code> projects or activities by default, with an optional control to show them when reviewing historical work.</li>
+<li>Kanban-style workflow: Backlog, Ready, In Progress, Review, Done.</li>
+<li>Separate administration view for listing, filtering, creating, editing, and deleting projects, activities, and tasks.</li>
+<li>Administration tables support per-column filtering, sortable headers, and pagination for larger task lists.</li>
+<li>Compact workspace layout optimized for scanning and saving screen space.</li>
+<li>Collapsible left sidebar with Home, Workspace, Administration, Settings, Documentation, and About.</li>
+<li>Settings page for theme, focus mode, JSON import/export, and demo reset controls.</li>
+<li>Drag-and-drop task movement between columns.</li>
+<li>Keyboard-accessible left/right task movement controls.</li>
+<li>Create and edit tasks through a detail drawer.</li>
+<li>Edit task checklists by adding, completing, renaming, and removing items.</li>
+<li>Show an objective-met signal when a task is in Done, is not blocked, and has every checklist item completed.</li>
+<li>Detail drawer with dialog semantics, initial focus, focus trapping, and Escape-to-close behavior.</li>
+<li>Search, project, activity, and priority filtering.</li>
+<li>Board metrics for projects, activities, completed objectives, and total points.</li>
+<li>Secondary priority queue for important or blocked work.</li>
+<li>Export and import JSON backups for local data portability.</li>
+<li>Confirmation prompts before destructive reset/import/delete actions.</li>
+<li>Data validation and normalization for required names, dates, points, statuses, unique identifiers, and task relationships, including recovery of orphaned imported tasks.</li>
+<li>Light and dark theme toggle with saved preference.</li>
+<li>Saved focus-mode preference.</li>
+<li>Local persistence with guarded <code>localStorage</code> reads and writes.</li>
+<li>Modular source structure for components, board data, and storage utilities.</li>
+<li>Automated unit, property, fuzz, integration, contract, performance, and browser E2E checks for storage, CRUD persistence, backup compatibility, data relationships, archived visibility, and responsive navigation.</li>
+<li>Capacitor configuration for Android and iOS native shells.</li>
+<li>JSON-backed <code>localStorage</code> persistence across web and Capacitor WebView.</li>
+</ul>
+<h2 id="run-locally">Run Locally</h2>
+<pre><code class="language-bash">npm install
+npm start
+</code></pre>
+<p>Then open <code>http://127.0.0.1:5179/</code>. This one command generates the documentation site and starts the complete frontend application; no backend process is required.</p>
+<h2 id="quality-checks">Quality Checks</h2>
+<pre><code class="language-bash">npm run verify:release
+</code></pre>
+<p>The automated baseline runs unit, property, fuzz, integration, contract, and performance tests; creates the production build; enforces asset budgets; exercises critical application and documentation flows in Chrome; and audits dependencies. It is only one part of the 13-gate release policy in <a href="/docs/testing/">docs/TESTING.md</a>. Every deployment must also complete and record the applicable manual and specialized checks in <a href="/docs/release-checklist/">docs/RELEASE_CHECKLIST.md</a>.</p>
+<h2 id="documentation-site">Documentation Site</h2>
+<pre><code class="language-bash">npm run docs:build
+npm start
+</code></pre>
+<p>Open <code>http://127.0.0.1:5179/docs/</code>. The site is generated from the repository Markdown files. The production build validates its pages, assets, internal links, responsive navigation, local search, and return path to the application.</p>
+<h2 id="github-pages">GitHub Pages</h2>
+<p>The production web build is published from the <code>gh-pages</code> branch at <a href="https://taskpilot.innovalogic.tech" rel="noreferrer">taskpilot.innovalogic.tech</a>. The custom domain is preserved by <code>public/CNAME</code>.</p>
+<pre><code class="language-bash">npm run deploy
+</code></pre>
+<p>The deploy script runs the automated release baseline first and then updates the <code>gh-pages</code> branch with the contents of <code>dist</code>. A successful command does not replace the complete release checklist.</p>
+<h2 id="data-portability">Data Portability</h2>
+<p>TaskPilot stores projects, activities, and tasks as JSON in <code>localStorage</code>. Use the Settings page to download a backup or restore one later. Imported files are validated and normalized before replacing local data.</p>
+<h2 id="project-and-activity-status">Project and Activity Status</h2>
+<p>Projects and activities can be marked <code>Planning</code>, <code>Active</code>, <code>Paused</code>, or <code>Done</code> from Administration. <code>Planning</code> and <code>Active</code> records are operational and appear in Home and Workspace. <code>Paused</code> and <code>Done</code> records remain available in Administration but are hidden from Workspace by default so standby or completed work does not distract from active execution. Use the Workspace <code>Show paused/done</code> control when archived work needs to be reviewed.</p>
+<h2 id="objective-completion">Objective Completion</h2>
+<p>A task counts as objective met only when it is in the Done column, is not blocked, and every checklist item is complete. The app shows this status on the task card, in the task drawer, in board metrics, and as an Administration filter.</p>
+<h2 id="mobile-builds">Mobile Builds</h2>
+<pre><code class="language-bash">npm run mobile:sync
+npm run mobile:android
+npm run mobile:ios
+</code></pre>
+<p><code>mobile:sync</code> builds the web app and syncs it into the native Android/iOS projects. Android opens with Android Studio. iOS opens with Xcode and requires macOS for actual device/simulator builds.</p>
+<h2 id="project-goals">Project Goals</h2>
+<p>TaskPilot is not meant to be a Trello clone. It is a focused project workflow board that can grow toward AI-assisted planning, weekly status summaries, blocked-work detection, and lightweight project reporting.</p>
+<h2 id="current-scope">Current Scope</h2>
+<p>TaskPilot is frontend-only. It does not include authentication, multi-user collaboration, real-time sync, backend storage, database storage, or production AI features yet. Database work is intentionally deferred until the product flow is stable.</p>
+<h2 id="suggested-github-topics">Suggested GitHub Topics</h2>
+<p><code>react</code>, <code>vite</code>, <code>kanban</code>, <code>task-manager</code>, <code>drag-and-drop</code>, <code>productivity</code>, <code>portfolio-project</code></p>
+<h2 id="contributing-security-and-license">Contributing, Security, and License</h2>
+<p>See <a href="/docs/contributing/">CONTRIBUTING.md</a> for the contribution workflow and <a href="/docs/security/">docs/SECURITY.md</a> for private vulnerability reporting and release security requirements.</p>
+<p>TaskPilot is currently source-available for evaluation and portfolio use under the terms in <a href="/docs/license/">LICENSE</a>. Direct third-party dependencies are listed in <a href="/docs/third-party/">THIRD_PARTY_LICENSES.md</a>.</p>
+<h2 id="doc-std-20261002-documentation-navigation">DOC-STD-20261002 — Documentation navigation</h2>
+<p>Use the <a href="/docs/">documentation map</a> for authoritative sources, reading paths and project-specific maintenance rules.</p>
+</article>
+        
+    <nav class="page-pager" aria-label="Documentation pagination">
+      <a href="/docs/"><span>Previous</span><strong>Documentation overview</strong></a>
+      <a class="next" href="/docs/troubleshooting/"><span>Next</span><strong>Troubleshooting</strong></a>
+    </nav>
+      </main>
+      <aside class="page-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol><li class="toc-level-2"><a href="#mvp-features">MVP Features</a></li><li class="toc-level-2"><a href="#run-locally">Run Locally</a></li><li class="toc-level-2"><a href="#quality-checks">Quality Checks</a></li><li class="toc-level-2"><a href="#documentation-site">Documentation Site</a></li><li class="toc-level-2"><a href="#github-pages">GitHub Pages</a></li><li class="toc-level-2"><a href="#data-portability">Data Portability</a></li><li class="toc-level-2"><a href="#project-and-activity-status">Project and Activity Status</a></li><li class="toc-level-2"><a href="#objective-completion">Objective Completion</a></li><li class="toc-level-2"><a href="#mobile-builds">Mobile Builds</a></li><li class="toc-level-2"><a href="#project-goals">Project Goals</a></li><li class="toc-level-2"><a href="#current-scope">Current Scope</a></li><li class="toc-level-2"><a href="#suggested-github-topics">Suggested GitHub Topics</a></li><li class="toc-level-2"><a href="#contributing-security-and-license">Contributing, Security, and License</a></li><li class="toc-level-2"><a href="#doc-std-20261002-documentation-navigation">DOC-STD-20261002 — Documentation navigation</a></li></ol>
+      </aside>
+    </div>
+    <script src="/docs/assets/docs.js" defer></script>
+    <script src="/docs/assets/reading-tools.js" defer></script>
+  </body>
+</html>

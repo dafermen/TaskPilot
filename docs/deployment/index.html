@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Delivery: Deployment in the TaskPilot documentation." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+    <link rel="stylesheet" href="/docs/assets/innovalogic.css" />
+    <script>try{const t=localStorage.getItem('taskpilot-theme');document.documentElement.dataset.theme=t==='true'?'dark':t==='false'?'light':matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script>
+    <title>Deployment | TaskPilot Documentation</title>
+  </head>
+  <body data-docs-page="deployment">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="docs-topbar">
+      <div class="topbar-inner">
+        <button class="menu-button" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu</button>
+        <a class="docs-brand" href="/docs/" aria-label="TaskPilot documentation home">
+          <img src="/taskpilot-mark.svg" alt="" width="36" height="36" />
+          <span><strong>TaskPilot</strong><small>Documentation</small></span>
+        </a>
+        <nav class="top-links" aria-label="Documentation shortcuts">
+          <a href="/docs/">Documentation</a>
+          <a href="/docs/introduction/">Product</a>
+          <a href="/docs/architecture/">Architecture</a>
+          <a href="/docs/current-status/">Status</a>
+        </nav>
+        <div class="search-shell">
+          <label class="visually-hidden" for="docs-search">Search documentation</label>
+          <input id="docs-search" type="search" placeholder="Search docs" autocomplete="off" />
+          <div id="search-results" class="search-results" hidden></div>
+        </div>
+        <button id="theme-toggle" class="theme-button" type="button">Theme</button>
+        <a class="app-link app-link-desktop" href="/" target="_self">&larr; Back to app</a>
+      </div>
+    </header>
+    <div class="docs-layout">
+      <aside id="docs-sidebar" class="docs-sidebar" aria-label="Documentation navigation">
+        <div class="sidebar-scroll">
+          
+    <details class="nav-section" open>
+      <summary>Product</summary>
+      <ul>
+        <li><a href="/docs/">Documentation overview</a></li><li><a href="/docs/introduction/">Introduction and MVP</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Architecture</summary>
+      <ul>
+        <li><a href="/docs/architecture/">Architecture overview</a></li><li><a href="/docs/data-contracts/">Data contracts</a></li><li><a href="/docs/local-storage/">Accessibility and storage</a></li><li><a href="/docs/mobile/">Android and iOS</a></li><li><a href="/docs/decisions/">Decision index</a></li><li><a href="/docs/decisions/frontend-json/">ADR: JSON persistence</a></li><li><a href="/docs/decisions/record-visibility/">ADR: Record visibility</a></li><li><a href="/docs/decisions/github-pages/">ADR: GitHub Pages</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Engineering</summary>
+      <ul>
+        <li><a href="/docs/development/">Development setup</a></li><li><a href="/docs/code-walkthrough/">Code walkthrough</a></li><li><a href="/docs/testing/">Testing strategy</a></li><li><a href="/docs/quality/">Quality evidence</a></li><li><a href="/docs/security/">Security</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Delivery</summary>
+      <ul>
+        <li><a href="/docs/deployment/" class="current" aria-current="page">Deployment</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/release-checklist/">Release checklist</a></li><li><a href="/docs/changelog/">Changelog</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Project</summary>
+      <ul>
+        <li><a href="/docs/web-navigation/">Documentation navigation</a></li><li><a href="/docs/current-status/">Current status</a></li><li><a href="/docs/contributing/">Contributing</a></li><li><a href="/docs/continuity/">Codex continuity</a></li><li><a href="/docs/license/">License</a></li><li><a href="/docs/third-party/">Third-party licenses</a></li>
+      </ul>
+    </details>
+        </div>
+        <a class="app-link app-link-mobile" href="/" target="_self">&larr; Back to app</a>
+      </aside>
+      <button class="sidebar-backdrop" type="button" aria-label="Close documentation menu"></button>
+      <main id="main-content" class="docs-content" tabindex="-1">
+        <div class="page-context"><span>Delivery</span><span aria-hidden="true">/</span><span>Deployment</span></div>
+        
+        <article class="markdown-body"><h1 id="deployment">Deployment</h1>
+<h2 id="policy">Policy</h2>
+<p>Do not deploy solely because the application builds. Complete all applicable gates in <a href="/docs/testing/">TESTING.md</a> and record evidence with <a href="/docs/release-checklist/">RELEASE_CHECKLIST.md</a>.</p>
+<p>The <code>predeploy</code> script runs <code>npm run verify:release</code>, which covers the current automated baseline. Manual and pending gates remain the release reviewer's responsibility.</p>
+<p>The automated baseline also generates the documentation, checks all generated routes and assets, and opens the built site in Chrome at desktop and mobile sizes.</p>
+<h2 id="github-pages">GitHub Pages</h2>
+<p>TaskPilot publishes the contents of <code>dist</code> to the <code>gh-pages</code> branch and serves them at <a href="https://taskpilot.innovalogic.tech" rel="noreferrer">taskpilot.innovalogic.tech</a>.</p>
+<p><code>public/CNAME</code> must remain in source control so the custom domain survives every deployment.</p>
+<h2 id="procedure">Procedure</h2>
+<ol>
+<li>Confirm <code>main</code> is current and the working tree contains only intended changes.</li>
+<li>Update <code>CHANGELOG.md</code>, documentation, and <code>CURRENT_STATUS.md</code>.</li>
+<li>Install the locked dependencies with <code>npm ci</code>.</li>
+<li>Complete all 13 testing gates and the release checklist.</li>
+<li>Commit and push the validated source revision.</li>
+<li>Run:</li>
+</ol>
+<pre><code class="language-bash">npm run deploy
+</code></pre>
+<ol start="7">
+<li>Confirm <code>/</code> and <code>/docs/</code> are present in <code>dist</code> and the <code>gh-pages</code> branch advanced.</li>
+<li>Verify HTTPS, page title, application assets, documentation search, and one critical workflow on the public site.</li>
+<li>Record the source commit, Pages commit, URL, and results in <code>CURRENT_STATUS.md</code> or the release record.</li>
+</ol>
+<h2 id="mobile">Mobile</h2>
+<pre><code class="language-bash">npm run mobile:sync
+</code></pre>
+<p>Android releases then continue through Android Studio. iOS releases require macOS, Xcode, signing, and App Store provisioning. Web success is not evidence that a native release is compatible.</p>
+<h2 id="rollback">Rollback</h2>
+<p>Identify the last known-good source and <code>gh-pages</code> commits before deployment. To roll back, rebuild and republish the known-good source revision through a normal, reviewed Git operation. Never force-push or discard unrelated work as a shortcut.</p>
+<p>After rollback, verify the public URL and document the incident in <code>CHANGELOG.md</code> and <code>CURRENT_STATUS.md</code>.</p>
+</article>
+        
+    <nav class="page-pager" aria-label="Documentation pagination">
+      <a href="/docs/security/"><span>Previous</span><strong>Security</strong></a>
+      <a class="next" href="/docs/operations/"><span>Next</span><strong>Operations</strong></a>
+    </nav>
+      </main>
+      <aside class="page-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol><li class="toc-level-2"><a href="#policy">Policy</a></li><li class="toc-level-2"><a href="#github-pages">GitHub Pages</a></li><li class="toc-level-2"><a href="#procedure">Procedure</a></li><li class="toc-level-2"><a href="#mobile">Mobile</a></li><li class="toc-level-2"><a href="#rollback">Rollback</a></li></ol>
+      </aside>
+    </div>
+    <script src="/docs/assets/docs.js" defer></script>
+    <script src="/docs/assets/reading-tools.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Architecture: Accessibility and storage in the TaskPilot documentation." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+    <link rel="stylesheet" href="/docs/assets/innovalogic.css" />
+    <script>try{const t=localStorage.getItem('taskpilot-theme');document.documentElement.dataset.theme=t==='true'?'dark':t==='false'?'light':matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script>
+    <title>Accessibility and Storage Notes | TaskPilot Documentation</title>
+  </head>
+  <body data-docs-page="local-storage">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="docs-topbar">
+      <div class="topbar-inner">
+        <button class="menu-button" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu</button>
+        <a class="docs-brand" href="/docs/" aria-label="TaskPilot documentation home">
+          <img src="/taskpilot-mark.svg" alt="" width="36" height="36" />
+          <span><strong>TaskPilot</strong><small>Documentation</small></span>
+        </a>
+        <nav class="top-links" aria-label="Documentation shortcuts">
+          <a href="/docs/">Documentation</a>
+          <a href="/docs/introduction/">Product</a>
+          <a href="/docs/architecture/">Architecture</a>
+          <a href="/docs/current-status/">Status</a>
+        </nav>
+        <div class="search-shell">
+          <label class="visually-hidden" for="docs-search">Search documentation</label>
+          <input id="docs-search" type="search" placeholder="Search docs" autocomplete="off" />
+          <div id="search-results" class="search-results" hidden></div>
+        </div>
+        <button id="theme-toggle" class="theme-button" type="button">Theme</button>
+        <a class="app-link app-link-desktop" href="/" target="_self">&larr; Back to app</a>
+      </div>
+    </header>
+    <div class="docs-layout">
+      <aside id="docs-sidebar" class="docs-sidebar" aria-label="Documentation navigation">
+        <div class="sidebar-scroll">
+          
+    <details class="nav-section" open>
+      <summary>Product</summary>
+      <ul>
+        <li><a href="/docs/">Documentation overview</a></li><li><a href="/docs/introduction/">Introduction and MVP</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Architecture</summary>
+      <ul>
+        <li><a href="/docs/architecture/">Architecture overview</a></li><li><a href="/docs/data-contracts/">Data contracts</a></li><li><a href="/docs/local-storage/" class="current" aria-current="page">Accessibility and storage</a></li><li><a href="/docs/mobile/">Android and iOS</a></li><li><a href="/docs/decisions/">Decision index</a></li><li><a href="/docs/decisions/frontend-json/">ADR: JSON persistence</a></li><li><a href="/docs/decisions/record-visibility/">ADR: Record visibility</a></li><li><a href="/docs/decisions/github-pages/">ADR: GitHub Pages</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Engineering</summary>
+      <ul>
+        <li><a href="/docs/development/">Development setup</a></li><li><a href="/docs/code-walkthrough/">Code walkthrough</a></li><li><a href="/docs/testing/">Testing strategy</a></li><li><a href="/docs/quality/">Quality evidence</a></li><li><a href="/docs/security/">Security</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Delivery</summary>
+      <ul>
+        <li><a href="/docs/deployment/">Deployment</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/release-checklist/">Release checklist</a></li><li><a href="/docs/changelog/">Changelog</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Project</summary>
+      <ul>
+        <li><a href="/docs/web-navigation/">Documentation navigation</a></li><li><a href="/docs/current-status/">Current status</a></li><li><a href="/docs/contributing/">Contributing</a></li><li><a href="/docs/continuity/">Codex continuity</a></li><li><a href="/docs/license/">License</a></li><li><a href="/docs/third-party/">Third-party licenses</a></li>
+      </ul>
+    </details>
+        </div>
+        <a class="app-link app-link-mobile" href="/" target="_self">&larr; Back to app</a>
+      </aside>
+      <button class="sidebar-backdrop" type="button" aria-label="Close documentation menu"></button>
+      <main id="main-content" class="docs-content" tabindex="-1">
+        <div class="page-context"><span>Architecture</span><span aria-hidden="true">/</span><span>Accessibility and storage</span></div>
+        
+        <article class="markdown-body"><h1 id="accessibility-and-storage-notes">Accessibility and Storage Notes</h1>
+<p>TaskPilot is a frontend-only MVP, but it should still behave predictably for keyboard users and for browsers that restrict local storage.</p>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>Task cards can still be moved with native drag-and-drop.</li>
+<li>Each task card also includes left and right movement buttons so users do not need a pointer device to move work across the workflow.</li>
+<li>Task cards can be expanded or collapsed with Enter or Space.</li>
+<li>The full task drawer opens with double click or Shift + Enter.</li>
+<li>Expanded task cards include a visible Details action for touch and mobile users.</li>
+<li>Workspace task cards use a compact layout, can be expanded/collapsed inline, and long columns expose additional tasks through a show-more button.</li>
+<li>Empty columns show a clear state and keep the Add task action available.</li>
+<li>Paused/Done project and activity records are hidden from Workspace by default, and the Workspace toolbar includes a native checkbox to show them temporarily.</li>
+<li>The task drawer uses <code>role=&quot;dialog&quot;</code>, <code>aria-modal=&quot;true&quot;</code>, a labelled heading, initial focus on the title field, a focus trap, and Escape-to-close behavior.</li>
+<li>Visible focus styles are defined for buttons, inputs, selects, textareas, and task cards.</li>
+<li>Checklist items use native checkboxes and text inputs so progress can be edited with a keyboard.</li>
+<li>The Administration view uses native inputs and selects for project, activity, and task CRUD operations.</li>
+<li>The sidebar uses real buttons for Home, Workspace, Administration, Settings, Documentation, and About navigation.</li>
+</ul>
+<h2 id="local-storage">Local Storage</h2>
+<ul>
+<li>Stored board data is loaded from <code>localStorage</code> only when it parses into an array.</li>
+<li>Projects, activities, and tasks are stored as separate JSON arrays in <code>localStorage</code>.</li>
+<li>Legacy checklist arrays made of strings are normalized into editable checklist item objects.</li>
+<li>Legacy tasks without grouping are assigned to the default project and activity.</li>
+<li>Invalid stored data falls back to the demo board instead of breaking the app.</li>
+<li>Writes return a success/failure result.</li>
+<li>Theme and focus-mode preferences are saved separately from board data.</li>
+<li>Card expansion preference is saved separately from board data.</li>
+<li>Show paused/done preference is saved separately from board data.</li>
+<li>If a browser blocks saving, TaskPilot keeps the in-memory session active and shows a status message explaining that changes are not persisted.</li>
+<li>Capacitor builds use the same JSON-backed <code>localStorage</code> model inside the native WebView.</li>
+<li>JSON backups can be exported and imported from Settings.</li>
+<li>Imported data is normalized before it replaces local data.</li>
+<li>Reset, import, and delete actions ask for confirmation before changing local records.</li>
+</ul>
+<h2 id="known-limits">Known Limits</h2>
+<ul>
+<li>Native drag-and-drop remains limited on some touch devices.</li>
+<li>Android/iOS native shells are configured, but store-ready release work still needs icons, splash screens, signing, and real-device QA.</li>
+<li>There is no backend sync, account model, or cross-device persistence.</li>
+</ul>
+<h2 id="recommended-next-step">Recommended Next Step</h2>
+<p>Add component tests for field editing, filtering, reset behavior, storage failures, and keyboard task movement.</p>
+</article>
+        
+    <nav class="page-pager" aria-label="Documentation pagination">
+      <a href="/docs/data-contracts/"><span>Previous</span><strong>Data contracts</strong></a>
+      <a class="next" href="/docs/mobile/"><span>Next</span><strong>Android and iOS</strong></a>
+    </nav>
+      </main>
+      <aside class="page-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol><li class="toc-level-2"><a href="#accessibility">Accessibility</a></li><li class="toc-level-2"><a href="#local-storage">Local Storage</a></li><li class="toc-level-2"><a href="#known-limits">Known Limits</a></li><li class="toc-level-2"><a href="#recommended-next-step">Recommended Next Step</a></li></ol>
+      </aside>
+    </div>
+    <script src="/docs/assets/docs.js" defer></script>
+    <script src="/docs/assets/reading-tools.js" defer></script>
+  </body>
+</html>

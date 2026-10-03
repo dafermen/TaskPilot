@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Engineering: Quality evidence in the TaskPilot documentation." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+    <link rel="stylesheet" href="/docs/assets/innovalogic.css" />
+    <script>try{const t=localStorage.getItem('taskpilot-theme');document.documentElement.dataset.theme=t==='true'?'dark':t==='false'?'light':matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script>
+    <title>TaskPilot Quality Review | TaskPilot Documentation</title>
+  </head>
+  <body data-docs-page="quality">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="docs-topbar">
+      <div class="topbar-inner">
+        <button class="menu-button" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu</button>
+        <a class="docs-brand" href="/docs/" aria-label="TaskPilot documentation home">
+          <img src="/taskpilot-mark.svg" alt="" width="36" height="36" />
+          <span><strong>TaskPilot</strong><small>Documentation</small></span>
+        </a>
+        <nav class="top-links" aria-label="Documentation shortcuts">
+          <a href="/docs/">Documentation</a>
+          <a href="/docs/introduction/">Product</a>
+          <a href="/docs/architecture/">Architecture</a>
+          <a href="/docs/current-status/">Status</a>
+        </nav>
+        <div class="search-shell">
+          <label class="visually-hidden" for="docs-search">Search documentation</label>
+          <input id="docs-search" type="search" placeholder="Search docs" autocomplete="off" />
+          <div id="search-results" class="search-results" hidden></div>
+        </div>
+        <button id="theme-toggle" class="theme-button" type="button">Theme</button>
+        <a class="app-link app-link-desktop" href="/" target="_self">&larr; Back to app</a>
+      </div>
+    </header>
+    <div class="docs-layout">
+      <aside id="docs-sidebar" class="docs-sidebar" aria-label="Documentation navigation">
+        <div class="sidebar-scroll">
+          
+    <details class="nav-section" open>
+      <summary>Product</summary>
+      <ul>
+        <li><a href="/docs/">Documentation overview</a></li><li><a href="/docs/introduction/">Introduction and MVP</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Architecture</summary>
+      <ul>
+        <li><a href="/docs/architecture/">Architecture overview</a></li><li><a href="/docs/data-contracts/">Data contracts</a></li><li><a href="/docs/local-storage/">Accessibility and storage</a></li><li><a href="/docs/mobile/">Android and iOS</a></li><li><a href="/docs/decisions/">Decision index</a></li><li><a href="/docs/decisions/frontend-json/">ADR: JSON persistence</a></li><li><a href="/docs/decisions/record-visibility/">ADR: Record visibility</a></li><li><a href="/docs/decisions/github-pages/">ADR: GitHub Pages</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Engineering</summary>
+      <ul>
+        <li><a href="/docs/development/">Development setup</a></li><li><a href="/docs/code-walkthrough/">Code walkthrough</a></li><li><a href="/docs/testing/">Testing strategy</a></li><li><a href="/docs/quality/" class="current" aria-current="page">Quality evidence</a></li><li><a href="/docs/security/">Security</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Delivery</summary>
+      <ul>
+        <li><a href="/docs/deployment/">Deployment</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/release-checklist/">Release checklist</a></li><li><a href="/docs/changelog/">Changelog</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Project</summary>
+      <ul>
+        <li><a href="/docs/web-navigation/">Documentation navigation</a></li><li><a href="/docs/current-status/">Current status</a></li><li><a href="/docs/contributing/">Contributing</a></li><li><a href="/docs/continuity/">Codex continuity</a></li><li><a href="/docs/license/">License</a></li><li><a href="/docs/third-party/">Third-party licenses</a></li>
+      </ul>
+    </details>
+        </div>
+        <a class="app-link app-link-mobile" href="/" target="_self">&larr; Back to app</a>
+      </aside>
+      <button class="sidebar-backdrop" type="button" aria-label="Close documentation menu"></button>
+      <main id="main-content" class="docs-content" tabindex="-1">
+        <div class="page-context"><span>Engineering</span><span aria-hidden="true">/</span><span>Quality evidence</span></div>
+        
+        <article class="markdown-body"><h1 id="taskpilot-quality-review">TaskPilot Quality Review</h1>
+<p>Use this checklist before publishing screenshots, creating a GitHub repository, or linking the project from the portfolio.</p>
+<h2 id="product">Product</h2>
+<ul>
+<li>[x] A new visitor understands the product in under 10 seconds.</li>
+<li>[x] The board has realistic sample tasks.</li>
+<li>[x] Tasks belong to a project and an activity.</li>
+<li>[x] Project and activity filters update the Kanban view.</li>
+<li>[x] Home is a dashboard instead of the primary working board.</li>
+<li>[x] Home surfaces priority work, upcoming due dates, and review-lane tasks.</li>
+<li>[x] Workspace contains Kanban movement, search, and board filters.</li>
+<li>[x] Workspace supports compact collapsible cards plus show-more limits for large phases.</li>
+<li>[x] Workspace columns show useful empty states.</li>
+<li>[x] Workspace hides Paused/Done projects and activities by default.</li>
+<li>[x] Workspace can temporarily show Paused/Done work for review.</li>
+<li>[x] Administration view lists projects, activities, and tasks.</li>
+<li>[x] Administration view supports creating and editing projects, activities, and tasks.</li>
+<li>[x] Administration view supports pagination, per-column filters, and sortable columns.</li>
+<li>[x] Administration view prevents deleting projects or activities that still contain records.</li>
+<li>[x] Sidebar navigation exposes Home, Workspace, Administration, Settings, Documentation, and About.</li>
+<li>[x] Settings contains theme, focus mode, import/export, and reset controls.</li>
+<li>[x] Drag and drop works across every column.</li>
+<li>[x] Keyboard controls can move tasks left and right.</li>
+<li>[x] Creating a task opens the drawer.</li>
+<li>[x] Editing task fields persists after refresh when storage is available.</li>
+<li>[x] Checklist items can be added, renamed, completed, and removed.</li>
+<li>[x] Objective met appears only when a Done task is unblocked and all checklist items are complete.</li>
+<li>[x] Administration view can filter tasks by objective status.</li>
+<li>[x] Reset demo data works.</li>
+<li>[x] Reset, import, and delete actions ask for confirmation.</li>
+<li>[x] JSON backups can be exported and imported.</li>
+<li>[x] Theme and focus mode preferences persist.</li>
+<li>[x] Show paused/done preference persists.</li>
+<li>[x] Capacitor uses the Vite <code>dist</code> build as its native web bundle.</li>
+</ul>
+<h2 id="ux">UX</h2>
+<ul>
+<li>[x] Layout works on laptop width.</li>
+<li>[x] Layout works on mobile width.</li>
+<li>[x] Workspace layout is compact enough to keep filters, metrics, and board context visible.</li>
+<li>[x] Busy columns remain readable when many tasks share the same phase.</li>
+<li>[x] Home dashboard remains light and does not carry the working board controls.</li>
+<li>[x] Header remains focused on primary task creation while global actions live in Settings.</li>
+<li>[x] Priority queue is secondary and does not compete with the hero message.</li>
+<li>[x] Expanded cards expose a detail action that works on mobile without relying on double click.</li>
+<li>[x] Cards remain readable in light and dark themes.</li>
+<li>[x] Objective badges and drawer status remain readable in light and dark themes.</li>
+<li>[x] Filters do not collapse the layout.</li>
+<li>[x] Empty columns still accept dropped cards.</li>
+<li>[x] Detail drawer has dialog semantics, initial focus, focus trap, and Escape close.</li>
+</ul>
+<h2 id="technical">Technical</h2>
+<ul>
+<li>[x] <code>npm run build</code> passes.</li>
+<li>[x] <code>npm test</code> passes.</li>
+<li>[x] Unit, integration, and contract test groups pass.</li>
+<li>[x] Property and invariant tests pass with a recorded deterministic seed.</li>
+<li>[x] Fuzz tests pass for malformed backups and storage failures with a recorded deterministic seed.</li>
+<li>[x] Application E2E checks pass for CRUD persistence, objective completion, archived visibility, and responsive navigation.</li>
+<li>[x] A 10,000-task normalization budget and production asset budgets pass.</li>
+<li>[x] <code>npm run mobile:sync</code> passes.</li>
+<li>[x] <code>npm audit --audit-level=moderate</code> reports no vulnerabilities.</li>
+<li>[x] Local storage errors fail gracefully.</li>
+<li>[x] Legacy checklist data is normalized on load.</li>
+<li>[x] Objective status utility is covered by tests.</li>
+<li>[x] Legacy task grouping is normalized on load.</li>
+<li>[x] Invalid imported data is normalized before storage.</li>
+<li>[x] Empty task arrays remain empty instead of reloading demo tasks.</li>
+<li>[x] README matches actual MVP features.</li>
+<li>[x] Documentation is generated under <code>/docs/</code> with no duplicated <code>/docs/docs/</code> routes.</li>
+<li>[x] Documentation navigation, search, theme, internal page, and app-return link pass real Chrome checks.</li>
+<li>[x] <code>.private/</code> is ignored before publishing.</li>
+</ul>
+<h2 id="remaining-manual-checks">Remaining Manual Checks</h2>
+<ul>
+<li>[ ] Smoke test first load in the deployed GitHub Pages or portfolio environment.</li>
+<li>[ ] Capture final desktop and mobile screenshots.</li>
+<li>[ ] Run on Android emulator or physical Android device.</li>
+<li>[ ] Run on iOS simulator or physical iPhone from macOS/Xcode.</li>
+<li>[ ] Complete the applicable 13-gate <a href="/docs/release-checklist/">release checklist</a>.</li>
+</ul>
+</article>
+        
+    <nav class="page-pager" aria-label="Documentation pagination">
+      <a href="/docs/testing/"><span>Previous</span><strong>Testing strategy</strong></a>
+      <a class="next" href="/docs/security/"><span>Next</span><strong>Security</strong></a>
+    </nav>
+      </main>
+      <aside class="page-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol><li class="toc-level-2"><a href="#product">Product</a></li><li class="toc-level-2"><a href="#ux">UX</a></li><li class="toc-level-2"><a href="#technical">Technical</a></li><li class="toc-level-2"><a href="#remaining-manual-checks">Remaining Manual Checks</a></li></ol>
+      </aside>
+    </div>
+    <script src="/docs/assets/docs.js" defer></script>
+    <script src="/docs/assets/reading-tools.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Product: Documentation overview in the TaskPilot documentation." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+    <link rel="stylesheet" href="/docs/assets/innovalogic.css" />
+    <script>try{const t=localStorage.getItem('taskpilot-theme');document.documentElement.dataset.theme=t==='true'?'dark':t==='false'?'light':matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script>
+    <title>TaskPilot Documentation | TaskPilot Documentation</title>
+  </head>
+  <body data-docs-page="home">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="docs-topbar">
+      <div class="topbar-inner">
+        <button class="menu-button" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu</button>
+        <a class="docs-brand" href="/docs/" aria-label="TaskPilot documentation home">
+          <img src="/taskpilot-mark.svg" alt="" width="36" height="36" />
+          <span><strong>TaskPilot</strong><small>Documentation</small></span>
+        </a>
+        <nav class="top-links" aria-label="Documentation shortcuts">
+          <a href="/docs/">Documentation</a>
+          <a href="/docs/introduction/">Product</a>
+          <a href="/docs/architecture/">Architecture</a>
+          <a href="/docs/current-status/">Status</a>
+        </nav>
+        <div class="search-shell">
+          <label class="visually-hidden" for="docs-search">Search documentation</label>
+          <input id="docs-search" type="search" placeholder="Search docs" autocomplete="off" />
+          <div id="search-results" class="search-results" hidden></div>
+        </div>
+        <button id="theme-toggle" class="theme-button" type="button">Theme</button>
+        <a class="app-link app-link-desktop" href="/" target="_self">&larr; Back to app</a>
+      </div>
+    </header>
+    <div class="docs-layout">
+      <aside id="docs-sidebar" class="docs-sidebar" aria-label="Documentation navigation">
+        <div class="sidebar-scroll">
+          
+    <details class="nav-section" open>
+      <summary>Product</summary>
+      <ul>
+        <li><a href="/docs/" class="current" aria-current="page">Documentation overview</a></li><li><a href="/docs/introduction/">Introduction and MVP</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Architecture</summary>
+      <ul>
+        <li><a href="/docs/architecture/">Architecture overview</a></li><li><a href="/docs/data-contracts/">Data contracts</a></li><li><a href="/docs/local-storage/">Accessibility and storage</a></li><li><a href="/docs/mobile/">Android and iOS</a></li><li><a href="/docs/decisions/">Decision index</a></li><li><a href="/docs/decisions/frontend-json/">ADR: JSON persistence</a></li><li><a href="/docs/decisions/record-visibility/">ADR: Record visibility</a></li><li><a href="/docs/decisions/github-pages/">ADR: GitHub Pages</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Engineering</summary>
+      <ul>
+        <li><a href="/docs/development/">Development setup</a></li><li><a href="/docs/code-walkthrough/">Code walkthrough</a></li><li><a href="/docs/testing/">Testing strategy</a></li><li><a href="/docs/quality/">Quality evidence</a></li><li><a href="/docs/security/">Security</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Delivery</summary>
+      <ul>
+        <li><a href="/docs/deployment/">Deployment</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/release-checklist/">Release checklist</a></li><li><a href="/docs/changelog/">Changelog</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Project</summary>
+      <ul>
+        <li><a href="/docs/web-navigation/">Documentation navigation</a></li><li><a href="/docs/current-status/">Current status</a></li><li><a href="/docs/contributing/">Contributing</a></li><li><a href="/docs/continuity/">Codex continuity</a></li><li><a href="/docs/license/">License</a></li><li><a href="/docs/third-party/">Third-party licenses</a></li>
+      </ul>
+    </details>
+        </div>
+        <a class="app-link app-link-mobile" href="/" target="_self">&larr; Back to app</a>
+      </aside>
+      <button class="sidebar-backdrop" type="button" aria-label="Close documentation menu"></button>
+      <main id="main-content" class="docs-content" tabindex="-1">
+        <div class="page-context"><span>Product</span><span aria-hidden="true">/</span><span>Documentation overview</span></div>
+        <nav class="docs-reading-paths" aria-label="Reading paths"><a href="/docs/introduction/"><strong>Discover the product</strong><span>Purpose, capabilities and scope.</span></a><a href="/docs/introduction/#mvp-features"><strong>Learn to use it</strong><span>Projects, activities and tasks.</span></a><a href="/docs/development/"><strong>Explore development</strong><span>Setup, architecture and tests.</span></a></nav>
+        <article class="markdown-body"><h1 id="taskpilot-documentation">TaskPilot Documentation</h1>
+<p>This directory contains the canonical technical and operational documentation.</p>
+<p>The generated documentation site is available at <code>/docs/</code>. Run <code>npm run docs:build</code> before serving or building the application. The generator keeps these Markdown files as the source of truth and adds responsive navigation, local search, page outlines, theme switching, and previous/next links.</p>
+<h2 id="core-guides">Core Guides</h2>
+<ul>
+<li><a href="/docs/architecture/">Architecture</a></li>
+<li><a href="/docs/data-contracts/">Data and persistence contracts</a></li>
+<li><a href="/docs/development/">Development</a></li>
+<li><a href="/docs/testing/">Testing strategy</a></li>
+<li><a href="/docs/release-checklist/">Release checklist</a></li>
+<li><a href="/docs/deployment/">Deployment</a></li>
+<li><a href="/docs/operations/">Operations</a></li>
+<li><a href="/docs/security/">Security</a></li>
+<li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+<li><a href="/docs/decisions/">Architecture decisions</a></li>
+</ul>
+<h2 id="product-specific-guides">Product-Specific Guides</h2>
+<ul>
+<li><a href="/docs/mobile/">Capacitor mobile shells</a></li>
+<li><a href="/docs/local-storage/">Accessibility and local storage</a></li>
+<li><a href="/docs/quality/">Quality review</a></li>
+<li><a href="/docs/code-walkthrough/">Developer guide</a></li>
+</ul>
+<p><code>README.md</code> at the repository root remains the entry point for users and contributors. <code>AGENTS.md</code> and <code>CURRENT_STATUS.md</code> provide continuity for future Codex sessions.</p>
+<h2 id="doc-std-20261002-canonical-sources">DOC-STD-20261002 — Canonical sources</h2>
+<p>Documentation standard v1.0 · reviewed 2026-10-02. Primary language: English.</p>
+<p>Frontend-only task planning application with optional mobile shells.</p>
+<p>Progress and backups use localStorage and JSON; no server database is required. Keep Planning/Active and Paused/Done semantics consistent with the app. Markdown is the source for the generated /docs/ site; never edit generated public/docs files directly.</p>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Authoritative source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Presentation</td>
+<td><a href="/docs/introduction/">README.md</a></td>
+</tr>
+<tr>
+<td>Current state</td>
+<td><a href="/docs/current-status/">CURRENT_STATUS.md</a></td>
+</tr>
+<tr>
+<td>Development</td>
+<td><a href="/docs/development/">docs/DEVELOPMENT.md</a></td>
+</tr>
+<tr>
+<td>Architecture</td>
+<td><a href="/docs/architecture/">docs/ARCHITECTURE.md</a></td>
+</tr>
+<tr>
+<td>API / contracts</td>
+<td><a href="/docs/data-contracts/">docs/API.md</a></td>
+</tr>
+<tr>
+<td>Testing</td>
+<td><a href="/docs/testing/">docs/TESTING.md</a></td>
+</tr>
+<tr>
+<td>Security</td>
+<td><a href="/docs/security/">docs/SECURITY.md</a></td>
+</tr>
+<tr>
+<td>Deployment</td>
+<td><a href="/docs/deployment/">docs/DEPLOYMENT.md</a></td>
+</tr>
+<tr>
+<td>Operations</td>
+<td><a href="/docs/operations/">docs/OPERATIONS.md</a></td>
+</tr>
+<tr>
+<td>Troubleshooting</td>
+<td><a href="/docs/troubleshooting/">docs/TROUBLESHOOTING.md</a></td>
+</tr>
+<tr>
+<td>Usage and development</td>
+<td><a href="/docs/code-walkthrough/">docs/developer-guide.md</a></td>
+</tr>
+<tr>
+<td>Storage and accessibility</td>
+<td><a href="/docs/local-storage/">docs/accessibility-and-storage.md</a></td>
+</tr>
+<tr>
+<td>Mobile</td>
+<td><a href="/docs/mobile/">docs/mobile-capacitor.md</a></td>
+</tr>
+<tr>
+<td>History</td>
+<td><a href="/docs/changelog/">CHANGELOG.md</a></td>
+</tr>
+<tr>
+<td>Decisions</td>
+<td><a href="/docs/decisions/">docs/adr/README.md</a></td>
+</tr>
+</tbody>
+</table>
+<p>Start with the presentation and current state, then read the user guide to try the product, development/architecture to contribute, or deployment/operations to maintain it. The existing detailed index remains valid.</p>
+<h3 id="evidence-and-updates">Evidence and updates</h3>
+<p>Keep current state, change history and decisions separate. Existing dated test results remain historical evidence. Adding this map does not rerun every documented command or complete pending product acceptance. Record actual checks, their environment and unresolved limits before publication.</p>
+<p>Update the source guide whenever commands, configuration, behavior, permissions or deployment change. Keep existing links and portal routes stable. Use real screenshots with synthetic data; never publish env values, access keys, user data or operational logs. A local commit, a remote commit and a deployed artifact are separate states.</p>
+</article>
+        
+    <nav class="page-pager" aria-label="Documentation pagination">
+      <span></span>
+      <a class="next" href="/docs/introduction/"><span>Next</span><strong>Introduction and MVP</strong></a>
+    </nav>
+      </main>
+      <aside class="page-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol><li class="toc-level-2"><a href="#core-guides">Core Guides</a></li><li class="toc-level-2"><a href="#product-specific-guides">Product-Specific Guides</a></li><li class="toc-level-2"><a href="#doc-std-20261002-canonical-sources">DOC-STD-20261002 — Canonical sources</a></li><li class="toc-level-3"><a href="#evidence-and-updates">Evidence and updates</a></li></ol>
+      </aside>
+    </div>
+    <script src="/docs/assets/docs.js" defer></script>
+    <script src="/docs/assets/reading-tools.js" defer></script>
+  </body>
+</html>

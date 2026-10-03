@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Delivery: Release checklist in the TaskPilot documentation." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+    <link rel="stylesheet" href="/docs/assets/innovalogic.css" />
+    <script>try{const t=localStorage.getItem('taskpilot-theme');document.documentElement.dataset.theme=t==='true'?'dark':t==='false'?'light':matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script>
+    <title>Release Checklist | TaskPilot Documentation</title>
+  </head>
+  <body data-docs-page="release-checklist">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="docs-topbar">
+      <div class="topbar-inner">
+        <button class="menu-button" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu</button>
+        <a class="docs-brand" href="/docs/" aria-label="TaskPilot documentation home">
+          <img src="/taskpilot-mark.svg" alt="" width="36" height="36" />
+          <span><strong>TaskPilot</strong><small>Documentation</small></span>
+        </a>
+        <nav class="top-links" aria-label="Documentation shortcuts">
+          <a href="/docs/">Documentation</a>
+          <a href="/docs/introduction/">Product</a>
+          <a href="/docs/architecture/">Architecture</a>
+          <a href="/docs/current-status/">Status</a>
+        </nav>
+        <div class="search-shell">
+          <label class="visually-hidden" for="docs-search">Search documentation</label>
+          <input id="docs-search" type="search" placeholder="Search docs" autocomplete="off" />
+          <div id="search-results" class="search-results" hidden></div>
+        </div>
+        <button id="theme-toggle" class="theme-button" type="button">Theme</button>
+        <a class="app-link app-link-desktop" href="/" target="_self">&larr; Back to app</a>
+      </div>
+    </header>
+    <div class="docs-layout">
+      <aside id="docs-sidebar" class="docs-sidebar" aria-label="Documentation navigation">
+        <div class="sidebar-scroll">
+          
+    <details class="nav-section" open>
+      <summary>Product</summary>
+      <ul>
+        <li><a href="/docs/">Documentation overview</a></li><li><a href="/docs/introduction/">Introduction and MVP</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Architecture</summary>
+      <ul>
+        <li><a href="/docs/architecture/">Architecture overview</a></li><li><a href="/docs/data-contracts/">Data contracts</a></li><li><a href="/docs/local-storage/">Accessibility and storage</a></li><li><a href="/docs/mobile/">Android and iOS</a></li><li><a href="/docs/decisions/">Decision index</a></li><li><a href="/docs/decisions/frontend-json/">ADR: JSON persistence</a></li><li><a href="/docs/decisions/record-visibility/">ADR: Record visibility</a></li><li><a href="/docs/decisions/github-pages/">ADR: GitHub Pages</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Engineering</summary>
+      <ul>
+        <li><a href="/docs/development/">Development setup</a></li><li><a href="/docs/code-walkthrough/">Code walkthrough</a></li><li><a href="/docs/testing/">Testing strategy</a></li><li><a href="/docs/quality/">Quality evidence</a></li><li><a href="/docs/security/">Security</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Delivery</summary>
+      <ul>
+        <li><a href="/docs/deployment/">Deployment</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/release-checklist/" class="current" aria-current="page">Release checklist</a></li><li><a href="/docs/changelog/">Changelog</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Project</summary>
+      <ul>
+        <li><a href="/docs/web-navigation/">Documentation navigation</a></li><li><a href="/docs/current-status/">Current status</a></li><li><a href="/docs/contributing/">Contributing</a></li><li><a href="/docs/continuity/">Codex continuity</a></li><li><a href="/docs/license/">License</a></li><li><a href="/docs/third-party/">Third-party licenses</a></li>
+      </ul>
+    </details>
+        </div>
+        <a class="app-link app-link-mobile" href="/" target="_self">&larr; Back to app</a>
+      </aside>
+      <button class="sidebar-backdrop" type="button" aria-label="Close documentation menu"></button>
+      <main id="main-content" class="docs-content" tabindex="-1">
+        <div class="page-context"><span>Delivery</span><span aria-hidden="true">/</span><span>Release checklist</span></div>
+        
+        <article class="markdown-body"><h1 id="release-checklist">Release Checklist</h1>
+<p>Release commit:</p>
+<p>Release date:</p>
+<p>Reviewer:</p>
+<p>Target: GitHub Pages / Android / iOS / Other</p>
+<h2 id="required-gates">Required Gates</h2>
+<ul>
+<li>[ ] 1. Acceptance testing completed.</li>
+<li>[ ] 2. Unit tests passed.</li>
+<li>[ ] 3. Property and invariant tests passed.</li>
+<li>[ ] 4. Mutation testing passed and survivors reviewed.</li>
+<li>[ ] 5. Fuzzing passed with a recorded seed.</li>
+<li>[ ] 6. Integration tests passed.</li>
+<li>[ ] 7. Contract tests passed.</li>
+<li>[ ] 8. End-to-end tests passed.</li>
+<li>[ ] 9. Regression tests passed.</li>
+<li>[ ] 10. Security checks passed.</li>
+<li>[ ] 11. Concurrency and resilience checks passed.</li>
+<li>[ ] 12. Performance and resource checks passed.</li>
+<li>[ ] 13. Compatibility and deployment checks passed.</li>
+</ul>
+<h2 id="automated-evidence">Automated Evidence</h2>
+<pre><code class="language-text">npm ci:
+npm run verify:release:
+npm run mobile:sync:
+</code></pre>
+<h2 id="manual-evidence">Manual Evidence</h2>
+<p>Tested browsers and versions:</p>
+<p>Tested viewports:</p>
+<p>Tested Android devices/emulators:</p>
+<p>Tested iOS devices/simulators:</p>
+<p>Large-board or performance result:</p>
+<p>Backup and restore result:</p>
+<h2 id="not-applicable-decisions">Not Applicable Decisions</h2>
+<p>Record the gate number, reason, risk, and project-owner approval. A blank entry means no gate was excluded.</p>
+<h2 id="deployment-verification">Deployment Verification</h2>
+<ul>
+<li>[ ] Published URL responds successfully.</li>
+<li>[ ] Main application assets load.</li>
+<li>[ ] Custom domain and HTTPS remain active.</li>
+<li>[ ] A critical workflow succeeds on the deployed build.</li>
+<li>[ ] Rollback reference is recorded.</li>
+</ul>
+<p>Rollback reference:</p>
+<p>Final decision: Approved / Blocked</p>
+</article>
+        
+    <nav class="page-pager" aria-label="Documentation pagination">
+      <a href="/docs/operations/"><span>Previous</span><strong>Operations</strong></a>
+      <a class="next" href="/docs/changelog/"><span>Next</span><strong>Changelog</strong></a>
+    </nav>
+      </main>
+      <aside class="page-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol><li class="toc-level-2"><a href="#required-gates">Required Gates</a></li><li class="toc-level-2"><a href="#automated-evidence">Automated Evidence</a></li><li class="toc-level-2"><a href="#manual-evidence">Manual Evidence</a></li><li class="toc-level-2"><a href="#not-applicable-decisions">Not Applicable Decisions</a></li><li class="toc-level-2"><a href="#deployment-verification">Deployment Verification</a></li></ol>
+      </aside>
+    </div>
+    <script src="/docs/assets/docs.js" defer></script>
+    <script src="/docs/assets/reading-tools.js" defer></script>
+  </body>
+</html>

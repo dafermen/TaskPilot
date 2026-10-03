@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Project: Codex continuity in the TaskPilot documentation." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+    <link rel="stylesheet" href="/docs/assets/innovalogic.css" />
+    <script>try{const t=localStorage.getItem('taskpilot-theme');document.documentElement.dataset.theme=t==='true'?'dark':t==='false'?'light':matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script>
+    <title>AGENTS.md | TaskPilot Documentation</title>
+  </head>
+  <body data-docs-page="continuity">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="docs-topbar">
+      <div class="topbar-inner">
+        <button class="menu-button" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu</button>
+        <a class="docs-brand" href="/docs/" aria-label="TaskPilot documentation home">
+          <img src="/taskpilot-mark.svg" alt="" width="36" height="36" />
+          <span><strong>TaskPilot</strong><small>Documentation</small></span>
+        </a>
+        <nav class="top-links" aria-label="Documentation shortcuts">
+          <a href="/docs/">Documentation</a>
+          <a href="/docs/introduction/">Product</a>
+          <a href="/docs/architecture/">Architecture</a>
+          <a href="/docs/current-status/">Status</a>
+        </nav>
+        <div class="search-shell">
+          <label class="visually-hidden" for="docs-search">Search documentation</label>
+          <input id="docs-search" type="search" placeholder="Search docs" autocomplete="off" />
+          <div id="search-results" class="search-results" hidden></div>
+        </div>
+        <button id="theme-toggle" class="theme-button" type="button">Theme</button>
+        <a class="app-link app-link-desktop" href="/" target="_self">&larr; Back to app</a>
+      </div>
+    </header>
+    <div class="docs-layout">
+      <aside id="docs-sidebar" class="docs-sidebar" aria-label="Documentation navigation">
+        <div class="sidebar-scroll">
+          
+    <details class="nav-section" open>
+      <summary>Product</summary>
+      <ul>
+        <li><a href="/docs/">Documentation overview</a></li><li><a href="/docs/introduction/">Introduction and MVP</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Architecture</summary>
+      <ul>
+        <li><a href="/docs/architecture/">Architecture overview</a></li><li><a href="/docs/data-contracts/">Data contracts</a></li><li><a href="/docs/local-storage/">Accessibility and storage</a></li><li><a href="/docs/mobile/">Android and iOS</a></li><li><a href="/docs/decisions/">Decision index</a></li><li><a href="/docs/decisions/frontend-json/">ADR: JSON persistence</a></li><li><a href="/docs/decisions/record-visibility/">ADR: Record visibility</a></li><li><a href="/docs/decisions/github-pages/">ADR: GitHub Pages</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Engineering</summary>
+      <ul>
+        <li><a href="/docs/development/">Development setup</a></li><li><a href="/docs/code-walkthrough/">Code walkthrough</a></li><li><a href="/docs/testing/">Testing strategy</a></li><li><a href="/docs/quality/">Quality evidence</a></li><li><a href="/docs/security/">Security</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Delivery</summary>
+      <ul>
+        <li><a href="/docs/deployment/">Deployment</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/release-checklist/">Release checklist</a></li><li><a href="/docs/changelog/">Changelog</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Project</summary>
+      <ul>
+        <li><a href="/docs/web-navigation/">Documentation navigation</a></li><li><a href="/docs/current-status/">Current status</a></li><li><a href="/docs/contributing/">Contributing</a></li><li><a href="/docs/continuity/" class="current" aria-current="page">Codex continuity</a></li><li><a href="/docs/license/">License</a></li><li><a href="/docs/third-party/">Third-party licenses</a></li>
+      </ul>
+    </details>
+        </div>
+        <a class="app-link app-link-mobile" href="/" target="_self">&larr; Back to app</a>
+      </aside>
+      <button class="sidebar-backdrop" type="button" aria-label="Close documentation menu"></button>
+      <main id="main-content" class="docs-content" tabindex="-1">
+        <div class="page-context"><span>Project</span><span aria-hidden="true">/</span><span>Codex continuity</span></div>
+        
+        <article class="markdown-body"><h1 id="agentsmd">AGENTS.md</h1>
+<p>Mandatory guidance for any Codex session working on TaskPilot.</p>
+<h2 id="project-location">Project Location</h2>
+<ul>
+<li>Primary local project path: <code>C:\Projects\TaskPilot</code>.</li>
+<li>Main branch: <code>main</code>.</li>
+<li>Remote repository: <code>https://github.com/dafermen/TaskPilot.git</code>.</li>
+</ul>
+<h2 id="working-rules">Working Rules</h2>
+<ul>
+<li>Preserve user work. Never reset, checkout, or delete changes unless the user explicitly asks.</li>
+<li>Keep persistence frontend-only for now. Use <code>localStorage</code> and JSON backups; do not add a database until the user asks.</li>
+<li>Prefer focused changes that match the existing React + Vite structure.</li>
+<li>Keep the UI compact, light, and operational. Home is a dashboard; Workspace is the Kanban work area; Administration is the CRUD area.</li>
+<li>Treat <code>docs/README.md</code> as the documentation index and update every canonical guide affected by a change.</li>
+<li>Record user-visible changes in <code>CHANGELOG.md</code>.</li>
+<li>Update <code>CURRENT_STATUS.md</code> before ending a meaningful work session.</li>
+</ul>
+<h2 id="validation-checklist">Validation Checklist</h2>
+<p>Run the automated baseline before publishing or handing off:</p>
+<pre><code class="language-bash">npm run verify:release
+</code></pre>
+<p>Documentation changes must preserve Markdown as the source of truth and keep the public site at <code>/docs/</code>. Run <code>npm run docs:check</code> and <code>npm run docs:browser</code>; never edit generated <code>public/docs/</code> files directly.</p>
+<p>Run this when mobile shell assets need to be refreshed:</p>
+<pre><code class="language-bash">npm run mobile:sync
+</code></pre>
+<p>Before any deployment, evaluate and record all 13 gates in <code>docs/TESTING.md</code> using <code>docs/RELEASE_CHECKLIST.md</code>. Pending required gates block deployment. Never describe a manual or unavailable gate as passed without evidence.</p>
+<p>Read <code>docs/DEPLOYMENT.md</code>, <code>docs/SECURITY.md</code>, and <code>docs/OPERATIONS.md</code> before publishing or rolling back.</p>
+<h2 id="current-product-decisions">Current Product Decisions</h2>
+<ul>
+<li>Projects and activities use status values: <code>Planning</code>, <code>Active</code>, <code>Paused</code>, <code>Done</code>.</li>
+<li><code>Planning</code> and <code>Active</code> are operational.</li>
+<li><code>Paused</code> and <code>Done</code> remain in Administration but are hidden from Home/Workspace by default.</li>
+<li>Workspace has a <code>Show paused/done</code> toggle for reviewing paused or completed work.</li>
+<li>Tasks count as objective met only when they are in Done, not blocked, and all checklist items are complete.</li>
+<li>Compact/collapsible task cards are the default direction for board readability.</li>
+</ul>
+<h2 id="local-dev-server">Local Dev Server</h2>
+<p>For this handoff, the requested local port is:</p>
+<pre><code class="language-bash">npm run dev -- --port 5179
+</code></pre>
+<p>Then open:</p>
+<pre><code class="language-text">http://127.0.0.1:5179/
+</code></pre>
+</article>
+        
+    <nav class="page-pager" aria-label="Documentation pagination">
+      <a href="/docs/contributing/"><span>Previous</span><strong>Contributing</strong></a>
+      <a class="next" href="/docs/license/"><span>Next</span><strong>License</strong></a>
+    </nav>
+      </main>
+      <aside class="page-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol><li class="toc-level-2"><a href="#project-location">Project Location</a></li><li class="toc-level-2"><a href="#working-rules">Working Rules</a></li><li class="toc-level-2"><a href="#validation-checklist">Validation Checklist</a></li><li class="toc-level-2"><a href="#current-product-decisions">Current Product Decisions</a></li><li class="toc-level-2"><a href="#local-dev-server">Local Dev Server</a></li></ol>
+      </aside>
+    </div>
+    <script src="/docs/assets/docs.js" defer></script>
+    <script src="/docs/assets/reading-tools.js" defer></script>
+  </body>
+</html>

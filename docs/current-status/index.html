@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Project: Current status in the TaskPilot documentation." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+    <link rel="stylesheet" href="/docs/assets/innovalogic.css" />
+    <script>try{const t=localStorage.getItem('taskpilot-theme');document.documentElement.dataset.theme=t==='true'?'dark':t==='false'?'light':matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script>
+    <title>Current Status | TaskPilot Documentation</title>
+  </head>
+  <body data-docs-page="current-status">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="docs-topbar">
+      <div class="topbar-inner">
+        <button class="menu-button" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu</button>
+        <a class="docs-brand" href="/docs/" aria-label="TaskPilot documentation home">
+          <img src="/taskpilot-mark.svg" alt="" width="36" height="36" />
+          <span><strong>TaskPilot</strong><small>Documentation</small></span>
+        </a>
+        <nav class="top-links" aria-label="Documentation shortcuts">
+          <a href="/docs/">Documentation</a>
+          <a href="/docs/introduction/">Product</a>
+          <a href="/docs/architecture/">Architecture</a>
+          <a href="/docs/current-status/">Status</a>
+        </nav>
+        <div class="search-shell">
+          <label class="visually-hidden" for="docs-search">Search documentation</label>
+          <input id="docs-search" type="search" placeholder="Search docs" autocomplete="off" />
+          <div id="search-results" class="search-results" hidden></div>
+        </div>
+        <button id="theme-toggle" class="theme-button" type="button">Theme</button>
+        <a class="app-link app-link-desktop" href="/" target="_self">&larr; Back to app</a>
+      </div>
+    </header>
+    <div class="docs-layout">
+      <aside id="docs-sidebar" class="docs-sidebar" aria-label="Documentation navigation">
+        <div class="sidebar-scroll">
+          
+    <details class="nav-section" open>
+      <summary>Product</summary>
+      <ul>
+        <li><a href="/docs/">Documentation overview</a></li><li><a href="/docs/introduction/">Introduction and MVP</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Architecture</summary>
+      <ul>
+        <li><a href="/docs/architecture/">Architecture overview</a></li><li><a href="/docs/data-contracts/">Data contracts</a></li><li><a href="/docs/local-storage/">Accessibility and storage</a></li><li><a href="/docs/mobile/">Android and iOS</a></li><li><a href="/docs/decisions/">Decision index</a></li><li><a href="/docs/decisions/frontend-json/">ADR: JSON persistence</a></li><li><a href="/docs/decisions/record-visibility/">ADR: Record visibility</a></li><li><a href="/docs/decisions/github-pages/">ADR: GitHub Pages</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Engineering</summary>
+      <ul>
+        <li><a href="/docs/development/">Development setup</a></li><li><a href="/docs/code-walkthrough/">Code walkthrough</a></li><li><a href="/docs/testing/">Testing strategy</a></li><li><a href="/docs/quality/">Quality evidence</a></li><li><a href="/docs/security/">Security</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Delivery</summary>
+      <ul>
+        <li><a href="/docs/deployment/">Deployment</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/release-checklist/">Release checklist</a></li><li><a href="/docs/changelog/">Changelog</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Project</summary>
+      <ul>
+        <li><a href="/docs/web-navigation/">Documentation navigation</a></li><li><a href="/docs/current-status/" class="current" aria-current="page">Current status</a></li><li><a href="/docs/contributing/">Contributing</a></li><li><a href="/docs/continuity/">Codex continuity</a></li><li><a href="/docs/license/">License</a></li><li><a href="/docs/third-party/">Third-party licenses</a></li>
+      </ul>
+    </details>
+        </div>
+        <a class="app-link app-link-mobile" href="/" target="_self">&larr; Back to app</a>
+      </aside>
+      <button class="sidebar-backdrop" type="button" aria-label="Close documentation menu"></button>
+      <main id="main-content" class="docs-content" tabindex="-1">
+        <div class="page-context"><span>Project</span><span aria-hidden="true">/</span><span>Current status</span></div>
+        
+        <article class="markdown-body"><h1 id="current-status">Current Status</h1>
+<h2 id="documentation-web-navigation-v1-local-candidate-2026-10-03">Documentation web navigation v1 — local candidate, 2026-10-03</h2>
+<p>InnovaLogic documentation theme, reading paths and reading controls are implemented. verify:release: tests, build, performance, application and documentation browser checks PASS; audit FAIL (existing braces build-tool advisory). Additional browser checks PASS at 1440 and 390 px. See <a href="/docs/web-navigation/">navigation maintenance and evidence</a>. GitHub and server delivery of this revision are pending; earlier deployment status below remains historical evidence.</p>
+<p>Last updated: September 9, 2026.</p>
+<h2 id="current-phase">Current Phase</h2>
+<p>TaskPilot is in MVP refinement. The product is frontend-only, using React + Vite, <code>localStorage</code>, JSON import/export, and Capacitor shells for Android/iOS.</p>
+<h2 id="completed">Completed</h2>
+<ul>
+<li>Project -&gt; Activity -&gt; Task grouping.</li>
+<li>Home dashboard separated from the Workspace board.</li>
+<li>Workspace Kanban with compact cards, expanded/collapsible modes, show-more limits, search, filters, and empty-column states.</li>
+<li>Administration CRUD for projects, activities, and tasks with pagination, sortable columns, and per-column filters.</li>
+<li>Objective completion signal for tasks that are Done, unblocked, and fully checked off.</li>
+<li>Sidebar navigation for Home, Workspace, Administration, Settings, Documentation, and About.</li>
+<li>JSON backup export/import and demo reset controls.</li>
+<li>Capacitor Android/iOS shell setup.</li>
+<li>Visual cleanup for compact operational use.</li>
+<li>Logical archive behavior:
+<ul>
+<li><code>Planning</code> and <code>Active</code> projects/activities are shown in Home/Workspace.</li>
+<li><code>Paused</code> and <code>Done</code> projects/activities remain editable in Administration.</li>
+<li>Workspace can temporarily show paused/done work through <code>Show paused/done</code>.</li>
+</ul>
+</li>
+<li>Continuity files added: <code>AGENTS.md</code> and <code>CURRENT_STATUS.md</code>.</li>
+<li>GitHub Pages deployment documented for <code>taskpilot.innovalogic.tech</code>, with <code>public/CNAME</code> tracked to preserve the custom domain.</li>
+<li>Canonical documentation added for architecture, data contracts, development, testing, deployment, operations, security, troubleshooting, and architecture decisions.</li>
+<li>Repository governance added with CI, issue forms, a pull request template, Dependabot, contribution guidance, changelog, source-available license, and direct dependency license inventory.</li>
+<li>Tests organized by purpose, with executable unit, integration, and backup-contract groups plus documented directories for future quality gates.</li>
+<li>The deployment command now runs <code>npm run verify:release</code> before publishing.</li>
+<li>Canonical Markdown documentation now generates 25 static pages under <code>/docs/</code> with responsive sidebar navigation, mobile menu, local search, current-page highlighting, page outlines, previous/next links, and shared light/dark theme preference.</li>
+<li>The application Documentation item now opens <code>/docs/</code> in the same tab, and every documentation page provides a real link back to <code>/</code>.</li>
+<li>Documentation checks cover generated routes, internal assets, duplicated path prevention, desktop/mobile layouts, theme switching, search, internal navigation, and application return in Chrome.</li>
+<li>Imported JSON now repairs malformed records, duplicate identifiers, invalid calendar dates, missing checklists, and projects with orphaned tasks without discarding those tasks.</li>
+<li>Unsupported backup versions and non-object backup roots are rejected before replacing local data.</li>
+<li>Deterministic property tests generate 300 boards and verify relationships, ranges, unique checklist identifiers, and backup round trips.</li>
+<li>Deterministic fuzz tests mutate 750 backup inputs and exercise parser and browser-storage failures.</li>
+<li>Performance gates cover 10,000-task normalization plus production JavaScript and CSS budgets.</li>
+<li>Application E2E automation covers CRUD persistence, objective completion, paused-project visibility, and responsive navigation in Chrome.</li>
+<li><code>npm start</code> generates documentation and starts the complete frontend application at <code>http://127.0.0.1:5179/</code>.</li>
+</ul>
+<h2 id="latest-validation">Latest Validation</h2>
+<ul>
+<li><code>npm test</code>: passed, 22 tests.</li>
+<li><code>npm run test:unit</code>: passed, 14 tests.</li>
+<li><code>npm run test:integration</code>: passed, 1 test.</li>
+<li><code>npm run test:contract</code>: passed, 1 test.</li>
+<li><code>npm run test:property</code>: covered by the passing full suite, 2 tests with seed <code>0x5eed1234</code>.</li>
+<li><code>npm run test:fuzz</code>: covered by the passing full suite, 3 tests with seed <code>0x1badb002</code>.</li>
+<li><code>npm run test:performance</code>: covered by the passing full suite; 10,000 tasks normalized in approximately 121 ms against a 2.5-second budget.</li>
+<li><code>npm run test:e2e</code>: passed in installed Chrome for CRUD persistence, objective completion, paused visibility, and responsive navigation.</li>
+<li><code>npm run performance:budget</code>: passed at 236.2 KiB JavaScript and 25.2 KiB CSS.</li>
+<li><code>npm run build</code>: passed.</li>
+<li><code>npm run verify:release</code>: passed.</li>
+<li><code>npm audit --audit-level=moderate</code>: passed, 0 vulnerabilities.</li>
+<li><code>npm run docs:build</code>: passed, 25 pages generated.</li>
+<li><code>npm run docs:check</code>: passed, no broken generated links or assets.</li>
+<li><code>npm run docs:browser</code>: passed in installed Chrome at 1440x900 and 390x844, including light/dark themes and both navigation directions.</li>
+<li><code>npm run mobile:sync</code>: passed for Android, iOS, and web assets.</li>
+<li>Local dev server requested at <code>http://127.0.0.1:5179/</code>.</li>
+<li>Vulnerable transitive versions of <code>@xmldom/xmldom</code>, <code>brace-expansion</code>, and <code>nanoid</code> were updated to audited versions.</li>
+<li>GitHub Pages publication was last revalidated on July 28, 2026.</li>
+</ul>
+<h2 id="pending-validation">Pending Validation</h2>
+<ul>
+<li>Manual Android/iOS device or simulator tests remain pending.</li>
+<li>Mutation testing remains pending.</li>
+<li>File-picker backup restore, reset confirmation, and drag gestures remain manual E2E scenarios.</li>
+<li>Multi-tab concurrency, interrupted imports, and recovery remain manual resilience scenarios.</li>
+<li>Browser memory and sustained large-board interaction measurements remain pending.</li>
+<li>No deployment should be described as fully release-gated until all applicable entries in <code>docs/RELEASE_CHECKLIST.md</code> have evidence.</li>
+</ul>
+<h2 id="next-recommended-steps">Next Recommended Steps</h2>
+<ol>
+<li>Configure mutation testing for <code>src/utils/</code> and record an initial score.</li>
+<li>Automate backup download/reset/file-picker restore where browser download fixtures are acceptable.</li>
+<li>Add multi-tab and interrupted-import resilience coverage.</li>
+<li>Add sustained browser performance and memory measurements for large boards.</li>
+<li>Run Android/iOS device or simulator checks.</li>
+<li>Keep database work deferred until the workflow stabilizes.</li>
+</ol>
+<h2 id="useful-commands">Useful Commands</h2>
+<pre><code class="language-bash">npm run verify:release
+npm run test:unit
+npm run test:property
+npm run test:fuzz
+npm run test:integration
+npm run test:contract
+npm run test:performance
+npm run test:e2e
+npm start
+</code></pre>
+<h2 id="notes-for-the-next-codex-session">Notes For The Next Codex Session</h2>
+<ul>
+<li>Start by reading <code>AGENTS.md</code>, this file, and <code>git status -sb</code>.</li>
+<li>Do not assume <code>C:\Projects\TaskPilot</code> is inside the active sandbox; commands there may require approval.</li>
+<li>Preserve the deterministic seeds unless a failing input is first retained as a regression fixture.</li>
+<li>Browser E2E scripts require an installed Chrome or Chromium and start an isolated preview on an available local port.</li>
+</ul>
+<h2 id="doc-std-20261002-documentation-organization">DOC-STD-20261002 — Documentation organization</h2>
+<p>The <a href="/docs/">documentation map</a> now identifies canonical sources and maintenance rules. Existing implementation milestones and pending acceptance are unchanged. Validation and publication are tracked separately for this documentation-only change.</p>
+<h2 id="documentation-dependency-audit-2026-10-02">Documentation dependency audit — 2026-10-02</h2>
+<ul>
+<li>Updated the documentation renderer to markdown-it 15.0.2 and the locked transitive brace-expansion package to its patched version.</li>
+<li><code>npm run verify:release</code> passed: automated tests, production build, resource budgets, application E2E, 25 documentation pages, desktop/mobile browser checks, and dependency audit (0 findings).</li>
+<li>This closes the dependency failure found during documentation standardization. It does not close the pending manual acceptance, mutation, resilience, or native compatibility gates listed in <a href="/docs/testing/">TESTING.md</a>. Publishing the full application still requires that release evidence.</li>
+</ul>
+<h2 id="documentation-delivery-checkpoint-2026-10-03">Documentation delivery checkpoint — 2026-10-03</h2>
+<ul>
+<li>The source documentation is published in commit <code>3cceb6e</code>. A candidate containing only the 25 generated documentation pages is prepared; the public <code>/docs/</code> route has not been updated by this work.</li>
+<li>The 2026-10-02 automated baseline passed. A refreshed audit on 2026-10-03 reports five high entries caused by the braces advisory GHSA-vfj7-8cjw-p6xm through the gh-pages publication tool. The earlier zero-finding result is historical; no forced downgrade or suppressed advisory was applied.</li>
+<li>Publication of static <code>/docs/</code> awaits either resolved release gates or explicit owner approval of a limited exception. Application acceptance, mutation, resilience, performance and native checks remain distinct from the documentation browser checks. The main application, CNAME and mobile packages must be preserved in any documentation-only delivery.</li>
+</ul>
+</article>
+        
+    <nav class="page-pager" aria-label="Documentation pagination">
+      <a href="/docs/web-navigation/"><span>Previous</span><strong>Documentation navigation</strong></a>
+      <a class="next" href="/docs/contributing/"><span>Next</span><strong>Contributing</strong></a>
+    </nav>
+      </main>
+      <aside class="page-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol><li class="toc-level-2"><a href="#documentation-web-navigation-v1-local-candidate-2026-10-03">Documentation web navigation v1 — local candidate, 2026-10-03</a></li><li class="toc-level-2"><a href="#current-phase">Current Phase</a></li><li class="toc-level-2"><a href="#completed">Completed</a></li><li class="toc-level-2"><a href="#latest-validation">Latest Validation</a></li><li class="toc-level-2"><a href="#pending-validation">Pending Validation</a></li><li class="toc-level-2"><a href="#next-recommended-steps">Next Recommended Steps</a></li><li class="toc-level-2"><a href="#useful-commands">Useful Commands</a></li><li class="toc-level-2"><a href="#notes-for-the-next-codex-session">Notes For The Next Codex Session</a></li><li class="toc-level-2"><a href="#doc-std-20261002-documentation-organization">DOC-STD-20261002 — Documentation organization</a></li><li class="toc-level-2"><a href="#documentation-dependency-audit-2026-10-02">Documentation dependency audit — 2026-10-02</a></li><li class="toc-level-2"><a href="#documentation-delivery-checkpoint-2026-10-03">Documentation delivery checkpoint — 2026-10-03</a></li></ol>
+      </aside>
+    </div>
+    <script src="/docs/assets/docs.js" defer></script>
+    <script src="/docs/assets/reading-tools.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Engineering: Testing strategy in the TaskPilot documentation." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+    <link rel="stylesheet" href="/docs/assets/innovalogic.css" />
+    <script>try{const t=localStorage.getItem('taskpilot-theme');document.documentElement.dataset.theme=t==='true'?'dark':t==='false'?'light':matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script>
+    <title>Testing Strategy | TaskPilot Documentation</title>
+  </head>
+  <body data-docs-page="testing">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="docs-topbar">
+      <div class="topbar-inner">
+        <button class="menu-button" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu</button>
+        <a class="docs-brand" href="/docs/" aria-label="TaskPilot documentation home">
+          <img src="/taskpilot-mark.svg" alt="" width="36" height="36" />
+          <span><strong>TaskPilot</strong><small>Documentation</small></span>
+        </a>
+        <nav class="top-links" aria-label="Documentation shortcuts">
+          <a href="/docs/">Documentation</a>
+          <a href="/docs/introduction/">Product</a>
+          <a href="/docs/architecture/">Architecture</a>
+          <a href="/docs/current-status/">Status</a>
+        </nav>
+        <div class="search-shell">
+          <label class="visually-hidden" for="docs-search">Search documentation</label>
+          <input id="docs-search" type="search" placeholder="Search docs" autocomplete="off" />
+          <div id="search-results" class="search-results" hidden></div>
+        </div>
+        <button id="theme-toggle" class="theme-button" type="button">Theme</button>
+        <a class="app-link app-link-desktop" href="/" target="_self">&larr; Back to app</a>
+      </div>
+    </header>
+    <div class="docs-layout">
+      <aside id="docs-sidebar" class="docs-sidebar" aria-label="Documentation navigation">
+        <div class="sidebar-scroll">
+          
+    <details class="nav-section" open>
+      <summary>Product</summary>
+      <ul>
+        <li><a href="/docs/">Documentation overview</a></li><li><a href="/docs/introduction/">Introduction and MVP</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Architecture</summary>
+      <ul>
+        <li><a href="/docs/architecture/">Architecture overview</a></li><li><a href="/docs/data-contracts/">Data contracts</a></li><li><a href="/docs/local-storage/">Accessibility and storage</a></li><li><a href="/docs/mobile/">Android and iOS</a></li><li><a href="/docs/decisions/">Decision index</a></li><li><a href="/docs/decisions/frontend-json/">ADR: JSON persistence</a></li><li><a href="/docs/decisions/record-visibility/">ADR: Record visibility</a></li><li><a href="/docs/decisions/github-pages/">ADR: GitHub Pages</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Engineering</summary>
+      <ul>
+        <li><a href="/docs/development/">Development setup</a></li><li><a href="/docs/code-walkthrough/">Code walkthrough</a></li><li><a href="/docs/testing/" class="current" aria-current="page">Testing strategy</a></li><li><a href="/docs/quality/">Quality evidence</a></li><li><a href="/docs/security/">Security</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Delivery</summary>
+      <ul>
+        <li><a href="/docs/deployment/">Deployment</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/release-checklist/">Release checklist</a></li><li><a href="/docs/changelog/">Changelog</a></li>
+      </ul>
+    </details>
+    <details class="nav-section" open>
+      <summary>Project</summary>
+      <ul>
+        <li><a href="/docs/web-navigation/">Documentation navigation</a></li><li><a href="/docs/current-status/">Current status</a></li><li><a href="/docs/contributing/">Contributing</a></li><li><a href="/docs/continuity/">Codex continuity</a></li><li><a href="/docs/license/">License</a></li><li><a href="/docs/third-party/">Third-party licenses</a></li>
+      </ul>
+    </details>
+        </div>
+        <a class="app-link app-link-mobile" href="/" target="_self">&larr; Back to app</a>
+      </aside>
+      <button class="sidebar-backdrop" type="button" aria-label="Close documentation menu"></button>
+      <main id="main-content" class="docs-content" tabindex="-1">
+        <div class="page-context"><span>Engineering</span><span aria-hidden="true">/</span><span>Testing strategy</span></div>
+        
+        <article class="markdown-body"><h1 id="testing-strategy">Testing Strategy</h1>
+<h2 id="release-policy">Release Policy</h2>
+<p>Every deployment must evaluate all 13 quality gates below. A production gate may be marked <code>Not applicable</code> only with an explicit reason recorded in the release checklist and approved by the project owner. A pending required gate blocks deployment.</p>
+<p><code>npm run verify:release</code> enforces the automated checks currently available. It does not replace manual acceptance, device, performance, or resilience checks.</p>
+<h2 id="quality-gates">Quality Gates</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Gate</th>
+<th>Required evidence</th>
+<th>Current automation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Acceptance testing</td>
+<td>Product scenarios and <code>docs/quality-review.md</code> completed.</td>
+<td>Manual</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Unit testing</td>
+<td>Domain and storage helpers pass.</td>
+<td><code>npm run test:unit</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Property and invariant testing</td>
+<td>Generated data preserves relationships, ranges, and supported states.</td>
+<td><code>npm run test:property</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Mutation testing</td>
+<td>Mutation score and surviving mutations reviewed.</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Fuzzing</td>
+<td>Malformed JSON, legacy data, and storage failures tested reproducibly.</td>
+<td><code>npm run test:fuzz</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Integration testing</td>
+<td>Module interactions and JSON fixture import pass.</td>
+<td><code>npm run test:integration</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Contract testing</td>
+<td>Backup version and schema remain compatible.</td>
+<td><code>npm run test:contract</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td>End-to-end testing</td>
+<td>Critical browser workflows pass from UI to persistence.</td>
+<td><code>npm run test:e2e</code>; backup restore remains manual</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Regression testing</td>
+<td>Existing suite passes and escaped defects have focused tests.</td>
+<td><code>npm test</code>; visual checks manual</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Security testing</td>
+<td>Dependency audit, secret review, input handling, and platform permissions checked.</td>
+<td><code>npm audit --audit-level=moderate</code>; partial</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Concurrency and resilience</td>
+<td>Storage failure, multi-tab behavior, interrupted import, and recovery checked.</td>
+<td>Storage failure automated; remaining scenarios manual</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Performance and resources</td>
+<td>Bundle size, large-board responsiveness, memory, and startup checked.</td>
+<td>Normalization and asset budgets automated; browser memory manual</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Compatibility and deployment</td>
+<td>Production build, supported browsers, Pages, Android, and iOS verified.</td>
+<td>Build automated; devices manual</td>
+</tr>
+</tbody>
+</table>
+<h2 id="automated-baseline">Automated Baseline</h2>
+<pre><code class="language-bash">npm ci
+npm run verify:release
+</code></pre>
+<p>This runs all Node tests, the Vite production build, production asset budgets, application and documentation Chrome checks, and the dependency security audit.</p>
+<p>The application E2E check creates and persists a project, activity, and completed task; verifies the objective signal; pauses the project; confirms default hiding and explicit archived visibility; and checks responsive navigation. The documentation browser check covers <code>/docs/</code>, an internal page, search, light/dark themes, responsive navigation, and the return link to <code>/</code>.</p>
+<h2 id="acceptance-scenarios">Acceptance Scenarios</h2>
+<p>At minimum:</p>
+<ol>
+<li>Create, edit, filter, and delete valid projects, activities, and tasks.</li>
+<li>Move a task through every Kanban phase.</li>
+<li>Complete all checklist items and verify objective completion.</li>
+<li>Pause and reactivate a project or activity.</li>
+<li>Export data, reset the app, and restore the backup.</li>
+<li>Verify Home, Workspace, Administration, Settings, Documentation, and About.</li>
+<li>Repeat core workflows at desktop and mobile widths, in light and dark themes.</li>
+</ol>
+<h2 id="property-and-invariants">Property and Invariants</h2>
+<p>Generated tests must prove:</p>
+<ul>
+<li>Every activity references an existing project.</li>
+<li>Every task references an existing project and an activity in that project.</li>
+<li>Points remain an integer from 1 through 13.</li>
+<li>Columns, priorities, and statuses remain within documented sets.</li>
+<li>Backup export/import preserves valid relationships.</li>
+<li>Objective completion never becomes true for blocked, incomplete, or non-Done tasks.</li>
+</ul>
+<p>The generated storage suite uses the fixed seed <code>0x5eed1234</code> and runs 300 boards per execution.</p>
+<h2 id="mutation-testing">Mutation Testing</h2>
+<p>Mutation testing should target <code>src/utils/</code> first. A future harness must publish its score and list surviving mutations. The initial target is a mutation score of at least 80% for domain utilities; raising that threshold requires a documented decision.</p>
+<h2 id="fuzzing">Fuzzing</h2>
+<p>Use deterministic seeds and retain any input that causes a failure as a regression fixture. Primary targets are backup parsing, normalization, legacy migration, long strings, malformed dates, numeric boundaries, and storage exceptions.</p>
+<p>The current parser fuzz suite uses seed <code>0x1badb002</code>, mutates 750 inputs, verifies non-object and unsupported-version rejection, and exercises read/write storage failures.</p>
+<h2 id="security">Security</h2>
+<p>Security checks include dependency audit, accidental-secret scanning, unsafe HTML review, import validation, confirmation of destructive actions, and Android/iOS permission review. See <a href="/docs/security/">SECURITY.md</a>.</p>
+<h2 id="performance-and-compatibility">Performance and Compatibility</h2>
+<p>The automated resource gate normalizes a 10,000-task board within 2.5 seconds and limits uncompressed production JavaScript to 750 KiB and CSS to 200 KiB. Browser memory, sustained interaction, and mobile shells still require real browser, emulator, or device evidence before release.</p>
+<h2 id="evidence">Evidence</h2>
+<p>For each deployment, copy <a href="/docs/release-checklist/">RELEASE_CHECKLIST.md</a> into the release record or pull request, record command results, identify the tested commit, and list any approved <code>Not applicable</code> decisions.</p>
+</article>
+        
+    <nav class="page-pager" aria-label="Documentation pagination">
+      <a href="/docs/code-walkthrough/"><span>Previous</span><strong>Code walkthrough</strong></a>
+      <a class="next" href="/docs/quality/"><span>Next</span><strong>Quality evidence</strong></a>
+    </nav>
+      </main>
+      <aside class="page-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol><li class="toc-level-2"><a href="#release-policy">Release Policy</a></li><li class="toc-level-2"><a href="#quality-gates">Quality Gates</a></li><li class="toc-level-2"><a href="#automated-baseline">Automated Baseline</a></li><li class="toc-level-2"><a href="#acceptance-scenarios">Acceptance Scenarios</a></li><li class="toc-level-2"><a href="#property-and-invariants">Property and Invariants</a></li><li class="toc-level-2"><a href="#mutation-testing">Mutation Testing</a></li><li class="toc-level-2"><a href="#fuzzing">Fuzzing</a></li><li class="toc-level-2"><a href="#security">Security</a></li><li class="toc-level-2"><a href="#performance-and-compatibility">Performance and Compatibility</a></li><li class="toc-level-2"><a href="#evidence">Evidence</a></li></ol>
+      </aside>
+    </div>
+    <script src="/docs/assets/docs.js" defer></script>
+    <script src="/docs/assets/reading-tools.js" defer></script>
+  </body>
+</html>
