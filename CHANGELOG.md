@@ -41,3 +41,7 @@ All notable changes to TaskPilot are documented here. Dates use `YYYY-MM-DD`.
 - Paused and completed record visibility controls.
 - Capacitor Android and iOS shells.
 - GitHub Pages publication with a custom domain.
+
+## Documentation continuity — 2026-10-03
+
+Recorded the current static documentation candidate and refreshed publication-tool security finding separately from the previously successful baseline. Public delivery remains pending the release gate decision.

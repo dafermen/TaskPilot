@@ -108,3 +108,9 @@ The [documentation map](docs/README.md) now identifies canonical sources and mai
 - Updated the documentation renderer to markdown-it 15.0.2 and the locked transitive brace-expansion package to its patched version.
 - `npm run verify:release` passed: automated tests, production build, resource budgets, application E2E, 25 documentation pages, desktop/mobile browser checks, and dependency audit (0 findings).
 - This closes the dependency failure found during documentation standardization. It does not close the pending manual acceptance, mutation, resilience, or native compatibility gates listed in [TESTING.md](docs/TESTING.md). Publishing the full application still requires that release evidence.
+
+## Documentation delivery checkpoint — 2026-10-03
+
+- The source documentation is published in commit `3cceb6e`. A candidate containing only the 25 generated documentation pages is prepared; the public `/docs/` route has not been updated by this work.
+- The 2026-10-02 automated baseline passed. A refreshed audit on 2026-10-03 reports five high entries caused by the braces advisory GHSA-vfj7-8cjw-p6xm through the gh-pages publication tool. The earlier zero-finding result is historical; no forced downgrade or suppressed advisory was applied.
+- Publication of static `/docs/` awaits either resolved release gates or explicit owner approval of a limited exception. Application acceptance, mutation, resilience, performance and native checks remain distinct from the documentation browser checks. The main application, CNAME and mobile packages must be preserved in any documentation-only delivery.
